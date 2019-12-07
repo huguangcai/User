@@ -17,6 +17,8 @@ public interface Api {
     public final String GET_FORGETPWD = AppConfig.BASE_URL + "";
     // 待接单
     public final String GET_WAITING_LIST = AppConfig.BASE_URL + "";
+   // 拒绝原因
+    public final String GET_REFUSE_CAUSE = AppConfig.BASE_URL + "";
 
 
 }

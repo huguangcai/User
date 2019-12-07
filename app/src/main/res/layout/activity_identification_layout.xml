@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_title"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:cardCornerRadius="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="取车时间"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp_15" />
+
+            <TextView
+                android:id="@+id/tvSelect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:drawableRight="@mipmap/icon_right_arrow"
+                android:drawablePadding="@dimen/dp_10"
+                android:gravity="right"
+                android:hint="请选择"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/sp_15" />
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:cardCornerRadius="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:layout_marginLeft="15dp"
+                android:text="联系客户"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp_15" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:drawablePadding="@dimen/dp_10"
+                android:text="(请先联系客户确认时间)"
+                android:textColor="@color/theme_color"
+                android:textSize="@dimen/sp_12" />
+
+            <ImageView
+                android:id="@+id/ivCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/icon_call_phone"/>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/ok"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:layout_marginHorizontal="37.5dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/shape_theme_btn"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/colorWhite" />
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.ysxsoft.user.ui.activity;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -9,12 +10,20 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ysxsoft.common_base.base.BaseActivity;
+import com.ysxsoft.common_base.net.HttpResponse;
+import com.ysxsoft.common_base.utils.JsonUtils;
+import com.ysxsoft.common_base.utils.SharedPreferencesUtils;
 import com.ysxsoft.user.ARouterPath;
 import com.ysxsoft.user.R;
+import com.ysxsoft.user.modle.CommonResonse;
+import com.ysxsoft.user.net.Api;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
+import okhttp3.Call;
 
 /**
  * Create By 胡
@@ -80,15 +89,44 @@ public class RefuseCauseActivity extends BaseActivity {
                 backToActivity();
                 break;
             case R.id.tvSumType:
-
+                showToast("点击菜品");
                 break;
             case R.id.tvSelect:
-
+                showToast("选择拒绝原因");
                 break;
             case R.id.ok:
-
+                if (TextUtils.isEmpty(etMark.getText().toString().trim())){
+                    showToast("拒绝原因不能为空");
+                    return;
+                }
+                submitData();
                 break;
         }
+    }
+
+    private void submitData() {
+        OkHttpUtils.post()
+                .url(Api.GET_REFUSE_CAUSE)
+                .addParams("uid", SharedPreferencesUtils.getUid(mContext))
+                .addParams("content",etMark.getText().toString().trim())
+                .tag(this)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        CommonResonse resp = JsonUtils.parseByGson(response, CommonResonse.class);
+                        if (resp!=null){
+                            if (HttpResponse.SUCCESS.equals("0")){
+                                finish();
+                            }
+                        }
+                    }
+                });
     }
 
 }

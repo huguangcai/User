@@ -34,4 +34,15 @@ public class ARouterPath {
     public static String getRefuseCauseActivity() {
         return "/main/RefuseCauseActivity";
     }
+
+     /**
+     * 确认接单
+     * @return
+     */
+    public static String getIdentificationActivity() {
+        return "/main/IdentificationActivity";
+    }
+
+
+
 }

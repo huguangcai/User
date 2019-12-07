@@ -84,6 +84,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawablePadding="@dimen/dp_10"
             android:drawableLeft="@mipmap/icon_location"
             android:textColor="@color/color_666666"
             android:textSize="@dimen/sp_13"

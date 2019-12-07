@@ -1,5 +1,6 @@
 package com.ysxsoft.user.ui.fragment;
 
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import com.gyf.immersionbar.OnKeyboardListener;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.ysxsoft.common_base.adapter.BaseQuickAdapter;
 import com.ysxsoft.common_base.adapter.BaseViewHolder;
+import com.ysxsoft.common_base.adapter.util.TouchEventUtil;
 import com.ysxsoft.common_base.base.BaseFragment;
 import com.ysxsoft.common_base.base.frame.list.IListAdapter;
 import com.ysxsoft.common_base.base.frame.list.ListManager;
@@ -28,6 +30,8 @@ import com.ysxsoft.user.R;
 import com.ysxsoft.user.config.AppConfig;
 import com.ysxsoft.user.modle.WaitingListResponse;
 import com.ysxsoft.user.net.Api;
+import com.ysxsoft.user.ui.activity.IdentificationActivity;
+import com.ysxsoft.user.ui.activity.RefuseCauseActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -170,7 +174,14 @@ public class MainChild1Fragment extends BaseFragment implements IListAdapter {
             }
         };
         recyclerView.setAdapter(adapter);
-        helper.setText(R.id.tvSumType, "共" + "  " + "菜品");
+        TextView tvSumType = helper.getView(R.id.tvSumType);
+        tvSumType.setText("共" + "  " + "菜品");
+        tvSumType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("菜品详情");
+            }
+        });
         helper.setText(R.id.tvDistance, "距客户:" + "  " + "km");
         helper.setText(R.id.tvSum, "共" + "   " + "件，合计");
         helper.setText(R.id.tvMoney, "¥" + "");
@@ -179,14 +190,14 @@ public class MainChild1Fragment extends BaseFragment implements IListAdapter {
         tvRefuse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            showToast("拒绝原因");
+                RefuseCauseActivity.start();
             }
         });
         TextView tvAccept = helper.getView(R.id.tvAccept);
         tvAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("接单");
+                IdentificationActivity.start();
             }
         });
 
