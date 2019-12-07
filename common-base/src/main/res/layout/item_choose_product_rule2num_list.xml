@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp_10"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp_8">
+
+        <com.ysxsoft.common_base.view.custom.image.RoundImageView
+            android:id="@+id/logo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginHorizontal="@dimen/dp_5"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:radius="@dimen/dp_5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_10">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="舒克牙膏150克"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp_15" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10">
+
+                <TextView
+                    android:id="@+id/sales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_16"
+                    android:text="月售298份"
+                    android:textColor="@color/color_989898"
+                    android:textSize="@dimen/sp_12" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="¥15.00"
+                    android:textColor="@color/color_e70d0d"
+                    android:textSize="@dimen/sp_14" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_10">
+
+                    <FrameLayout
+                        android:id="@+id/layout1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_5"
+                            android:layout_marginRight="@dimen/dp_5"
+                            android:background="@drawable/bg_theme_radius_16"
+                            android:paddingHorizontal="@dimen/dp_16"
+                            android:paddingVertical="@dimen/dp_5"
+                            android:text="选规格"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/sp_10" />
+
+                        <TextView
+                            android:id="@+id/shopSpecNum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:background="@drawable/oval_point_red"
+                            android:gravity="center"
+                            android:minWidth="@dimen/dp_16"
+                            android:minHeight="@dimen/dp_16"
+                            android:padding="@dimen/dp_2"
+                            android:text="1"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/sp_10" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:gravity="center_vertical"
+                        android:visibility="gone">
+
+                        <ImageButton
+                            android:id="@+id/reduce"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:src="@mipmap/icon_reduce_num" />
+
+                        <TextView
+                            android:id="@+id/num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_4"
+                            android:layout_marginRight="@dimen/dp_4"
+                            android:text="1"
+                            android:textColor="@color/color_282828"
+                            android:textSize="@dimen/sp_14" />
+
+                        <ImageButton
+                            android:id="@+id/add"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:src="@mipmap/icon_add_num" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

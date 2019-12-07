@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="?android:attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/backWithText"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:drawableLeft="@mipmap/icon_gray_back"
+            android:text="返回上一步"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:textColor="@color/color_686868"
+            android:textSize="@dimen/sp_14" />
+
+        <LinearLayout
+            android:id="@+id/backLayout"
+            android:visibility="gone"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_width="?android:attr/actionBarSize"
+            android:layout_height="?android:attr/actionBarSize"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_gray_back" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:layout_centerInParent="true"
+            android:textColor="@color/color_282828"
+            android:textSize="@dimen/sp_18" />
+
+        <TextView
+            android:id="@+id/rightWithIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp_16"
+            android:paddingRight="@dimen/dp_16"
+            android:layout_centerVertical="true"
+            android:drawablePadding="@dimen/dp_10"
+            android:background="?android:attr/selectableItemBackground"
+            android:text=""
+            android:textColor="@color/color_686868"
+            android:textSize="@dimen/sp_14" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:maxHeight="400dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_12">
+
+                <Button
+                    android:id="@+id/cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_4"
+                    android:background="@null"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:text="取消"
+                    android:textColor="@color/color_989898"
+                    android:textSize="@dimen/sp_15" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(可多选)"
+                    android:textColor="@color/color_282828"
+                    android:textSize="@dimen/sp_15" />
+
+                <Button
+                    android:id="@+id/sure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="@dimen/dp_5"
+                    android:text="完成"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/sp_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/color_f2f2f2" />
+
+            <com.ysxsoft.common_base.view.custom.FlowLayout
+                android:id="@+id/flowLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp_16"
+                android:paddingVertical="@dimen/dp_24"></com.ysxsoft.common_base.view.custom.FlowLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

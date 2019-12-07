@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">汽车服务端</string>
+
+    <string name="tab1_menu">待接单</string>
+    <string name="tab2_menu">工作中</string>
+    <string name="tab3_menu">已完成</string>
+    <string name="tab4_menu">售后</string>
+    <string name="tab5_menu">个人中心</string>
+
+    <string name="forget_pwd">忘记密码?</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+
+
+</resources>

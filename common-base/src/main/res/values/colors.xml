@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF6A28</color>
+    <color name="colorPrimaryDark">#FF6A28</color>
+    <color name="colorAccent">#FF6A28</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorRed">#FF0000</color>
+    <color name="baseColorBlack">#000000</color>
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+
+    <color name="colorTabSelectedIndictor">@color/colorPrimary</color>
+    <color name="colorTabNormalIndictor">@color/color_989898</color>
+    <!--app相关-->
+    <color name="theme_color">#FF6A28</color>
+    <color name="color_989898">#989898</color>
+    <color name="color_e70d0d">#E70D0D</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_f64444">#f64444</color>
+    <color name="color_686868">#686868</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_282828">#282828</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_spacing">#F9F9F9</color>
+    <color name="color_f2f2f2">#F2F2F2</color>
+    <color name="color_ffac12">#FFAC12</color>
+    <color name="color_db2b1f">#DB2B1F</color>
+    <color name="color_9d1212">#9D1212</color>
+    <color name="color_db2b1f_a87">#87DB2B1F</color>
+    <color name="color_f31818">#F31818</color>
+    <color name="color_cccccc">#CCCCCC</color>
+    <color name="color_dddddd">#DDDDDD</color>
+    <color name="color_ebebeb">#EBEBEB</color>
+    <color name="color_4955F3">#4955F3</color>
+    <color name="color_fff5f5f5">#fff5f5f5</color>
+    <color name="color_464646">#464646</color>
+    <color name="blueEnd">#3171fe</color>
+    <color name="blueStart">#7099fe</color>
+    <color name="couponBlue">#169CF9</color>
+    <!--文本起始-->
+    <color name="hint">#cccccc</color>
+    <!--文本结束-->
+    <color name="record_progress_bg">#50FFFFFF</color> <!-- 40%不透明度 -->
+    <color name="record_progress">#DB2B1F</color>
+    <color name="record_progress_pending">#10acc0</color>
+</resources>

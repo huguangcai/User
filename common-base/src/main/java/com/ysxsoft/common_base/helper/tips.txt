@@ -1,0 +1,3 @@
+1.layoutback     左滑返回键
+2.recyclerview   RecyclerView LayoutManager
+3.glide          Glide配置 GlideCircleTransform  GlideRoundTransform

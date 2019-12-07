@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools">    <!-- Default screen margins, per the Android Design guidelines. -->    <dimen name="dp_1">2.56dp</dimen>
+    <dimen name="dp_2">5.12dp</dimen>
+    <dimen name="dp_4">10.24dp</dimen>
+    <dimen name="dp_8">20.48dp</dimen>
+    <dimen name="dp_10">25.6dp</dimen>
+    <dimen name="dp_12">30.72dp</dimen>
+    <dimen name="dp_16">40.96dp</dimen>
+    <dimen name="dp_20">51.2dp</dimen>
+    <dimen name="dp_24">61.44dp</dimen>
+    <dimen name="dp_29">74.24dp</dimen>
+    <dimen name="dp_32">81.92dp</dimen>
+    <dimen name="dp_40">102.4dp</dimen>
+    <dimen name="dp_44">112.64dp</dimen>
+    <dimen name="dp_45">115.2dp</dimen>
+    <dimen name="dp_72">184.32dp</dimen>
+    <dimen name="dp_90">230.4dp</dimen>
+    <dimen name="sp_10">25.6sp</dimen>
+    <dimen name="sp_12">30.72sp</dimen>
+    <dimen name="sp_13">33.28sp</dimen>
+    <dimen name="sp_14">35.84sp</dimen>
+    <dimen name="sp_15">38.5sp</dimen>
+    <dimen name="sp_16">40.96sp</dimen>
+    <dimen name="sp_18">46.08sp</dimen>
+</resources>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_title" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="32.5dp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:cardCornerRadius="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:src="@mipmap/icon_input_phone" />
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="请输入手机号码"
+                android:inputType="number"
+                android:letterSpacing="0.2"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:textSize="@dimen/sp_15" />
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="32.5dp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:cardCornerRadius="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:src="@mipmap/icon_input_code" />
+
+            <EditText
+                android:id="@+id/et_invitation_code"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入验证码"
+                android:inputType="number"
+                android:letterSpacing="0.2"
+                android:singleLine="true"
+                android:textSize="@dimen/sp_15" />
+
+            <TextView
+                android:id="@+id/tvCode"
+                android:layout_width="@dimen/dp_90"
+                android:layout_height="@dimen/dp_24"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:background="@drawable/bg_shape_theme_border_color_r5"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="@color/theme_color"
+                android:textSize="@dimen/sp_15" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="32.5dp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:cardCornerRadius="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:src="@mipmap/icon_input_pwd" />
+
+            <EditText
+                android:id="@+id/et_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:letterSpacing="0.2"
+                android:singleLine="true"
+                android:textSize="@dimen/sp_15" />
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="32.5dp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:cardCornerRadius="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:src="@mipmap/icon_input_pwd" />
+
+            <EditText
+                android:id="@+id/et_second_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="请再次输入新密码"
+                android:inputType="textPassword"
+                android:letterSpacing="0.2"
+                android:singleLine="true"
+                android:textSize="@dimen/sp_15" />
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/ok"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:layout_marginHorizontal="37.5dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/shape_theme_btn"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/sp_15" />
+
+
+</LinearLayout>

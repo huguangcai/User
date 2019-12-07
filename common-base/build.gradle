@@ -1,0 +1,130 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    compileOnly 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    //    androidTestImplementation 'com.android.support.test:runner:1.0.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+
+    //把implementation 用api/compile代替,它是对外部公开的, 所有其他的module就不需要添加该依赖
+    api rootProject.ext.dependencies["support-v4"]
+    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["design"]
+    api rootProject.ext.dependencies["recyclerview-v7"]
+    api rootProject.ext.dependencies["cardview-v7"]
+
+    //网络
+    api 'com.zhy:okhttputils:2.6.2'
+    api 'com.squareup.okhttp3:okhttp:3.8.1'
+
+    //glide
+    api rootProject.ext.dependencies["glide"]
+
+    //    api rootProject.ext.dependencies["glide-compiler"]
+
+    //    api rootProject.ext.dependencies["glide-loader-okhttp3"]
+
+    //litepal
+    api rootProject.ext.dependencies["litepal"]
+
+    //65k
+    api rootProject.ext.dependencies["multidex"]
+
+    //支付
+    api rootProject.ext.dependencies["wechatpay"]
+
+    //arouter
+    api rootProject.ext.dependencies["arouter"]
+
+    //butterknife
+    api(rootProject.ext.dependencies["butterknife"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'support-compat'
+    }
+
+    //城市选择器
+    api rootProject.ext.dependencies["pickerview"]
+
+    //api 'com.contrarywind:wheelview:4.0.8'
+
+    //gson
+    api rootProject.ext.dependencies["gson"]
+
+    //smartrefresh
+    api rootProject.ext.dependencies["smartRefreshLayout"]
+    api rootProject.ext.dependencies["smartRefreshHeader"]
+
+    //banner
+    api rootProject.ext.dependencies["banner"]
+
+    //cache
+    api 'com.jakewharton:disklrucache:2.0.2'
+
+    //eventbus
+    api 'org.simple:androideventbus:1.0.5.1'
+
+    //选择图片
+    api 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
+    api 'cn.bingoogolapple:bga-baseadapter:1.2.7@aar'
+
+    //图片压缩库 100k以内
+    implementation rootProject.ext.dependencies["compress"]
+
+    //权限
+    api rootProject.ext.dependencies["rxjava2"]
+    api(rootProject.ext.dependencies["rxpermissions2"]) {
+        exclude module: 'rxjava'
+        exclude module: 'support-annotations'
+    }
+
+    //视频播放器
+    //api rootProject.ext.dependencies["gsyPlayer"]
+
+    //jpush
+    api rootProject.ext.dependencies["jpush"]
+    api rootProject.ext.dependencies["jcore"]
+
+    //bugly
+    api rootProject.ext.dependencies["bugly-update"]
+    api rootProject.ext.dependencies["bugly-report"]
+
+    //leakcanary检测
+    debugApi rootProject.ext.dependencies["canary-debug"]
+    releaseApi rootProject.ext.dependencies["canary-release"]
+
+    //annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+
+    //annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
+//    implementation files('libs/alipaySdk-20180601.jar')
+//    implementation files('libs/core-3.3.3.jar')
+//    implementation files('libs/pinyin4j-2.5.0.jar')
+//    implementation files('libs/umeng-common-1.5.4.jar')
+//    implementation files('libs/umeng-share-core-6.9.4.jar')
+//    implementation files('libs/umeng-share-QQ-simplify-6.9.4.jar')
+//    implementation files('libs/umeng-share-sina-simplify-6.9.4.jar')
+//    implementation files('libs/umeng-share-wechat-simplify-6.9.4.jar')
+//    implementation files('libs/umeng-sharetool-6.9.4.jar')
+
+    api 'com.wx.wheelview:wheelview:1.3.3'
+}

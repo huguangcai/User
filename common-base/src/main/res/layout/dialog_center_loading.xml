@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/bg_10000000_radius_4"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/anim_frame_loading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/loading"
+        android:layout_width="wrap_content"
+        android:id="@+id/content"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/colorWhite"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingLeft="@dimen/dp_16"
+    android:paddingRight="@dimen/dp_16"
+    android:paddingTop="@dimen/dp_4"
+    android:paddingBottom="@dimen/dp_4"
+    android:gravity="center"
+    android:background="@color/colorWhite"
+    android:layout_height="?android:attr/actionBarSize">
+    <ScrollView
+        android:layout_width="187dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:background="@drawable/bg_gray_radius_16"
+        android:layout_height="32dp">
+
+    <EditText
+        android:layout_gravity="center_vertical"
+        android:id="@+id/editText"
+        android:background="@null"
+        android:layout_width="187dp"
+        android:drawableLeft="@mipmap/icon_bottom_edit"
+        android:paddingLeft="@dimen/dp_8"
+        android:hint="在这里写下精彩评论~"
+        android:textSize="@dimen/sp_10"
+        android:drawablePadding="@dimen/dp_8"
+        android:gravity="center_vertical"
+        android:layout_height="match_parent" />
+    </ScrollView>
+    <Button
+        android:id="@+id/sendButton"
+        android:text="发送"
+        android:layout_marginLeft="@dimen/dp_8"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/bg_gray_radius_16"
+        android:layout_width="64dp"
+        android:textSize="@dimen/sp_12"
+        android:layout_height="32dp" />
+</LinearLayout>

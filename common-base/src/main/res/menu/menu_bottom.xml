@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu1"
+        android:icon="@drawable/menu_tab1_selector"
+        android:title="@string/tab1_menu"/>
+    <item
+        android:id="@+id/menu2"
+        android:icon="@drawable/menu_tab2_selector"
+        android:title="@string/tab2_menu"/>
+    <item
+        android:id="@+id/menu3"
+        android:icon="@drawable/menu_tab3_selector"
+        android:title="@string/tab3_menu"/>
+    <item
+        android:id="@+id/menu4"
+        android:icon="@drawable/menu_tab4_selector"
+        android:title="@string/tab4_menu"/>
+    <item
+        android:id="@+id/menu5"
+        android:icon="@drawable/menu_tab5_selector"
+        android:title="@string/tab5_menu"/>
+</menu>

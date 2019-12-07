@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/dp_4"
+    android:paddingBottom="@dimen/dp_4"
+    >
+
+    <TextView
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_theme_gray_selector"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingTop="@dimen/dp_4"
+        android:paddingRight="@dimen/dp_16"
+        android:paddingBottom="@dimen/dp_4"
+        android:text="测试"
+        android:textColor="@color/text_color_e70d0d_333333_selected"
+        android:textSize="@dimen/sp_12">
+
+    </TextView>
+</LinearLayout>

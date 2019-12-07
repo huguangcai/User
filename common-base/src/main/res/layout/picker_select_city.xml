@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/color_989898" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_1"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/sure"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center"
+            android:text="完成"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pickerLayout"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/dp_16"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dp_1"
+            android:background="@color/color_f2f2f2"
+            android:layout_height="@dimen/dp_1"/>
+
+        <!--此部分需要完整复制过去，删减或者更改ID会导致初始化找不到内容而报空-->
+        <LinearLayout
+            android:id="@+id/optionspicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_10"
+            android:orientation="horizontal">
+            <com.bigkoo.pickerview.lib.WheelView
+                android:id="@+id/options1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                            android:layout_weight="1" />
+            <com.bigkoo.pickerview.lib.WheelView
+                android:id="@+id/options2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+            <com.bigkoo.pickerview.lib.WheelView
+                android:id="@+id/options3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

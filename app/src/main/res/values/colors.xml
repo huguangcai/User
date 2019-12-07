@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF6A28</color>
+    <color name="colorPrimaryDark">#FF6A28</color>
+    <color name="colorAccent">#FF6A28</color>
+
+    <color name="colorTabSelectedIndictor">@color/colorPrimary</color>
+    <color name="colorTabNormalIndictor">@color/color_989898</color>
+</resources>

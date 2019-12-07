@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/color_989898" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_1"
+                android:layout_weight="1" />
+            <TextView
+                android:id="@+id/t"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:textColor="@color/color_282828"
+                android:textSize="@dimen/sp_18"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/sure"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center"
+            android:text="完成"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_1"
+        android:layout_weight="1"
+        android:background="@color/color_ebebeb" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_16">
+
+        <com.ysxsoft.common_base.view.custom.wheel.NumberPickerView
+            android:id="@+id/picker1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="picker_hour"
+            app:npv_DividerColor="@color/color_ebebeb"
+            app:npv_ItemPaddingHorizontal="5dp"
+            app:npv_ItemPaddingVertical="16dp"
+            app:npv_RespondChangeInMainThread="false"
+            app:npv_ShowCount="5"
+            app:npv_TextColorHint="@color/colorPrimary"
+            app:npv_TextColorNormal="@color/color_989898"
+            app:npv_TextColorSelected="@color/color_282828"
+            app:npv_TextSizeNormal="@dimen/sp_12"
+            app:npv_TextSizeSelected="@dimen/sp_15"
+            app:npv_WrapSelectorWheel="false" />
+
+        <com.ysxsoft.common_base.view.custom.wheel.NumberPickerView
+            android:id="@+id/picker2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="picker_hour"
+            app:npv_DividerColor="@color/color_ebebeb"
+            app:npv_ItemPaddingHorizontal="5dp"
+            app:npv_ItemPaddingVertical="16dp"
+            app:npv_RespondChangeInMainThread="false"
+            app:npv_ShowCount="5"
+            app:npv_TextColorHint="@color/colorPrimary"
+            app:npv_TextColorNormal="@color/color_989898"
+            app:npv_TextColorSelected="@color/color_282828"
+            app:npv_TextSizeNormal="@dimen/sp_12"
+            app:npv_TextSizeSelected="@dimen/sp_15"
+            app:npv_WrapSelectorWheel="false" />
+    </LinearLayout>
+
+</LinearLayout>

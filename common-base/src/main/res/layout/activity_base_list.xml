@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/t"
+        layout="@layout/include_title" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smartRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomCustomLayout"
+        android:layout_below="@id/t">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--列表上方布局-->
+            <LinearLayout
+                android:id="@+id/listTopLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+
+            <com.ysxsoft.common_base.view.widgets.MultipleStatusView
+                android:id="@+id/multipleStatusView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:overScrollMode="never"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+            </com.ysxsoft.common_base.view.widgets.MultipleStatusView>
+        </LinearLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <FrameLayout
+        android:id="@+id/bottomCustomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/color_spacing" />
+        <!--例如评论-->
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_marginTop="@dimen/dp_1"
+            android:background="@color/colorWhite"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp_16"
+            android:paddingTop="@dimen/dp_4"
+            android:paddingRight="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_4">
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="187dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/bg_gray_radius_16"
+                android:drawableLeft="@mipmap/icon_bottom_edit"
+                android:drawablePadding="@dimen/dp_8"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:hint="在这里写下精彩评论~"
+                android:paddingLeft="@dimen/dp_8"
+                android:singleLine="true"
+                android:textSize="@dimen/sp_12" />
+
+            <Button
+                android:id="@+id/sendButton"
+                android:layout_width="64dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="@dimen/dp_8"
+                android:background="@drawable/btn_theme_radius_16_selector"
+                android:enabled="false"
+                android:text="发送"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_12" />
+        </LinearLayout>
+    </FrameLayout>
+</RelativeLayout>

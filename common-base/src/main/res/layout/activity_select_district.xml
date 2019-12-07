@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/statusBar"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/backWithText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawableLeft="@mipmap/icon_gray_back"
+                    android:gravity="center_vertical"
+                    android:text="返回上一步"
+                    android:textColor="@color/color_686868"
+                    android:textSize="@dimen/sp_14"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/backLayout"
+                    android:layout_width="?android:attr/actionBarSize"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_gray_back" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:layout_toLeftOf="@id/rightWithIcon"
+                    android:layout_toRightOf="@id/backLayout"
+                    android:background="@drawable/bg_round_f1f1f1_radius_16"
+                    android:drawableLeft="@mipmap/icon_address_search"
+                    android:drawablePadding="@dimen/dp_12"
+                    android:gravity="center_vertical"
+                    android:hint="请输入城市名称"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:singleLine="true"
+                    android:textColor="@color/color_282828"
+                    android:textColorHint="@color/color_989898"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/rightWithIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:paddingRight="@dimen/dp_16"
+                    android:text="搜索"
+                    android:textColor="@color/color_282828"
+                    android:textSize="@dimen/sp_14" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/bottomLineView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/color_spacing" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/currentCity"
+                    android:text="当前城市:"
+                    android:textColor="@color/color_282828"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:layout_height="@dimen/dp_40"/>
+
+                <TextView
+                    android:id="@+id/district"
+                    android:gravity="center"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_16"
+                    android:layout_width="wrap_content"
+                    android:text="选择区县"
+                    android:textColor="@color/color_686868"
+                    android:textSize="@dimen/sp_14"
+                    android:drawableRight="@drawable/bg_select_city_down"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/districtRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:layout_marginRight="@dimen/dp_24"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:background="@color/colorWhite"
+                android:layout_height="match_parent">
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+
+        <com.ysxsoft.common_base.view.custom.RightBar
+            android:id="@+id/rightBar"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginRight="@dimen/dp_4"
+            android:layout_marginBottom="@dimen/dp_40"
+            app:barTextColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/letter"
+            android:layout_width="@dimen/dp_44"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:background="@drawable/bg_gray_radius_4"
+            android:text="A"
+            android:textColor="@color/color_4955F3"
+            android:gravity="center"
+            android:layout_height="@dimen/dp_44" />
+    </RelativeLayout>
+
+</LinearLayout>

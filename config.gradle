@@ -1,0 +1,97 @@
+ext {
+    android = [
+            compileSdkVersion: 28,
+            buildToolsVersion: "28.0.0",
+            minSdkVersion    : 19,
+            targetSdkVersion : 29,
+            versionCode      : 1,
+            versionName      : "1.0.0"
+    ]
+
+    version = [
+            androidSupportSdkVersion:"28.0.0",
+            retrofitSdkVersion      :"2.4.0",
+            glideSdkVersion         :"4.9.0",
+            butterknifeSdkVersion   :"10.1.0",
+            litePalVersion          :"1.5.0",
+            multidexVersion         :"1.0.3",
+            arouterVersion          :"1.5.0",
+            arouterCompilerVersion  :"1.2.2",
+            gsonVersion             :"2.8.1",
+            eventbusVersion         :"3.1.1",
+            weChatPayVersion        :"5.3.1",
+            gsyPlayerVersion        :"6.0.3",
+            cityPickerVersion       :"3.2.5",
+            jcoreVersion            :"2.0.0",
+            jpushVersion            :"3.2.0",
+            buglyUpdateVersion      :"1.3.7",
+            buglyReportVersion      :"3.6.0",
+            canaryVersion           :"1.5.4",
+            compressHelperVersion   :"1.0.5",
+            smartrefreshVersion     :"1.1.0"
+    ]
+
+    dependencies = [
+            //support
+            "appcompat-v7"             : 'androidx.appcompat:appcompat:1.0.0',
+            "design"                   : 'com.google.android.material:material:1.0.0',
+            "support-v4"               : 'androidx.legacy:legacy-support-v4:1.0.0',
+            "cardview-v7"              : 'androidx.cardview:cardview:1.0.0',
+            "annotations"              : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
+            "recyclerview-v7"          : 'androidx.recyclerview:recyclerview:1.0.0',
+
+            //network
+            "okhttp3"                  : "com.squareup.okhttp3:okhttp:3.11.0",
+            "retrofit"                 : "com.squareup.retrofit2:retrofit:${version["retrofitSdkVersion"]}",
+            "retrofit-converter-gson"  : "com.squareup.retrofit2:converter-gson:${version["retrofitSdkVersion"]}",
+            "retrofit-adapter-rxjava"  : "com.squareup.retrofit2:adapter-rxjava:${version["retrofitSdkVersion"]}",
+            "retrofit-adapter-rxjava2" : "com.squareup.retrofit2:adapter-rxjava2:${version["retrofitSdkVersion"]}",
+            "glide"                    : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
+            "glide-compiler"           : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
+            "glide-loader-okhttp3"     : "com.github.bumptech.glide:okhttp3-integration:${version["glideSdkVersion"]}",
+
+            //view
+            //"autolayout"               : "com.zhy:autolayout:1.4.5",
+            "butterknife"              : "com.jakewharton:butterknife:${version["butterknifeSdkVersion"]}",
+            "butterknife"              : "com.jakewharton:butterknife:${version["butterknifeSdkVersion"]}",
+            "butterknife-compiler"     : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersion"]}",
+            //"photoview"                : "com.github.chrisbanes.photoview:library:1.2.3",
+            //"numberprogressbar"        : "com.daimajia.numberprogressbar:library:1.2@aar",
+            //"nineoldandroids"          : "com.nineoldandroids:library:2.4.0",
+            //"paginate"                 : "com.github.markomilos:paginate:0.5.1",
+            //"vlayout"                  : "com.alibaba.android:vlayout:1.1.0@aar",
+            "banner"                    : "cn.bingoogolapple:bga-banner:2.2.4@aar",
+            "gsyPlayer"                 : "com.shuyu:GSYVideoPlayer:${version["gsyPlayerVersion"]}",
+            "pickerview"                : "com.contrarywind:Android-PickerView:${version["cityPickerVersion"]}",
+            "smartRefreshLayout"        : "com.scwang.smartrefresh:SmartRefreshLayout:${version["smartrefreshVersion"]}",
+            "smartRefreshHeader"        : "com.scwang.smartrefresh:SmartRefreshHeader:${version["smartrefreshVersion"]}",
+
+            //rx2
+            "rxandroid2"               : "io.reactivex.rxjava2:rxandroid:2.1.0",
+            "rxjava2"                  : "io.reactivex.rxjava2:rxjava:2.2.3",
+            "rxlifecycle2"             : "com.trello.rxlifecycle2:rxlifecycle:${version["rxlifecycle2SdkVersion"]}",
+            "rxlifecycle2-android"     : "com.trello.rxlifecycle2:rxlifecycle-android:${version["rxlifecycle2SdkVersion"]}",
+            "rxlifecycle2-components"  : "com.trello.rxlifecycle2:rxlifecycle-components:${version["rxlifecycle2SdkVersion"]}",
+            "rxcache2"                 : "com.github.VictorAlbertos.RxCache:runtime:1.8.3-2.x",
+            "rxpermissions2"           : "com.github.tbruyelle:rxpermissions:0.10.2",
+            "rxerrorhandler2"          : "me.jessyan:rxerrorhandler:2.1.1",
+
+            //tools
+            "eventbus"                 : "org.greenrobot:eventbus:${version["eventbusVersion"]}",
+            "gson"                     : "com.google.code.gson:gson:${version["gsonVersion"]}",
+            "multidex"                 : 'androidx.multidex:multidex:2.0.0',
+            "arouter"                  : "com.alibaba:arouter-api:${version["arouterVersion"]}",
+            "arouter-compiler"         : "com.alibaba:arouter-compiler:${version["arouterCompilerVersion"]}",
+            "litepal"                  : "org.litepal.android:core:${version["litePalVersion"]}",
+            "wechatpay"                : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:${version["weChatPayVersion"]}",
+            "jpush"                    : "cn.jiguang.sdk:jpush:${version["jpushVersion"]}",
+            "jcore"                    : "cn.jiguang.sdk:jcore:${version["jcoreVersion"]}",
+            "bugly-update"             : "com.tencent.bugly:crashreport_upgrade:${version["buglyUpdateVersion"]}",
+            "bugly-report"             : "com.tencent.bugly:nativecrashreport:${version["buglyReportVersion"]}",
+            "compress"                 : "com.github.nanchen2251:CompressHelper:${version["compressHelperVersion"]}",
+
+            //test
+            "canary-debug"             : "com.squareup.leakcanary:leakcanary-android:${version["canaryVersion"]}",
+            "canary-release"           : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canaryVersion"]}"
+    ]
+}

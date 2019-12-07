@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ToolBarLayout">
+        <attr name="leftImage" format="reference" />
+        <attr name="leftText" format="string" />
+        <attr name="centerTitle" format="string" />
+        <attr name="rightImage" format="reference" />
+        <attr name="rightText" format="string" />
+        <attr name="leftTextColor" format="color|reference" />
+        <attr name="leftTextSize" format="dimension" />
+
+        <attr name="centerTextColor" format="color|reference" />
+        <attr name="centerTextSize" format="dimension" />
+        <attr name="rightCustomView" format="reference" />
+        <attr name="leftCustomView" format="reference" />
+        <attr name="titleMode" format="flags"></attr>
+    </declare-styleable>
+
+    <!--更改checkBox样式-->
+    <declare-styleable name="YCheckBox">
+        <attr name="normalResouce" format="reference"></attr>
+        <attr name="checkedResouce" format="reference"></attr>
+    </declare-styleable>
+
+    <!--多状态视图-->
+    <declare-styleable name="MultipleStatusView">
+        <attr name="loadingView" format="reference" />
+        <attr name="errorView" format="reference" />
+        <attr name="emptyView" format="reference" />
+        <attr name="noNetworkView" format="reference" />
+        <attr name="contentView" format="reference" />
+    </declare-styleable>
+
+    <!--圆图-->
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+        <attr name="civ_circle_background_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="radius" format="dimension" />
+        <attr name="leftRadius" format="dimension" />
+        <attr name="rightRadius" format="dimension" />
+        <attr name="rightBottomRadius" format="dimension" />
+        <attr name="leftBottomRadius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ProkView">
+        <attr name="count" format="integer" />
+        <attr name="mode" format="integer">
+            <!--正常模式-->
+            <flag name="normal" value="0" />
+            <!--切牌模式-->
+            <flag name="cut" value="1" />
+            <!--洗牌模式-->
+            <flag name="shuffle" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <!--群组头像-->
+    <declare-styleable name="NiceImageView">
+        <attr name="is_circle" format="boolean" />
+        <attr name="is_cover_src" format="boolean" />
+        <attr name="corner_radius" format="dimension" />
+        <attr name="corner_top_left_radius" format="dimension" />
+        <attr name="corner_top_right_radius" format="dimension" />
+        <attr name="corner_bottom_left_radius" format="dimension" />
+        <attr name="corner_bottom_right_radius" format="dimension" />
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="inner_border_width" format="dimension" />
+        <attr name="inner_border_color" format="color" />
+        <attr name="mask_color" format="color" />
+    </declare-styleable>
+
+
+    <declare-styleable name="FlowLayout">
+        <attr name="tag_gravity" format="integer"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="EmsLineView">
+        <attr name="normalDrawable" format="reference|integer" />
+        <attr name="selectDrawable" format="reference|integer" />
+        <attr name="selectPointColor" format="reference|color" />
+        <attr name="normalPointColor" format="reference|color" />
+        <attr name="normalPointWidth" format="dimension" />
+        <attr name="selectPointWidth" format="dimension" />
+        <attr name="lineWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="EmsView">
+        <attr name="selectedResource" format="reference" />
+        <attr name="normalResource" format="reference" />
+        <attr name="lineColor" format="color" />
+        <attr name="pointRadius" format="float|dimension" />
+        <attr name="lineEWidth" format="float|dimension" />
+        <attr name="viewPaddingLeft" format="float|dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="RightBar">
+        <attr name="barTextColor" format="color" />
+    </declare-styleable>
+    <!--banner-->
+    <attr name="interval" format="integer" />
+    <attr name="showIndicator" format="boolean" />
+    <attr name="orientation" format="enum">
+        <enum name="horizontal" value="0" />
+        <enum name="vertical" value="1" />
+    </attr>
+    <attr name="autoPlaying" format="boolean" />
+    <declare-styleable name="RecyclerViewBannerBase">
+        <attr name="interval" />
+        <attr name="showIndicator" />
+        <attr name="orientation" />
+        <attr name="autoPlaying" />
+        <attr name="indicatorSelectedSrc" format="color|reference" />
+        <attr name="indicatorUnselectedSrc" format="color|reference" />
+        <attr name="indicatorSpace" format="dimension|reference" />
+        <attr name="indicatorMarginLeft" format="dimension|reference" />
+        <attr name="indicatorMarginRight" format="dimension|reference" />
+        <attr name="indicatorMarginBottom" format="dimension|reference" />
+        <attr name="indicatorGravity" format="enum">
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="BannerLayout">
+        <attr name="interval" />
+        <attr name="showIndicator" />
+        <attr name="orientation" />
+        <attr name="autoPlaying" />
+        <attr name="itemSpace" format="integer" />
+        <attr name="centerScale" format="float" />
+        <attr name="moveSpeed" format="float" />
+    </declare-styleable>
+    <!--banner end-->
+
+
+    <declare-styleable name="ECalendarView">
+        <attr name="isShowOtherMonth" format="boolean" />
+        <attr name="otherMonthTextColor" format="color" />
+        <attr name="selectColor" format="color" />
+        <attr name="selectTextColor" format="color" />
+        <attr name="signIconSuccessId" format="integer" />
+        <attr name="noteResourceId" format="integer" />
+        <attr name="moneyResourceId" format="integer" />
+        <attr name="signIconErrorId" format="integer" />
+        <attr name="signIconSize" format="dimension" />
+        <attr name="noteIconSize" format="dimension" />
+        <attr name="weekHeight" format="dimension" />
+        <attr name="weekTextSize" format="dimension" />
+        <attr name="weekBackgroundColor" format="color" />
+        <attr name="weekTextColor" format="color" />
+        <attr name="calendarTextSize" format="dimension" />
+        <attr name="calendarTextColor" format="color" />
+        <attr name="isShowLunar" format="boolean" />
+        <attr name="lunarTextColor" format="color" />
+        <attr name="lunarTextSize" format="dimension" />
+        <attr name="todayTextColor" format="color" />
+        <attr name="signTextColor" format="color" />
+        <attr name="limitFutureMonth" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="ERatingBar">
+        <attr name="starImageSize" format="dimension" />
+        <attr name="starImageWidth" format="dimension" />
+        <attr name="starImageHeight" format="dimension" />
+        <attr name="starImagePadding" format="dimension" />
+        <attr name="starCount" format="integer" />
+        <attr name="starNum" format="integer" />
+        <attr name="starEmpty" format="reference" />
+        <attr name="starFill" format="reference" />
+        <attr name="starHalf" format="reference" />
+        <attr name="clickable" format="boolean" />
+        <attr name="halfstart" format="boolean" />
+    </declare-styleable>
+
+
+    <declare-styleable name="NineImageView">
+        <attr name="bga_npl_itemCornerRadius" format="dimension|reference" />
+        <attr name="bga_npl_showAsLargeWhenOnlyOne" format="boolean" />
+        <attr name="bga_npl_itemWhiteSpacing" format="dimension|reference" />
+        <attr name="bga_npl_otherWhiteSpacing" format="dimension|reference" />
+        <attr name="bga_npl_placeholderDrawable" format="reference" />
+        <attr name="bga_npl_itemWidth" format="dimension|reference" />
+        <attr name="bga_npl_itemSpanCount" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="NumberPickerView">
+        <attr name="npv_ShowCount" format="reference|integer" />
+        <!--set if show divider, default is true-->
+        <attr name="npv_ShowDivider" format="reference|boolean" />
+        <attr name="npv_DividerColor" format="reference|color" />
+        <attr name="npv_DividerMarginLeft" format="reference|dimension" />
+        <attr name="npv_DividerMarginRight" format="reference|dimension" />
+        <attr name="npv_DividerHeight" format="reference|dimension" />
+        <attr name="npv_TextColorNormal" format="reference|color" />
+        <attr name="npv_TextColorSelected" format="reference|color" />
+        <attr name="npv_TextColorHint" format="reference|color" />
+        <attr name="npv_TextSizeNormal" format="reference|dimension" />
+        <attr name="npv_TextSizeSelected" format="reference|dimension" />
+        <attr name="npv_TextSizeHint" format="reference|dimension" />
+        <attr name="npv_TextArray" format="reference" />
+        <attr name="npv_MinValue" format="reference|integer" />
+        <attr name="npv_MaxValue" format="reference|integer" />
+        <attr name="npv_WrapSelectorWheel" format="reference|boolean" />
+        <attr name="npv_RespondChangeOnDetached" format="reference|boolean" />
+        <attr name="npv_HintText" format="reference|string" />
+        <attr name="npv_EmptyItemHint" format="reference|string" />
+        <attr name="npv_MarginStartOfHint" format="reference|dimension" />
+        <attr name="npv_MarginEndOfHint" format="reference|dimension" />
+        <attr name="npv_ItemPaddingHorizontal" format="reference|dimension" />
+        <attr name="npv_ItemPaddingVertical" format="reference|dimension" />
+        <attr name="npv_RespondChangeInMainThread" format="reference|boolean" />
+        <attr name="npv_TextEllipsize" format="reference|string" />
+
+        <!--just used to measure maxWidth for wrap_content without hint,
+            the string array will never be displayed.
+            you can set this attr if you want to keep the wraped numberpickerview
+            width unchanged when alter the content list-->
+        <attr name="npv_AlternativeTextArrayWithMeasureHint" format="reference" />
+        <attr name="npv_AlternativeTextArrayWithoutMeasureHint" format="reference" />
+        <!--the max length of hint content-->
+        <attr name="npv_AlternativeHint" format="reference|string" />
+    </declare-styleable>
+
+    <declare-styleable name="PwdView">
+        <attr name="storkColor" format="color"></attr>
+        <attr name="solidColor" format="color"></attr>
+        <attr name="maxCount" format="integer"></attr>
+        <attr name="itemWidth" format="dimension|reference"></attr>
+    </declare-styleable>
+</resources>

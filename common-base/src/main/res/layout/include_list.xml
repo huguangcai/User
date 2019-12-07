@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/smartRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ysxsoft.common_base.view.widgets.MultipleStatusView
+        android:id="@+id/multipleStatusView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:descendantFocusability="blocksDescendants"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/dp_1"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </com.ysxsoft.common_base.view.widgets.MultipleStatusView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

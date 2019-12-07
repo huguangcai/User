@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/menu"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:text="美味小吃"
+        android:gravity="center"
+        android:background="@drawable/bg_f7f7f7_ffffff_selector"
+        android:textColor="@color/text_color_282828_686868_selected"
+        android:layout_height="@dimen/dp_44"/>
+
+    <TextView
+        android:id="@+id/red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_5"
+        android:background="@drawable/oval_point_red"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/dp_4"
+        android:minWidth="@dimen/dp_16"
+        android:minHeight="@dimen/dp_16"
+        android:padding="@dimen/dp_2"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/sp_10"
+        app:layout_constraintRight_toRightOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
