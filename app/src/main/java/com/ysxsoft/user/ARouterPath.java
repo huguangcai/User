@@ -29,20 +29,30 @@ public class ARouterPath {
 
     /**
      * 拒绝原因
+     *
      * @return
      */
     public static String getRefuseCauseActivity() {
         return "/main/RefuseCauseActivity";
     }
 
-     /**
+    /**
      * 确认接单
+     *
      * @return
      */
     public static String getIdentificationActivity() {
         return "/main/IdentificationActivity";
     }
 
+    /**
+     * 厨师资料
+     *
+     * @return
+     */
+    public static String getCookerDataActivity() {
+        return "/main/CookerDataActivity";
+    }
 
 
 }

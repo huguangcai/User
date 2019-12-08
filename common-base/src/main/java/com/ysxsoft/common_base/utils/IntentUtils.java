@@ -72,24 +72,16 @@ public class IntentUtils {
     }
 
     /**
-     * 打电话前编辑
+     * 跳转到拨号界面，用户手动点击拨打
      *
      * @param context
      * @param phoneNum
      */
     public static void callEdit(Context context, String phoneNum) {
-//        CenterTipsDialog tipsDialog = new CenterTipsDialog(context, R.style.CenterDialogStyle);
-//        tipsDialog.initContent("是否要拨打" + phoneNum + "?");
-//        tipsDialog.setListener(new CenterTipsDialog.OnDialogClickListener() {
-//            @Override
-//            public void sure() {
-//                Intent intent = new Intent();
-//                intent.setAction(Intent.ACTION_DIAL);
-//                intent.setData(Uri.parse("tel://" + phoneNum));
-//                context.startActivity(intent);
-//            }
-//        });
-//        tipsDialog.showDialog();
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        context.startActivity(intent);
     }
 
     /**

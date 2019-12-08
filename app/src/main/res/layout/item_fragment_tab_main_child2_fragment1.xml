@@ -39,7 +39,7 @@
             android:layout_marginRight="15dp"
             android:textColor="@color/theme_color"
             android:textSize="@dimen/sp_14"
-            android:text="待结单" />
+            android:text="准备中" />
     </LinearLayout>
 
     <View
@@ -137,6 +137,7 @@
             android:background="@drawable/bg_shape_white_cccccc_border_r5"
             android:gravity="center"
             android:text="拒绝接单"
+            android:visibility="gone"
             android:textColor="@color/color_999999"
             android:textSize="@dimen/sp_13" />
 
@@ -147,6 +148,7 @@
             android:background="@drawable/bg_theme_color_r5"
             android:gravity="center"
             android:text="确认接单"
+            android:visibility="gone"
             android:textColor="@color/colorWhite"
             android:layout_marginLeft="@dimen/dp_10"
             android:textSize="@dimen/sp_13" />

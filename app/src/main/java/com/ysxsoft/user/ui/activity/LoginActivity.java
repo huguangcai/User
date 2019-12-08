@@ -75,7 +75,7 @@ public class LoginActivity extends BaseActivity {
 //                LoginData();
 
                 MainActivity.start();
-//                finish();
+                finish();
                 break;
             case R.id.forgetPwd:
                 ForgetPwdActivity.start();

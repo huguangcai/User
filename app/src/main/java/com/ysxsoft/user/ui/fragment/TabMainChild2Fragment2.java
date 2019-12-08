@@ -1,8 +1,7 @@
 package com.ysxsoft.user.ui.fragment;
 
+import android.os.HandlerThread;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -12,15 +11,14 @@ import com.ysxsoft.common_base.adapter.BaseViewHolder;
 import com.ysxsoft.common_base.base.BaseFragment;
 import com.ysxsoft.common_base.base.frame.list.IListAdapter;
 import com.ysxsoft.common_base.base.frame.list.ListManager;
-import com.ysxsoft.common_base.utils.DisplayUtils;
+import com.ysxsoft.common_base.net.HttpResponse;
 import com.ysxsoft.common_base.utils.JsonUtils;
 import com.ysxsoft.common_base.utils.SharedPreferencesUtils;
 import com.ysxsoft.common_base.view.custom.image.CircleImageView;
 import com.ysxsoft.common_base.view.custom.image.RoundImageView;
 import com.ysxsoft.common_base.view.widgets.MultipleStatusView;
 import com.ysxsoft.user.R;
-import com.ysxsoft.user.modle.CompletedResponse;
-import com.ysxsoft.user.modle.WaitingListResponse;
+import com.ysxsoft.user.modle.PreparingResponse;
 import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.activity.IdentificationActivity;
 import com.ysxsoft.user.ui.activity.RefuseCauseActivity;
@@ -38,25 +36,9 @@ import static com.ysxsoft.user.config.AppConfig.IS_DEBUG_ENABLED;
 
 /**
  * Create By 胡
- * on 2019/12/7 0007
+ * on 2019/12/8 0008
  */
-public class MainChild3Fragment extends BaseFragment implements IListAdapter {
-    @BindView(R.id.backWithText)
-    TextView backWithText;
-    @BindView(R.id.back)
-    ImageView back;
-    @BindView(R.id.backLayout)
-    LinearLayout backLayout;
-    @BindView(R.id.title)
-    TextView title;
-    @BindView(R.id.rightWithIcon)
-    TextView rightWithIcon;
-    @BindView(R.id.bg)
-    LinearLayout bg;
-    @BindView(R.id.bottomLineView)
-    View bottomLineView;
-    @BindView(R.id.statusBar)
-    View statusBar;
+public class TabMainChild2Fragment2 extends BaseFragment implements IListAdapter {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -68,21 +50,7 @@ public class MainChild3Fragment extends BaseFragment implements IListAdapter {
 
     @Override
     protected void doWork(View view) {
-        initTitle();
         initList(view);
-    }
-
-    private void initTitle() {
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) statusBar.getLayoutParams();
-        params.height = DisplayUtils.getStatusBarHeight(getActivity());
-        statusBar.setLayoutParams(params);
-        statusBar.setBackgroundColor(getResources().getColor(R.color.theme_color));
-        bg.setBackgroundColor(getResources().getColor(R.color.theme_color));
-        backLayout.setVisibility(View.VISIBLE);
-        back.setVisibility(View.GONE);
-//        back.setImageResource(R.mipmap.icon_white_back);
-        title.setTextColor(getResources().getColor(R.color.colorWhite));
-        title.setText("已完成");
     }
 
     private void initList(View view) {
@@ -99,12 +67,12 @@ public class MainChild3Fragment extends BaseFragment implements IListAdapter {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_mainchild1;
+        return R.layout.fragment_tab_main_child2_fragment1;
     }
 
     @Override
     public int getItemLayoutId() {
-        return R.layout.item_fragment_mainchild3;
+        return R.layout.item_fragment_tab_main_child2_fragment2;
     }
 
     @Override
@@ -113,7 +81,7 @@ public class MainChild3Fragment extends BaseFragment implements IListAdapter {
             debug(manager);
         } else {
             OkHttpUtils.post()
-                    .url(Api.GET_COMPLETED)
+                    .url(Api.GET_PREPARING)
                     .addParams("uid", SharedPreferencesUtils.getUid(getActivity()))
                     .addParams("type", "")
                     .tag(this)
@@ -126,11 +94,11 @@ public class MainChild3Fragment extends BaseFragment implements IListAdapter {
 
                         @Override
                         public void onResponse(String response, int id) {
-                            CompletedResponse resp = JsonUtils.parseByGson(response, CompletedResponse.class);
+                            PreparingResponse resp = JsonUtils.parseByGson(response, PreparingResponse.class);
                             if (resp != null) {
 //                                if (HttpResponse.SUCCESS.equals(resp.getCode())) {
                                 //请求成功
-//                                    List<PlaceListResponse.DataBean> data = resp.getData();
+//                                    List<PreparingResponse.DataBean> data = resp.getData();
 //                                    manager.setData(data);
 //                                }else if (HttpResponse.NONE.equals(resp.getCode())){
 //                                    if (page==1){
@@ -144,6 +112,7 @@ public class MainChild3Fragment extends BaseFragment implements IListAdapter {
                         }
                     });
         }
+
     }
 
     @Override
@@ -172,19 +141,20 @@ public class MainChild3Fragment extends BaseFragment implements IListAdapter {
         helper.setText(R.id.tvDistance, "距客户:" + "  " + "km");
         helper.setText(R.id.tvSum, "共" + "   " + "件，合计");
         helper.setText(R.id.tvMoney, "¥" + "");
-        helper.setText(R.id.tvHave_dinner, "用餐时间:" + " ");
-        LinearLayout llshow = helper.getView(R.id.llshow);
-
-        if (helper.getAdapterPosition() % 2 == 0) {
-            llshow.setVisibility(View.VISIBLE);
-        } else {
-            llshow.setVisibility(View.GONE);
+        TextView tvHave_dinner = helper.getView(R.id.tvHave_dinner);
+        helper.setText(R.id.tvHave_dinner, "等待客户确认");
+        TextView tvAccept = helper.getView(R.id.tvAccept);
+        if (helper.getAdapterPosition()% 2 == 0){
+            tvHave_dinner.setVisibility(View.INVISIBLE);
+            tvAccept.setVisibility(View.VISIBLE);
+        }else {
+            tvHave_dinner.setVisibility(View.VISIBLE);
+            tvAccept.setVisibility(View.GONE);
         }
-
-        TextView tvLookCause = helper.getView(R.id.tvRefuse);
-        tvLookCause.setOnClickListener(new View.OnClickListener() {
+        tvAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
 

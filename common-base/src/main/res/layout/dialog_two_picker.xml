@@ -72,7 +72,7 @@
             app:npv_ShowCount="5"
             app:npv_TextColorHint="@color/colorPrimary"
             app:npv_TextColorNormal="@color/color_989898"
-            app:npv_TextColorSelected="@color/color_282828"
+            app:npv_TextColorSelected="@color/theme_color"
             app:npv_TextSizeNormal="@dimen/sp_12"
             app:npv_TextSizeSelected="@dimen/sp_15"
             app:npv_WrapSelectorWheel="false" />
@@ -90,7 +90,7 @@
             app:npv_ShowCount="5"
             app:npv_TextColorHint="@color/colorPrimary"
             app:npv_TextColorNormal="@color/color_989898"
-            app:npv_TextColorSelected="@color/color_282828"
+            app:npv_TextColorSelected="@color/theme_color"
             app:npv_TextSizeNormal="@dimen/sp_12"
             app:npv_TextSizeSelected="@dimen/sp_15"
             app:npv_WrapSelectorWheel="false" />

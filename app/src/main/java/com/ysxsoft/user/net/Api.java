@@ -17,8 +17,16 @@ public interface Api {
     public final String GET_FORGETPWD = AppConfig.BASE_URL + "";
     // 待接单
     public final String GET_WAITING_LIST = AppConfig.BASE_URL + "";
-   // 拒绝原因
+    // 拒绝原因
     public final String GET_REFUSE_CAUSE = AppConfig.BASE_URL + "";
+    // 确认接单
+    public final String GET_IDENTIFICATION = AppConfig.BASE_URL + "";
+    // 准备中
+    public final String GET_PREPARING = AppConfig.BASE_URL + "";
+    // 服务中
+    public final String GET_SERVICEING = AppConfig.BASE_URL + "";
+    // 已完成
+    public final String GET_COMPLETED = AppConfig.BASE_URL + "";
 
 
 }

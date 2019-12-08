@@ -55,6 +55,7 @@
         <activity android:name=".ui.activity.ForgetPwdActivity" />
         <activity android:name=".ui.activity.RefuseCauseActivity" />
         <activity android:name=".ui.activity.IdentificationActivity" />
+        <activity android:name=".ui.activity.CookerDataActivity" />
 
 
     </application>
