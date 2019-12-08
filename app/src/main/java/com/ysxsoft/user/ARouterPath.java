@@ -54,5 +54,44 @@ public class ARouterPath {
         return "/main/CookerDataActivity";
     }
 
+    /**
+     * 待接单订单详情
+     * @return
+     */
+    public static String getWaitingListDetialActivity() {
+        return "/main/WaitingListDetialActivity";
+    }
+    /**
+     * 准备中订单详情
+     * @return
+     */
+    public static String getPrepareListDetialActivity() {
+        return "/main/PrepareListDetialActivity";
+    }
+
+    /**
+     * 服务中详情
+     * @return
+     */
+    public static String getServiceListDetialActivity() {
+        return "/main/ServiceListDetialActivity";
+    }
+
+    /**
+     * 已完成详情
+     * @return
+     */
+    public static String getCompletedListDetialActivity() {
+        return "/main/CompletedListDetialActivity";
+    }
+
+     /**
+     * 已完成拒绝详情
+     * @return
+     */
+    public static String getCompletedRefuseListDetialActivity() {
+        return "/main/CompletedRefuseListDetialActivity";
+    }
+
 
 }

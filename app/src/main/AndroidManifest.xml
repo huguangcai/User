@@ -56,6 +56,11 @@
         <activity android:name=".ui.activity.RefuseCauseActivity" />
         <activity android:name=".ui.activity.IdentificationActivity" />
         <activity android:name=".ui.activity.CookerDataActivity" />
+        <activity android:name=".ui.activity.WaitingListDetialActivity" />
+        <activity android:name=".ui.activity.PrepareListDetialActivity" />
+        <activity android:name=".ui.activity.ServiceListDetialActivity" />
+        <activity android:name=".ui.activity.CompletedListDetialActivity" />
+        <activity android:name=".ui.activity.CompletedRefuseListDetialActivity" />
 
 
     </application>

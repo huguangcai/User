@@ -20,6 +20,7 @@ import com.ysxsoft.user.modle.PreparingResponse;
 import com.ysxsoft.user.modle.ServiceResponse;
 import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.activity.IdentificationActivity;
+import com.ysxsoft.user.ui.activity.PrepareListDetialActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -57,7 +58,7 @@ public class TabMainChild2Fragment1 extends BaseFragment implements IListAdapter
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+                PrepareListDetialActivity.start();
             }
         });
         request(1);

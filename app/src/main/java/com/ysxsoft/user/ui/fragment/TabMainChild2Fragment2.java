@@ -22,6 +22,7 @@ import com.ysxsoft.user.modle.PreparingResponse;
 import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.activity.IdentificationActivity;
 import com.ysxsoft.user.ui.activity.RefuseCauseActivity;
+import com.ysxsoft.user.ui.activity.ServiceListDetialActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -59,7 +60,7 @@ public class TabMainChild2Fragment2 extends BaseFragment implements IListAdapter
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+                ServiceListDetialActivity.start();
             }
         });
         request(1);
@@ -81,7 +82,7 @@ public class TabMainChild2Fragment2 extends BaseFragment implements IListAdapter
             debug(manager);
         } else {
             OkHttpUtils.post()
-                    .url(Api.GET_PREPARING)
+                    .url(Api.GET_SERVICEING)
                     .addParams("uid", SharedPreferencesUtils.getUid(getActivity()))
                     .addParams("type", "")
                     .tag(this)

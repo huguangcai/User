@@ -19,6 +19,7 @@
             android:orientation="vertical">
 
             <com.ysxsoft.common_base.view.custom.image.CircleImageView
+                android:id="@+id/ivHead"
                 android:layout_width="@dimen/dp_90"
                 android:layout_height="@dimen/dp_90"
                 android:layout_gravity="center_horizontal"
@@ -132,6 +133,7 @@
                             android:textSize="@dimen/sp_15" />
 
                         <TextView
+                            android:id="@+id/tvIdCard"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

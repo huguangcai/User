@@ -27,6 +27,18 @@ public interface Api {
     public final String GET_SERVICEING = AppConfig.BASE_URL + "";
     // 已完成
     public final String GET_COMPLETED = AppConfig.BASE_URL + "";
+    // 厨师资料
+    public final String GET_COOKER_DATA = AppConfig.BASE_URL + "";
+    // 待接单详情
+    public final String GET_WAITING_LIST_DETIAL = AppConfig.BASE_URL + "";
+    // 准备中详情
+    public final String GET_PREPARE_LIST_DETIAL = AppConfig.BASE_URL + "";
+    // 服务中详情
+    public final String GET_SERVICE_LIST_DETIAL = AppConfig.BASE_URL + "";
+    // 已完成详情
+    public final String GET_COMPLETE_LIST_DETIAL = AppConfig.BASE_URL + "";
+    // 已完成拒绝详情
+    public final String GET_COMPLETE_REFUSE_LIST_DETIAL = AppConfig.BASE_URL + "";
 
 
 }

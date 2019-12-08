@@ -32,6 +32,7 @@ import com.ysxsoft.user.modle.WaitingListResponse;
 import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.activity.IdentificationActivity;
 import com.ysxsoft.user.ui.activity.RefuseCauseActivity;
+import com.ysxsoft.user.ui.activity.WaitingListDetialActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -110,7 +111,7 @@ public class MainChild1Fragment extends BaseFragment implements IListAdapter {
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+                WaitingListDetialActivity.start();
             }
         });
         request(1);

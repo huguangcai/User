@@ -22,6 +22,8 @@ import com.ysxsoft.user.R;
 import com.ysxsoft.user.modle.CompletedResponse;
 import com.ysxsoft.user.modle.WaitingListResponse;
 import com.ysxsoft.user.net.Api;
+import com.ysxsoft.user.ui.activity.CompletedListDetialActivity;
+import com.ysxsoft.user.ui.activity.CompletedRefuseListDetialActivity;
 import com.ysxsoft.user.ui.activity.IdentificationActivity;
 import com.ysxsoft.user.ui.activity.RefuseCauseActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -177,10 +179,21 @@ public class MainChild3Fragment extends BaseFragment implements IListAdapter {
 
         if (helper.getAdapterPosition() % 2 == 0) {
             llshow.setVisibility(View.VISIBLE);
+            helper.setText(R.id.tvStatus, "已拒绝");
         } else {
             llshow.setVisibility(View.GONE);
+            helper.setText(R.id.tvStatus, "已完成");
         }
-
+        helper.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (helper.getAdapterPosition() % 2 == 0) {
+                    CompletedRefuseListDetialActivity.start();
+                } else {
+                    CompletedListDetialActivity.start();
+                }
+            }
+        });
         TextView tvLookCause = helper.getView(R.id.tvRefuse);
         tvLookCause.setOnClickListener(new View.OnClickListener() {
             @Override
