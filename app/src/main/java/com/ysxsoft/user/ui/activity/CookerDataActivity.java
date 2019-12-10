@@ -22,6 +22,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import okhttp3.Call;
 
 /**
@@ -85,10 +86,10 @@ public class CookerDataActivity extends BaseActivity {
     }
 
     private void initTitle() {
-        bg.setBackgroundColor(getResources().getColor(R.color.theme_color));
+        bg.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         backLayout.setVisibility(View.VISIBLE);
-        back.setImageResource(R.mipmap.icon_white_back);
-        title.setTextColor(getResources().getColor(R.color.colorWhite));
+        back.setImageResource(R.mipmap.icon_gray_back);
+        title.setTextColor(getResources().getColor(R.color.color_282828));
         title.setText("厨师资料");
     }
 
@@ -131,5 +132,14 @@ public class CookerDataActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_cook_data_layout;
+    }
+
+    @OnClick({R.id.backLayout})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.backLayout:
+                backToActivity();
+                break;
+        }
     }
 }

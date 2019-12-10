@@ -6,4 +6,5 @@
 
     <color name="colorTabSelectedIndictor">@color/colorPrimary</color>
     <color name="colorTabNormalIndictor">@color/color_989898</color>
+    <color name="transparent">#00000000</color>
 </resources>

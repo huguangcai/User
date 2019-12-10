@@ -39,6 +39,20 @@ public interface Api {
     public final String GET_COMPLETE_LIST_DETIAL = AppConfig.BASE_URL + "";
     // 已完成拒绝详情
     public final String GET_COMPLETE_REFUSE_LIST_DETIAL = AppConfig.BASE_URL + "";
+    // 厨师详情
+    public final String GET_COOKER_DETIAL = AppConfig.BASE_URL + "";
+    // 个人中心
+    public final String GET_PERSON_DATA = AppConfig.BASE_URL + "";
+    // 修改头像
+    public final String GET_EDIT_USER_HEAD = AppConfig.BASE_URL + "";
+    // 修改名称
+    public final String GET_EDIT_USER_NIKENAME = AppConfig.BASE_URL + "";
+    // 修改手机号 登录密码  支付密码
+    public final String GET_PHONELOGINPAYPWD = AppConfig.BASE_URL + "";
+    // 关于平台
+    public final String GET_ABOUTPLATFORM = AppConfig.BASE_URL + "";
+    //反馈意见
+    public final String GET_FEEDBACK = AppConfig.BASE_URL + "";
 
 
 }

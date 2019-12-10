@@ -61,6 +61,12 @@
         <activity android:name=".ui.activity.ServiceListDetialActivity" />
         <activity android:name=".ui.activity.CompletedListDetialActivity" />
         <activity android:name=".ui.activity.CompletedRefuseListDetialActivity" />
+        <activity android:name=".ui.activity.CookerDetailActivity" />
+        <activity android:name=".ui.activity.PersonCenterActivity" />
+        <activity android:name=".ui.activity.ModiFyNameActivity" />
+        <activity android:name=".ui.activity.PhoneLoginPayPwdActivity" />
+        <activity android:name=".ui.activity.AboutPlatformActivity" />
+        <activity android:name=".ui.activity.FeedBackActivity" />
 
 
     </application>

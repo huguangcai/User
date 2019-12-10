@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clLayayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.ysxsoft.common_base.view.custom.image.CircleImageView
+                    android:id="@+id/ivHead"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:src="@mipmap/ic_launcher"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text="九分半私厨"
+                    android:textColor="@color/color_282828"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toRightOf="@id/ivHead"
+                    app:layout_constraintTop_toTopOf="@id/ivHead" />
+
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:src="@mipmap/icon_gray_level"
+                    app:layout_constraintBottom_toBottomOf="@id/ivHead"
+                    app:layout_constraintLeft_toLeftOf="@id/tvName"
+                    app:layout_constraintLeft_toRightOf="@id/ivHead" />
+
+                <TextView
+                    android:id="@+id/tvCookerLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:drawableLeft="@mipmap/icon_level"
+                    app:layout_constraintBottom_toBottomOf="@id/ivHead"
+                    app:layout_constraintLeft_toRightOf="@id/iv1" />
+
+
+                <TextView
+                    android:id="@+id/tvServiceMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_45"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:drawableLeft="@mipmap/icon_service_money"
+                    android:drawablePadding="@dimen/dp_20"
+                    android:text="¥200"
+                    app:layout_constraintBottom_toBottomOf="@id/ivHead"
+                    app:layout_constraintLeft_toRightOf="@id/tvCookerLevel" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.ysxsoft.common_base.view.custom.banner.BannerLayout
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:autoPlaying="true"
+                app:centerScale="1.2"
+                app:itemSpace="10"
+                app:moveSpeed="1.8"
+                app:showIndicator="false" />
+
+            <ImageView
+                android:id="@+id/ivEvaluate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp"
+                android:src="@mipmap/icon_cooker_evaluate" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp_5"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/tv2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="做菜服务"
+                            android:textSize="@dimen/sp_18"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="22dp"
+                        android:layout_height="@dimen/dp_2"
+                        android:background="@color/theme_color" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp_5"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/tv3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="送菜服务"
+                            android:textColor="@color/color_cccccc"
+                            android:textSize="@dimen/sp_18"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="22dp"
+                        android:layout_height="@dimen/dp_2"
+                        android:background="@android:color/transparent" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tabRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/dp_10" />
+
+            <include layout="@layout/include_list" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

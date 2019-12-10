@@ -56,13 +56,16 @@ public class ARouterPath {
 
     /**
      * 待接单订单详情
+     *
      * @return
      */
     public static String getWaitingListDetialActivity() {
         return "/main/WaitingListDetialActivity";
     }
+
     /**
      * 准备中订单详情
+     *
      * @return
      */
     public static String getPrepareListDetialActivity() {
@@ -71,6 +74,7 @@ public class ARouterPath {
 
     /**
      * 服务中详情
+     *
      * @return
      */
     public static String getServiceListDetialActivity() {
@@ -79,18 +83,74 @@ public class ARouterPath {
 
     /**
      * 已完成详情
+     *
      * @return
      */
     public static String getCompletedListDetialActivity() {
         return "/main/CompletedListDetialActivity";
     }
 
-     /**
+    /**
      * 已完成拒绝详情
+     *
      * @return
      */
     public static String getCompletedRefuseListDetialActivity() {
         return "/main/CompletedRefuseListDetialActivity";
+    }
+
+    /**
+     * 厨师详情
+     *
+     * @return
+     */
+    public static String getCookerDetailActivity() {
+        return "/main/CookerDetailActivity";
+    }
+
+    /**
+     * 个人资料
+     *
+     * @return
+     */
+    public static String getPersonCenterActivity() {
+        return "/main/PersonCenterActivity";
+    }
+
+    /**
+     * 修改姓名
+     *
+     * @return
+     */
+    public static String getModiFyNameActivity() {
+        return "/main/ModiFyNameActivity";
+    }
+
+    /**
+     * 修改手机号 登录密码  支付密码
+     *
+     * @return
+     */
+    public static String getPhoneLoginPayPwdActivity() {
+        return "/main/PhoneLoginPayPwdActivity";
+    }
+
+    /**
+     * 关于平台
+     *
+     * @return
+     */
+    public static String getAboutPlatformActivity() {
+        return "/main/AboutPlatformActivity";
+    }
+
+    /**
+     * 反馈意见
+     *
+     * @return
+     */
+    public static String getFeedBackActivity() {
+        return "/main/FeedBackActivity";
     }
 
 
