@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginTop="@dimen/dp_10"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_10">
+
+        <com.ysxsoft.common_base.view.custom.image.CircleImageView
+            android:id="@+id/civHead"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_margin="15dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:text="蠢虫虫"
+            android:textColor="@color/color_282828"
+            android:textSize="@dimen/sp_13"
+            app:layout_constraintLeft_toRightOf="@id/civHead"
+            app:layout_constraintTop_toTopOf="@id/civHead" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:text="2019-08-22 17:05"
+            android:textColor="@color/color_989898"
+            android:textSize="11sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvName" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="服务质量： "
+            android:textColor="@color/color_989898"
+            android:textSize="11sp"
+            app:layout_constraintLeft_toLeftOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="5.0"
+            android:textColor="@color/theme_color"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv1"
+            app:layout_constraintLeft_toRightOf="@id/tv1" />
+
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="服务态度： "
+            android:textColor="@color/color_989898"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv2"
+            app:layout_constraintLeft_toRightOf="@id/tv2" />
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="5.0"
+            android:textColor="@color/theme_color"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv3"
+            app:layout_constraintLeft_toRightOf="@id/tv3" />
+
+        <TextView
+            android:id="@+id/tv5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="服务态度： "
+            android:textColor="@color/color_989898"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv4"
+            app:layout_constraintLeft_toRightOf="@id/tv4" />
+
+        <TextView
+            android:id="@+id/tv6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="5.0"
+            android:textColor="@color/theme_color"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv5"
+            app:layout_constraintLeft_toRightOf="@id/tv5" />
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="第一次请大厨到家，很专业，适合我的口味我们吃的都很放心、很开心，下次继续请你。"
+            android:textColor="@color/color_686868"
+            android:textSize="@dimen/sp_13"
+            app:layout_constraintLeft_toLeftOf="@id/civHead"
+            app:layout_constraintTop_toBottomOf="@id/tv1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDesc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

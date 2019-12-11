@@ -153,5 +153,77 @@ public class ARouterPath {
         return "/main/FeedBackActivity";
     }
 
+    /**
+     * 钱包
+     *
+     * @return
+     */
+    public static String getWalletActivity() {
+        return "/main/WalletActivity";
+    }
+
+    /**
+     * 卡包
+     *
+     * @return
+     */
+    public static String getCardCaseActivity() {
+        return "/main/CardCaseActivity";
+    }
+
+    /**
+     * 编辑银行卡
+     *
+     * @return
+     */
+    public static String getAddBankActivity() {
+        return "/main/AddBankActivity";
+    }
+
+    /**
+     * 提现
+     *
+     * @return
+     */
+    public static String getTxActivity() {
+        return "/main/TxActivity";
+    }
+
+    /**
+     * 评论列表
+     *
+     * @return
+     */
+    public static String getEvaluateActivity() {
+        return "/main/EvaluateActivity";
+    }
+
+    /**
+     * 菜详情
+     *
+     * @return
+     */
+    public static String getVegetableDetailActivity() {
+        return "/main/VegetableDetailActivity";
+    }
+
+    /**
+     * 选择员工
+     *
+     * @return
+     */
+    public static String getSelectStaffActivity() {
+        return "/main/SelectStaffActivity";
+    }
+
+    /**
+     * 全部订单
+     *
+     * @return
+     */
+    public static String getAllOrderActivity() {
+        return "/main/AllOrderActivity";
+    }
+
 
 }

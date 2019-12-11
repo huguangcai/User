@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="@dimen/dp_5"
+    app:cardCornerRadius="@dimen/dp_10"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvOrderNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="订单号：55412269884"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2019-11-11 14:26"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/sp_13" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorRed"
+            android:textSize="@dimen/sp_18"
+            android:layout_gravity="center_vertical"
+            android:text="+40"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

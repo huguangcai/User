@@ -1,6 +1,7 @@
 package com.ysxsoft.user.ui.fragment;
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -16,6 +17,8 @@ import com.ysxsoft.common_base.view.custom.image.CircleImageView;
 import com.ysxsoft.common_base.view.custom.image.RoundImageView;
 import com.ysxsoft.common_base.view.widgets.MultipleStatusView;
 import com.ysxsoft.user.R;
+import com.ysxsoft.user.base.RBaseAdapter;
+import com.ysxsoft.user.base.RViewHolder;
 import com.ysxsoft.user.modle.PreparingResponse;
 import com.ysxsoft.user.modle.ServiceResponse;
 import com.ysxsoft.user.net.Api;
@@ -23,6 +26,8 @@ import com.ysxsoft.user.ui.activity.IdentificationActivity;
 import com.ysxsoft.user.ui.activity.PrepareListDetialActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -117,19 +122,54 @@ public class TabMainChild2Fragment1 extends BaseFragment implements IListAdapter
 
     @Override
     public void fillView(BaseViewHolder helper, Object o) {
+        LinearLayout LL1 = helper.getView(R.id.LL1);
+        RecyclerView recyclerView1 = helper.getView(R.id.recyclerView1);
+
+        LL1.setVisibility(View.GONE);
+        recyclerView1.setVisibility(View.VISIBLE);
+
         CircleImageView ivHead = helper.getView(R.id.ivHead);
         Glide.with(getActivity()).load("").into(ivHead);
         helper.setText(R.id.nikeName, "");
         RecyclerView recyclerView = helper.getView(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
-        BaseQuickAdapter adapter = new BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_item_fragment_mainchild1) {
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("川湘菜");
+        strings.add("豫菜");
+        strings.add("新疆菜");
+        strings.add("江浙菜");
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+        RBaseAdapter<String> adapter = new RBaseAdapter<String>(getActivity(), R.layout.item_item_fragment_mainchild1, strings) {
             @Override
-            protected void convert(BaseViewHolder helper, String item) {
-                RoundImageView iv = helper.getView(R.id.iv);
-                Glide.with(getActivity()).load("").into(iv);
+            protected void fillItem(RViewHolder holder, String item, int position) {
+                RoundImageView iv = holder.getView(R.id.iv);
+                iv.setBackgroundResource(R.mipmap.ic_launcher);
+            }
+
+            @Override
+            protected int getViewType(String item, int position) {
+                return 0;
             }
         };
         recyclerView.setAdapter(adapter);
+
+        recyclerView1.setLayoutManager(new LinearLayoutManager(getActivity()));
+        RBaseAdapter<String> adapter1 = new RBaseAdapter<String>(getActivity(), R.layout.item_detail_layout, strings) {
+            @Override
+            protected void fillItem(RViewHolder holder, String item, int position) {
+                RoundImageView iv = holder.getView(R.id.riv);
+                iv.setBackgroundResource(R.mipmap.ic_launcher);
+//                helper.setText(R.id.tvName,"");
+//                helper.setText(R.id.tvNum,"");
+            }
+
+            @Override
+            protected int getViewType(String item, int position) {
+                return 0;
+            }
+        };
+        recyclerView1.setAdapter(adapter1);
+
         TextView tvSumType = helper.getView(R.id.tvSumType);
         tvSumType.setText("共" + "  " + "菜品");
         tvSumType.setOnClickListener(new View.OnClickListener() {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <include layout="@layout/include_title"/>
+    <include layout="@layout/include_title" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -17,31 +17,137 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:id="@+id/LL1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:text="取车时间"
-                android:textColor="@color/color_333333"
-                android:textSize="@dimen/sp_15" />
+                android:layout_marginHorizontal="15dp"
+                android:visibility="gone"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvSelect"
-                android:layout_width="0dp"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="员工"
+                    android:layout_marginVertical="@dimen/dp_10"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/sp_15" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.ysxsoft.common_base.view.custom.image.CircleImageView
+                        android:id="@+id/civHead"
+                        android:layout_width="@dimen/dp_44"
+                        android:layout_height="@dimen/dp_44"
+                        android:src="@mipmap/icon_head" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="张小龙"
+                            android:textColor="@color/color_333333"
+                            android:textSize="@dimen/sp_13" />
+
+                        <TextView
+                            android:id="@+id/tvPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_5"
+                            android:text="15896523648"
+                            android:textColor="@color/color_333333"
+                            android:textSize="@dimen/sp_13" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@mipmap/icon_right_arrow" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/LL2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_weight="1"
-                android:drawableRight="@mipmap/icon_right_arrow"
-                android:drawablePadding="@dimen/dp_10"
-                android:gravity="right"
-                android:hint="请选择"
-                android:textColor="@color/color_999999"
-                android:textSize="@dimen/sp_15" />
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="员工"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/sp_15" />
 
+                <TextView
+                    android:id="@+id/tvperson"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:drawableRight="@mipmap/icon_right_arrow"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:gravity="right"
+                    android:hint="请选择"
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/sp_15" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                android:background="@color/color_ebebeb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="取车时间"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/sp_15" />
+
+                <TextView
+                    android:id="@+id/tvSelect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:drawableRight="@mipmap/icon_right_arrow"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:gravity="right"
+                    android:hint="请选择"
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/sp_15" />
+
+            </LinearLayout>
         </LinearLayout>
 
 
@@ -70,9 +176,9 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="15dp"
+                android:layout_weight="1"
                 android:drawablePadding="@dimen/dp_10"
                 android:text="(请先联系客户确认时间)"
                 android:textColor="@color/theme_color"
@@ -82,9 +188,9 @@
                 android:id="@+id/ivCall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
                 android:layout_gravity="center_vertical"
-                android:src="@mipmap/icon_call_phone"/>
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/icon_call_phone" />
 
         </LinearLayout>
 
@@ -99,7 +205,7 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/shape_theme_btn"
         android:gravity="center"
-        android:text="提交"
+        android:text="确认接单"
         android:textColor="@color/colorWhite" />
 
 </LinearLayout>

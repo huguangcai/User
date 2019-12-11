@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ysxsoft.common_base.view.custom.image.RoundImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/iv"
+    android:layout_width="66dp"
+    android:layout_height="66dp"
+    android:orientation="vertical"
+    app:radius="@dimen/dp_10"
+    tools:src="@mipmap/ic_launcher">
+
+</com.ysxsoft.common_base.view.custom.image.RoundImageView>

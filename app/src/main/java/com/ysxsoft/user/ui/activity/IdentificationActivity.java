@@ -1,6 +1,8 @@
 package com.ysxsoft.user.ui.activity;
 
+import android.content.Intent;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bumptech.glide.Glide;
 import com.ysxsoft.common_base.base.BaseActivity;
 import com.ysxsoft.common_base.net.HttpResponse;
 import com.ysxsoft.common_base.utils.ApplicationUtils;
@@ -16,6 +19,7 @@ import com.ysxsoft.common_base.utils.DateUtils;
 import com.ysxsoft.common_base.utils.IntentUtils;
 import com.ysxsoft.common_base.utils.JsonUtils;
 import com.ysxsoft.common_base.utils.SharedPreferencesUtils;
+import com.ysxsoft.common_base.view.custom.image.CircleImageView;
 import com.ysxsoft.common_base.view.custom.picker.TwoPicker;
 import com.ysxsoft.user.ARouterPath;
 import com.ysxsoft.user.R;
@@ -28,6 +32,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.OnClick;
 import okhttp3.Call;
@@ -57,10 +62,22 @@ public class IdentificationActivity extends BaseActivity {
 
     @BindView(R.id.tvSelect)
     TextView tvSelect;
+    @BindView(R.id.tvperson)
+    TextView tvperson;
     @BindView(R.id.ivCall)
     ImageView ivCall;
     @BindView(R.id.ok)
     TextView ok;
+    @BindView(R.id.LL1)
+    LinearLayout LL1;
+    @BindView(R.id.LL2)
+    LinearLayout LL2;
+    @BindView(R.id.tvName)
+    TextView tvName;
+    @BindView(R.id.tvPhone)
+    TextView tvPhone;
+    @BindView(R.id.civHead)
+    CircleImageView civHead;
 
     public static void start() {
         ARouter.getInstance().build(ARouterPath.getIdentificationActivity()).navigation();
@@ -80,7 +97,7 @@ public class IdentificationActivity extends BaseActivity {
         title.setText("确认接单");
     }
 
-    @OnClick({R.id.backLayout, R.id.ivCall, R.id.ok, R.id.tvSelect,})
+    @OnClick({R.id.backLayout, R.id.ivCall, R.id.ok, R.id.tvSelect, R.id.LL1, R.id.tvperson})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.backLayout:
@@ -88,6 +105,10 @@ public class IdentificationActivity extends BaseActivity {
                 break;
             case R.id.ivCall:
                 IntentUtils.callEdit(mContext, "10086");
+                break;
+            case R.id.LL1:
+            case R.id.tvperson:
+                SelectStaffActivity.start(this, 0x01);
                 break;
             case R.id.tvSelect:
                 showToast("选择时间");
@@ -101,7 +122,7 @@ public class IdentificationActivity extends BaseActivity {
                 a2.add("13:30");
                 a2.add("14:30");
                 TimeSelectDialog selectDialog = new TimeSelectDialog(mContext);
-                selectDialog.setData(sevendate,a2,new TwoPicker.OnDialogSelectListener(){
+                selectDialog.setData(sevendate, a2, new TwoPicker.OnDialogSelectListener() {
                     @Override
                     public void OnSelect(String data1, int position1, String data2, int position2) {
                         tvSelect.setText(data1 + " " + data2);
@@ -109,7 +130,7 @@ public class IdentificationActivity extends BaseActivity {
                 });
                 break;
             case R.id.ok:
-                if (TextUtils.isEmpty(tvSelect.getText().toString().trim())){
+                if (TextUtils.isEmpty(tvSelect.getText().toString().trim())) {
                     showToast("选择时间不能为空");
                     return;
                 }
@@ -151,5 +172,26 @@ public class IdentificationActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_identification_layout;
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case 0x01:
+                    LL1.setVisibility(View.VISIBLE);
+                    LL2.setVisibility(View.GONE);
+                    String name = data.getStringExtra("name");
+                    String avatar = data.getStringExtra("avatar");
+                    String phone = data.getStringExtra("phone");
+                    String id = data.getStringExtra("id");
+                    tvName.setText(name);
+                    tvPhone.setText(phone);
+                    Glide.with(mContext).load(avatar).into(civHead);
+                    break;
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -53,6 +53,20 @@ public interface Api {
     public final String GET_ABOUTPLATFORM = AppConfig.BASE_URL + "";
     //反馈意见
     public final String GET_FEEDBACK = AppConfig.BASE_URL + "";
+    //钱包
+    public final String GET_WALLET = AppConfig.BASE_URL + "";
+    //钱包明细
+    public final String GET_WALLET_DETAIL = AppConfig.BASE_URL + "";
+    //银行卡
+    public final String GET_CARDCASE_LIST = AppConfig.BASE_URL + "";
+    //添加银行卡
+    public final String GET_ADDBANK = AppConfig.BASE_URL + "";
+    //提现
+    public final String GET_TXACTIVITY = AppConfig.BASE_URL + "";
+    //评论列表
+    public final String GET_EVALUATE_LIST = AppConfig.BASE_URL + "";
+    //菜详情
+    public final String GET_VEGETABLE_DETAIL = AppConfig.BASE_URL + "";
 
 
 }

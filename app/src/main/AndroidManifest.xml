@@ -67,6 +67,14 @@
         <activity android:name=".ui.activity.PhoneLoginPayPwdActivity" />
         <activity android:name=".ui.activity.AboutPlatformActivity" />
         <activity android:name=".ui.activity.FeedBackActivity" />
+        <activity android:name=".ui.activity.WalletActivity" />
+        <activity android:name=".ui.activity.CardCaseActivity" />
+        <activity android:name=".ui.activity.AddBankActivity" />
+        <activity android:name=".ui.activity.TxActivity" />
+        <activity android:name=".ui.activity.EvaluateActivity" />
+        <activity android:name=".ui.activity.VegetableDetailActivity" />
+        <activity android:name=".ui.activity.SelectStaffActivity" />
+        <activity android:name=".ui.activity.AllOrderActivity" />
 
 
     </application>

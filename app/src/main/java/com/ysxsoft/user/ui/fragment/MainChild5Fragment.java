@@ -14,10 +14,12 @@ import com.ysxsoft.user.R;
 import com.ysxsoft.user.modle.MainChild5FragmentResponse;
 import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.activity.AboutPlatformActivity;
+import com.ysxsoft.user.ui.activity.AllOrderActivity;
 import com.ysxsoft.user.ui.activity.CookerDataActivity;
 import com.ysxsoft.user.ui.activity.CookerDetailActivity;
 import com.ysxsoft.user.ui.activity.FeedBackActivity;
 import com.ysxsoft.user.ui.activity.PersonCenterActivity;
+import com.ysxsoft.user.ui.activity.WalletActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -127,7 +129,7 @@ public class MainChild5Fragment extends BaseFragment {
                 CookerDetailActivity.start();
                 break;
             case R.id.tv1://钱包
-
+                WalletActivity.start();
                 break;
             case R.id.tv2://版本更新
 
@@ -139,7 +141,7 @@ public class MainChild5Fragment extends BaseFragment {
                 FeedBackActivity.start();
                 break;
             case R.id.tvAllOrder://全部订单
-
+                AllOrderActivity.start();
                 break;
         }
     }

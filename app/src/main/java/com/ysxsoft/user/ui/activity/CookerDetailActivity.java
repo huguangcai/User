@@ -213,8 +213,7 @@ public class CookerDetailActivity extends BaseActivity implements IListAdapter {
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                //setResult(RESULT_OK, intent);
-                //finish();
+                VegetableDetailActivity.start();
             }
         });
         manager.getAdapter().setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
@@ -265,6 +264,7 @@ public class CookerDetailActivity extends BaseActivity implements IListAdapter {
                 view3.setBackgroundColor(getResources().getColor(R.color.theme_color));
                 break;
             case R.id.ivEvaluate:
+                EvaluateActivity.start();
                 break;
         }
 
