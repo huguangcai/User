@@ -470,10 +470,10 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * Sets the listview or gridview's item click listener of the view
+     * Sets the listview or gridview's item_evaluate_list_layout click listener of the view
      *
      * @param viewId   The view id.
-     * @param listener The item on click listener;
+     * @param listener The item_evaluate_list_layout on click listener;
      * @return The BaseViewHolder for chaining.
      * Please use {@link #addOnClickListener(int)} (int)} (adapter.setOnItemChildClickListener(listener))}
      */
@@ -485,10 +485,10 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * Sets the listview or gridview's item long click listener of the view
+     * Sets the listview or gridview's item_evaluate_list_layout long click listener of the view
      *
      * @param viewId   The view id.
-     * @param listener The item long click listener;
+     * @param listener The item_evaluate_list_layout long click listener;
      * @return The BaseViewHolder for chaining.
      */
     public BaseViewHolder setOnItemLongClickListener(@IdRes int viewId, AdapterView.OnItemLongClickListener listener) {
@@ -498,10 +498,10 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * Sets the listview or gridview's item selected click listener of the view
+     * Sets the listview or gridview's item_evaluate_list_layout selected click listener of the view
      *
      * @param viewId   The view id.
-     * @param listener The item selected click listener;
+     * @param listener The item_evaluate_list_layout selected click listener;
      * @return The BaseViewHolder for chaining.
      */
     public BaseViewHolder setOnItemSelectedClickListener(@IdRes int viewId, AdapterView.OnItemSelectedListener listener) {

@@ -19,8 +19,8 @@ public abstract class BaseSectionQuickAdapter<T extends SectionEntity, K extends
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
      *
-     * @param sectionHeadResId The section head layout id for each item
-     * @param layoutResId      The layout resource id of each item.
+     * @param sectionHeadResId The section head layout id for each item_evaluate_list_layout
+     * @param layoutResId      The layout resource id of each item_evaluate_list_layout.
      * @param data             A new list is created out of this one to avoid mutable list
      */
     public BaseSectionQuickAdapter(int layoutResId, int sectionHeadResId, List<T> data) {

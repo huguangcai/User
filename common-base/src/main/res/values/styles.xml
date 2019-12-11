@@ -15,7 +15,7 @@
 
     <style name="Splash" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@mipmap/icon_start_up</item>
-        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <!--<item_evaluate_list_layout name="android:windowIsTranslucent">true</item_evaluate_list_layout>-->
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>

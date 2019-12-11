@@ -14,7 +14,7 @@ import java.util.List;
  * https://github.com/chaychan
  * @author ChayChan
  * @description:
- * When there are multiple entries, avoid too much business logic in convert(),Put the logic of each item in the corresponding ItemProvider
+ * When there are multiple entries, avoid too much business logic in convert(),Put the logic of each item_evaluate_list_layout in the corresponding ItemProvider
  * 当有多种条目的时候，避免在convert()中做太多的业务逻辑，把逻辑放在对应的ItemProvider中
  * @date 2018/3/21  9:55
  */

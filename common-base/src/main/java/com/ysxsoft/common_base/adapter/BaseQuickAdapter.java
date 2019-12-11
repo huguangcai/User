@@ -462,7 +462,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
      *
-     * @param layoutResId The layout resource id of each item.
+     * @param layoutResId The layout resource id of each item_evaluate_list_layout.
      * @param data        A new list is created out of this one to avoid mutable list
      */
     public BaseQuickAdapter(@LayoutRes int layoutResId, @Nullable List<T> data) {
@@ -499,7 +499,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
 
 
     /**
-     * insert  a item associated with the specified position of adapter
+     * insert  a item_evaluate_list_layout associated with the specified position of adapter
      *
      * @param position
      * @param item
@@ -531,7 +531,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * remove the item associated with the specified position of adapter
+     * remove the item_evaluate_list_layout associated with the specified position of adapter
      *
      * @param position
      */
@@ -575,7 +575,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * use data to replace all item in mData. this method is different {@link #setNewData(List)},
+     * use data to replace all item_evaluate_list_layout in mData. this method is different {@link #setNewData(List)},
      * it doesn't change the mData reference
      *
      * @param data data collection
@@ -612,9 +612,9 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * Get the data item associated with the specified position in the data set.
+     * Get the data item_evaluate_list_layout associated with the specified position in the data set.
      *
-     * @param position Position of the item whose data we want within the adapter's
+     * @param position Position of the item_evaluate_list_layout whose data we want within the adapter's
      *                 data set.
      * @return The data at the specified position.
      */
@@ -819,7 +819,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
 
     /**
      * Called when a view created by this adapter has been attached to a window.
-     * simple to solve item will layout using all
+     * simple to solve item_evaluate_list_layout will layout using all
      * {@link #setFullSpan(RecyclerView.ViewHolder)}
      *
      * @param holder
@@ -836,12 +836,12 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * When set to true, the item will layout using all span area. That means, if orientation
+     * When set to true, the item_evaluate_list_layout will layout using all span area. That means, if orientation
      * is vertical, the view will have full width; if orientation is horizontal, the view will
      * have full height.
      * if the hold view use StaggeredGridLayoutManager they should using all span area
      *
-     * @param holder True if this item should traverse all spans.
+     * @param holder True if this item_evaluate_list_layout should traverse all spans.
      */
     protected void setFullSpan(RecyclerView.ViewHolder holder) {
         if (holder.itemView.getLayoutParams() instanceof StaggeredGridLayoutManager.LayoutParams) {
@@ -886,7 +886,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * if asFlow is true, footer/header will arrange like normal item view.
+     * if asFlow is true, footer/header will arrange like normal item_evaluate_list_layout view.
      * only works when use {@link GridLayoutManager},and it will ignore span size.
      */
     private boolean headerViewAsFlow, footerViewAsFlow;
@@ -914,7 +914,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * @param spanSizeLookup instance to be used to query number of spans occupied by each item
+     * @param spanSizeLookup instance to be used to query number of spans occupied by each item_evaluate_list_layout
      */
     public void setSpanSizeLookup(SpanSizeLookup spanSizeLookup) {
         this.mSpanSizeLookup = spanSizeLookup;
@@ -1590,10 +1590,10 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * Implement this method and use the helper to adapt the view to the given item.
+     * Implement this method and use the helper to adapt the view to the given item_evaluate_list_layout.
      *
      * @param helper A fully initialized helper.
-     * @param item   The item that needs to be displayed.
+     * @param item   The item_evaluate_list_layout that needs to be displayed.
      */
     protected abstract void convert(K helper, T item);
 
@@ -1625,8 +1625,8 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     /**
      * Get the row id associated with the specified position in the list.
      *
-     * @param position The position of the item within the adapter's data set whose row id we want.
-     * @return The id of the item at the specified position.
+     * @param position The position of the item_evaluate_list_layout within the adapter's data set whose row id we want.
+     * @return The id of the item_evaluate_list_layout at the specified position.
      */
     @Override
     public long getItemId(int position) {
@@ -1653,9 +1653,9 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * Expand an expandable item
+     * Expand an expandable item_evaluate_list_layout
      *
-     * @param position     position of the item
+     * @param position     position of the item_evaluate_list_layout
      * @param animate      expand items with animation
      * @param shouldNotify notify the RecyclerView to rebind items, <strong>false</strong> if you want to do it
      *                     yourself.
@@ -1696,9 +1696,9 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * Expand an expandable item
+     * Expand an expandable item_evaluate_list_layout
      *
-     * @param position position of the item, which includes the header layout count.
+     * @param position position of the item_evaluate_list_layout, which includes the header layout count.
      * @param animate  expand items with animation
      * @return the number of items that have been added.
      */
@@ -1707,9 +1707,9 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * Expand an expandable item with animation.
+     * Expand an expandable item_evaluate_list_layout with animation.
      *
-     * @param position position of the item, which includes the header layout count.
+     * @param position position of the item_evaluate_list_layout, which includes the header layout count.
      * @return the number of items that have been added.
      */
     public int expand(@IntRange(from = 0) int position) {
@@ -1758,9 +1758,9 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * expand the item and all its subItems
+     * expand the item_evaluate_list_layout and all its subItems
      *
-     * @param position position of the item, which includes the header layout count.
+     * @param position position of the item_evaluate_list_layout, which includes the header layout count.
      * @param init     whether you are initializing the recyclerView or not.
      *                 if <strong>true</strong>, it won't notify recyclerView to redraw UI.
      * @return the number of items that have been added to the adapter.
@@ -1805,9 +1805,9 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * Collapse an expandable item that has been expanded..
+     * Collapse an expandable item_evaluate_list_layout that has been expanded..
      *
-     * @param position the position of the item, which includes the header layout count.
+     * @param position the position of the item_evaluate_list_layout, which includes the header layout count.
      * @param animate  collapse with animation or not.
      * @param notify   notify the recyclerView refresh UI or not.
      * @return the number of subItems collapsed.
@@ -1834,9 +1834,9 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * Collapse an expandable item that has been expanded..
+     * Collapse an expandable item_evaluate_list_layout that has been expanded..
      *
-     * @param position the position of the item, which includes the header layout count.
+     * @param position the position of the item_evaluate_list_layout, which includes the header layout count.
      * @return the number of subItems collapsed.
      */
     public int collapse(@IntRange(from = 0) int position) {
@@ -1844,9 +1844,9 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * Collapse an expandable item that has been expanded..
+     * Collapse an expandable item_evaluate_list_layout that has been expanded..
      *
-     * @param position the position of the item, which includes the header layout count.
+     * @param position the position of the item_evaluate_list_layout, which includes the header layout count.
      * @return the number of subItems collapsed.
      */
     public int collapse(@IntRange(from = 0) int position, boolean animate) {
@@ -1879,12 +1879,12 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * Get the parent item position of the IExpandable item
+     * Get the parent item_evaluate_list_layout position of the IExpandable item_evaluate_list_layout
      *
-     * @return return the closest parent item position of the IExpandable.
-     * if the IExpandable item's level is 0, return itself position.
-     * if the item's level is negative which mean do not implement this, return a negative
-     * if the item is not exist in the data list, return a negative.
+     * @return return the closest parent item_evaluate_list_layout position of the IExpandable.
+     * if the IExpandable item_evaluate_list_layout's level is 0, return itself position.
+     * if the item_evaluate_list_layout's level is negative which mean do not implement this, return a negative
+     * if the item_evaluate_list_layout is not exist in the data list, return a negative.
      */
     public int getParentPosition(@NonNull T item) {
         int position = getItemPosition(item);
@@ -1892,8 +1892,8 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
             return -1;
         }
 
-        // if the item is IExpandable, return a closest IExpandable item position whose level smaller than this.
-        // if it is not, return the closest IExpandable item position whose level is not negative
+        // if the item_evaluate_list_layout is IExpandable, return a closest IExpandable item_evaluate_list_layout position whose level smaller than this.
+        // if it is not, return the closest IExpandable item_evaluate_list_layout position whose level is not negative
         int level;
         if (item instanceof IExpandable) {
             level = ((IExpandable) item).getLevel();
@@ -1924,7 +1924,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
      */
     public interface OnItemChildClickListener {
         /**
-         * callback method to be invoked when an item in this view has been
+         * callback method to be invoked when an item_evaluate_list_layout in this view has been
          * click and held
          *
          * @param view     The view whihin the ItemView that was clicked
@@ -1940,7 +1940,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
      */
     public interface OnItemChildLongClickListener {
         /**
-         * callback method to be invoked when an item in this view has been
+         * callback method to be invoked when an item_evaluate_list_layout in this view has been
          * click and held
          *
          * @param view     The childView whihin the itemView that was clicked and held.
@@ -1951,12 +1951,12 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * Interface definition for a callback to be invoked when an item in this
+     * Interface definition for a callback to be invoked when an item_evaluate_list_layout in this
      * view has been clicked and held.
      */
     public interface OnItemLongClickListener {
         /**
-         * callback method to be invoked when an item in this view has been
+         * callback method to be invoked when an item_evaluate_list_layout in this view has been
          * click and held
          *
          * @param adapter  the adpater
@@ -1969,13 +1969,13 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
 
 
     /**
-     * Interface definition for a callback to be invoked when an item in this
+     * Interface definition for a callback to be invoked when an item_evaluate_list_layout in this
      * RecyclerView itemView has been clicked.
      */
     public interface OnItemClickListener {
 
         /**
-         * Callback method to be invoked when an item in this RecyclerView has
+         * Callback method to be invoked when an item_evaluate_list_layout in this RecyclerView has
          * been clicked.
          *
          * @param adapter  the adpater
@@ -1987,7 +1987,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * Register a callback to be invoked when an item in this RecyclerView has
+     * Register a callback to be invoked when an item_evaluate_list_layout in this RecyclerView has
      * been clicked.
      *
      * @param listener The callback that will be invoked.
@@ -2007,7 +2007,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * Register a callback to be invoked when an item in this RecyclerView has
+     * Register a callback to be invoked when an item_evaluate_list_layout in this RecyclerView has
      * been long clicked and held
      *
      * @param listener The callback that will run
@@ -2028,7 +2028,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
 
 
     /**
-     * @return The callback to be invoked with an item in this RecyclerView has
+     * @return The callback to be invoked with an item_evaluate_list_layout in this RecyclerView has
      * been long clicked and held, or null id no callback as been set.
      */
     public final OnItemLongClickListener getOnItemLongClickListener() {
@@ -2036,7 +2036,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * @return The callback to be invoked with an item in this RecyclerView has
+     * @return The callback to be invoked with an item_evaluate_list_layout in this RecyclerView has
      * been clicked and held, or null id no callback as been set.
      */
     public final OnItemClickListener getOnItemClickListener() {

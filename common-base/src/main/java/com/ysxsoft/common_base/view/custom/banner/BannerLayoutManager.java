@@ -91,7 +91,7 @@ public  class  BannerLayoutManager extends RecyclerView.LayoutManager {
 
     private SavedState mPendingSavedState = null;
 
-    protected float mInterval; //the mInterval of each item's mOffset
+    protected float mInterval; //the mInterval of each item_evaluate_list_layout's mOffset
 
     /* package */ OnPageChangeListener onPageChangeListener;
 
@@ -106,7 +106,7 @@ public  class  BannerLayoutManager extends RecyclerView.LayoutManager {
     private int mRightItems;
 
     /**
-     * max visible item count
+     * max visible item_evaluate_list_layout count
      */
     private int mMaxVisibleItemCount = DETERMINE_BY_MAX_AND_MIN;
 
@@ -120,10 +120,10 @@ public  class  BannerLayoutManager extends RecyclerView.LayoutManager {
     private View currentFocusView;
 
     /**
-     * @return the mInterval of each item's mOffset
+     * @return the mInterval of each item_evaluate_list_layout's mOffset
      */
     /**
-     * @return the mInterval of each item's mOffset
+     * @return the mInterval of each item_evaluate_list_layout's mOffset
      */
     private int itemSpace = 20;
 
@@ -311,20 +311,20 @@ public  class  BannerLayoutManager extends RecyclerView.LayoutManager {
     }
 
     /**
-     * Returns the max visible item count, {@link #DETERMINE_BY_MAX_AND_MIN} means it haven't been set now
+     * Returns the max visible item_evaluate_list_layout count, {@link #DETERMINE_BY_MAX_AND_MIN} means it haven't been set now
      * And it will use {@link #maxRemoveOffset()} and {@link #minRemoveOffset()} to handle the range
      *
-     * @return Max visible item count
+     * @return Max visible item_evaluate_list_layout count
      */
     public int getMaxVisibleItemCount() {
         return mMaxVisibleItemCount;
     }
 
     /**
-     * Set the max visible item count, {@link #DETERMINE_BY_MAX_AND_MIN} means it haven't been set now
+     * Set the max visible item_evaluate_list_layout count, {@link #DETERMINE_BY_MAX_AND_MIN} means it haven't been set now
      * And it will use {@link #maxRemoveOffset()} and {@link #minRemoveOffset()} to handle the range
      *
-     * @param mMaxVisibleItemCount Max visible item count
+     * @param mMaxVisibleItemCount Max visible item_evaluate_list_layout count
      */
     public void setMaxVisibleItemCount(int mMaxVisibleItemCount) {
         assertNotInLayoutOrScroll(null);
@@ -355,9 +355,9 @@ public  class  BannerLayoutManager extends RecyclerView.LayoutManager {
     }
 
     /**
-     * Used to reverse item traversal and layout order.
-     * This behaves similar to the layout change for RTL views. When set to true, first item is
-     * laid out at the end of the UI, second item is laid out before it etc.
+     * Used to reverse item_evaluate_list_layout traversal and layout order.
+     * This behaves similar to the layout change for RTL views. When set to true, first item_evaluate_list_layout is
+     * laid out at the end of the UI, second item_evaluate_list_layout is laid out before it etc.
      * <p>
      * For horizontal layouts, it depends on the layout direction.
      * When set to true, If {@link RecyclerView} is LTR, than it will

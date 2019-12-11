@@ -38,10 +38,10 @@ public abstract class MultiTypeDelegate<T> {
     }
 
     /**
-     * get the item type from specific entity.
+     * get the item_evaluate_list_layout type from specific entity.
      *
      * @param t entity
-     * @return item type
+     * @return item_evaluate_list_layout type
      */
     protected abstract int getItemType(T t);
 

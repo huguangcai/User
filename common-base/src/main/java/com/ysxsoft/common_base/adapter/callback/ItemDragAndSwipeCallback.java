@@ -140,7 +140,7 @@ public class ItemDragAndSwipeCallback extends ItemTouchHelper.Callback {
     /**
      * <p>Set the drag movement direction.</p>
      * <p>The value should be ItemTouchHelper.UP, ItemTouchHelper.DOWN, ItemTouchHelper.LEFT, ItemTouchHelper.RIGHT or their combination.</p>
-     * You can combine them like ItemTouchHelper.UP | ItemTouchHelper.DOWN, it means that the item could only move up and down when dragged.
+     * You can combine them like ItemTouchHelper.UP | ItemTouchHelper.DOWN, it means that the item_evaluate_list_layout could only move up and down when dragged.
      *
      * @param dragMoveFlags the drag movement direction. Default value is ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT.
      */
@@ -151,7 +151,7 @@ public class ItemDragAndSwipeCallback extends ItemTouchHelper.Callback {
     /**
      * <p>Set the swipe movement direction.</p>
      * <p>The value should be ItemTouchHelper.START, ItemTouchHelper.END or their combination.</p>
-     * You can combine them like ItemTouchHelper.START | ItemTouchHelper.END, it means that the item could swipe to both left or right.
+     * You can combine them like ItemTouchHelper.START | ItemTouchHelper.END, it means that the item_evaluate_list_layout could swipe to both left or right.
      *
      * @param swipeMoveFlags the swipe movement direction. Default value is ItemTouchHelper.END.
      */

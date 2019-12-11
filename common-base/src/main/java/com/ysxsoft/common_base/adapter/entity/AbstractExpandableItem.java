@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>A helper to implement expandable item.</p>
+ * <p>A helper to implement expandable item_evaluate_list_layout.</p>
  * <p>if you don't want to extent a class, you can also implement the interface IExpandable</p>
  * Created by luoxw on 2016/8/9.
  */

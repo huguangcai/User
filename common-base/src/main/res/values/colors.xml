@@ -39,6 +39,8 @@
     <color name="blueEnd">#3171fe</color>
     <color name="blueStart">#7099fe</color>
     <color name="couponBlue">#169CF9</color>
+    <color name="transparent">#00000000</color>
+    <color name="colorFFAA88">#FFAA88</color>
     <!--文本起始-->
     <color name="hint">#cccccc</color>
     <!--文本结束-->

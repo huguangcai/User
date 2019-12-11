@@ -29,19 +29,19 @@ import com.ysxsoft.common_base.R;
  */
 public class NumberPickerView extends View{
 
-    // default text color of not selected item
+    // default text color of not selected item_evaluate_list_layout
     private static final int DEFAULT_TEXT_COLOR_NORMAL = 0XFF333333;
 
-    // default text color of selected item
+    // default text color of selected item_evaluate_list_layout
     private static final int DEFAULT_TEXT_COLOR_SELECTED = 0XFFF56313;
 
-    // default text size of normal item
+    // default text size of normal item_evaluate_list_layout
     private static final int DEFAULT_TEXT_SIZE_NORMAL_SP = 14;
 
-    // default text size of selected item
+    // default text size of selected item_evaluate_list_layout
     private static final int DEFAULT_TEXT_SIZE_SELECTED_SP = 16;
 
-    // default text size of hint text, the middle item's right text
+    // default text size of hint text, the middle item_evaluate_list_layout's right text
     private static final int DEFAULT_TEXT_SIZE_HINT_SP = 14;
 
     // distance between selected text and hint text
@@ -79,10 +79,10 @@ public class NumberPickerView extends View{
     // message's what argument to request layout, used by mHandlerInMainThread
     private static final int HANDLER_WHAT_REQUEST_LAYOUT = 3;
 
-    // interval time to scroll the distance of one item's height
+    // interval time to scroll the distance of one item_evaluate_list_layout's height
     private static final int HANDLER_INTERVAL_REFRESH = 32;//millisecond
 
-    // in millisecond unit, default duration of scrolling an item' distance
+    // in millisecond unit, default duration of scrolling an item_evaluate_list_layout' distance
     private static final int DEFAULT_INTERVAL_REVISE_DURATION = 300;
 
     // max and min durations when scrolling from one value to another
@@ -1128,9 +1128,9 @@ public class NumberPickerView extends View{
         }
     }
 
-    //first shown item's content index, corresponding to the Index of mDisplayedValued
+    //first shown item_evaluate_list_layout's content index, corresponding to the Index of mDisplayedValued
     private int mCurrDrawFirstItemIndex = 0;
-    //the first shown item's Y
+    //the first shown item_evaluate_list_layout's Y
     private int mCurrDrawFirstItemY = 0;
     //global Y corresponding to scroller
     private int mCurrDrawGlobalY = 0;
@@ -1236,7 +1236,7 @@ public class NumberPickerView extends View{
         int index;
         int textColor;
         float textSize;
-        float fraction = 0f;// fraction of the item in state between normal and selected, in[0, 1]
+        float fraction = 0f;// fraction of the item_evaluate_list_layout in state between normal and selected, in[0, 1]
         float textSizeCenterYOffset;
 
         for(int i = 0; i < mShowCount + 1; i++){

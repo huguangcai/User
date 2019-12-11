@@ -36,7 +36,7 @@ public abstract class BaseItemDraggableAdapter<T, K extends BaseViewHolder> exte
     protected View.OnTouchListener mOnToggleViewTouchListener;
     protected View.OnLongClickListener mOnToggleViewLongClickListener;
 
-    private static final String ERROR_NOT_SAME_ITEMTOUCHHELPER = "Item drag and item swipe should pass the same ItemTouchHelper";
+    private static final String ERROR_NOT_SAME_ITEMTOUCHHELPER = "Item drag and item_evaluate_list_layout swipe should pass the same ItemTouchHelper";
 
 
     public BaseItemDraggableAdapter(List<T> data) {
@@ -82,7 +82,7 @@ public abstract class BaseItemDraggableAdapter<T, K extends BaseViewHolder> exte
 
     /**
      * Set the toggle view's id which will trigger drag event.
-     * If the toggle view id is not set, drag event will be triggered when the item is long pressed.
+     * If the toggle view id is not set, drag event will be triggered when the item_evaluate_list_layout is long pressed.
      *
      * @param toggleViewId the toggle view's id
      */

@@ -60,7 +60,7 @@ public class ViewHelper {
             shiftingMode.setAccessible(false);
             for (int i = 0; i < menuView.getChildCount(); i++) {
                 BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
-                //item.setShiftingMode(false);
+                //item_evaluate_list_layout.setShiftingMode(false);
                 item.setChecked(item.getItemData().isChecked());
             }
         } catch (NoSuchFieldException e) {
