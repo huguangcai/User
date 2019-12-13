@@ -13,6 +13,7 @@
     android:orientation="horizontal">
 
     <com.ysxsoft.common_base.view.custom.image.CircleImageView
+        android:id="@+id/civHead"
         android:layout_width="@dimen/dp_44"
         android:layout_height="@dimen/dp_44"
         android:src="@mipmap/icon_head" />

@@ -17,6 +17,7 @@ import com.ysxsoft.user.ARouterPath;
 import com.ysxsoft.user.R;
 import com.ysxsoft.user.modle.CommonResonse;
 import com.ysxsoft.user.modle.ForgetPwdActivityResponse;
+import com.ysxsoft.user.modle.SendMsgResonse;
 import com.ysxsoft.user.net.Api;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -110,7 +111,7 @@ public class ForgetPwdActivity extends BaseActivity {
                     showToast("再次输入密码不能为空");
                     return;
                 }
-                if (TextUtils.equals(et_pwd.getText().toString().trim(), et_second_pwd.getText().toString().trim())) {
+                if (!TextUtils.equals(et_pwd.getText().toString().trim(), et_second_pwd.getText().toString().trim())) {
                     showToast("再次输入密码不一致");
                     return;
                 }
@@ -120,7 +121,7 @@ public class ForgetPwdActivity extends BaseActivity {
     }
 
     private void sendMsg(String phone) {
-        OkHttpUtils.post()
+        OkHttpUtils.get()
                 .url(Api.GET_SENDMSG)
                 .addParams("phone",phone)
                 .tag(this)
@@ -133,10 +134,11 @@ public class ForgetPwdActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        CommonResonse res = JsonUtils.parseByGson(response, CommonResonse.class);
-                        if (res!=null){
-                            if (HttpResponse.SUCCESS.equals("0")){
-                                showToast("发送成功");
+                        SendMsgResonse res = JsonUtils.parseByGson(response, SendMsgResonse.class);
+                        if (res != null) {
+                            showToast(res.getMessage());
+                            if (HttpResponse.SUCCESS.equals(res.getCode())) {
+
                             }
                         }
                     }
@@ -144,11 +146,13 @@ public class ForgetPwdActivity extends BaseActivity {
     }
 
     private void submit() {
-        OkHttpUtils.post()
+        OkHttpUtils.get()
                 .url(Api.GET_FORGETPWD)
+                .addParams("type","1")
                 .addParams("phone", et_phone.getText().toString().trim())
-                .addParams("code", et_invitation_code.getText().toString().trim())
+                .addParams("verify", et_invitation_code.getText().toString().trim())
                 .addParams("password", et_pwd.getText().toString().trim())
+                .addParams("confirm", et_second_pwd.getText().toString().trim())
                 .tag(this)
                 .build()
                 .execute(new StringCallback() {
@@ -160,7 +164,8 @@ public class ForgetPwdActivity extends BaseActivity {
                     public void onResponse(String response, int id) {
                         ForgetPwdActivityResponse res = JsonUtils.parseByGson(response, ForgetPwdActivityResponse.class);
                         if (res != null) {
-                            if (HttpResponse.SUCCESS.equals(0)) {
+                            showToast(res.getMessage());
+                            if (HttpResponse.SUCCESS.equals(res.getCode())) {
                                 finish();
                             }
                         }

@@ -23,6 +23,7 @@ import com.ysxsoft.common_base.view.custom.image.CircleImageView;
 import com.ysxsoft.common_base.view.custom.picker.TwoPicker;
 import com.ysxsoft.user.ARouterPath;
 import com.ysxsoft.user.R;
+import com.ysxsoft.user.config.AppConfig;
 import com.ysxsoft.user.modle.CommonResonse;
 import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.dialog.TimeSelectDialog;
@@ -143,7 +144,7 @@ public class IdentificationActivity extends BaseActivity {
      * 提交数据
      */
     private void submitData() {
-        OkHttpUtils.post()
+        OkHttpUtils.get()
                 .url(Api.GET_IDENTIFICATION)
                 .addParams("uid", SharedPreferencesUtils.getUid(mContext))
                 .addParams("time", tvSelect.getText().toString().trim())
@@ -159,7 +160,8 @@ public class IdentificationActivity extends BaseActivity {
                     public void onResponse(String response, int id) {
                         CommonResonse resp = JsonUtils.parseByGson(response, CommonResonse.class);
                         if (resp != null) {
-                            if (HttpResponse.SUCCESS.equals("0")) {
+                            showToast(resp.getMessage());
+                            if (HttpResponse.SUCCESS.equals(resp.getCode())) {
                                 finish();
                             }
                         }
@@ -188,7 +190,7 @@ public class IdentificationActivity extends BaseActivity {
                     String id = data.getStringExtra("id");
                     tvName.setText(name);
                     tvPhone.setText(phone);
-                    Glide.with(mContext).load(avatar).into(civHead);
+                    Glide.with(mContext).load(AppConfig.BASE_URL+avatar).into(civHead);
                     break;
             }
         }

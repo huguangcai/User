@@ -389,6 +389,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         AppManager.getAppManager().finishAllActivity();
         SharedPreferencesUtils.saveUid(this,"");
         SharedPreferencesUtils.saveToken(this,"");
+        SharedPreferencesUtils.deleteSp(mContext);
         SharedPreferencesUtils.saveHasPwd(BaseActivity.this,false);//支付密码
     }
 

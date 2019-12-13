@@ -75,6 +75,7 @@
         <activity android:name=".ui.activity.VegetableDetailActivity" />
         <activity android:name=".ui.activity.SelectStaffActivity" />
         <activity android:name=".ui.activity.AllOrderActivity" />
+        <activity android:name=".ui.activity.MyMallActivity" />
 
 
     </application>

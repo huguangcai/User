@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_title" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:paddingBottom="@dimen/dp_10">
+
+        <com.ysxsoft.common_base.view.custom.image.RoundImageView
+            android:id="@+id/rivHead"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:radius="@dimen/dp_10" />
+
+        <TextView
+            android:id="@+id/tvLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="4.0"
+            android:textColor="@color/theme_color"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintLeft_toRightOf="@id/rivHead"
+            app:layout_constraintTop_toTopOf="@id/rivHead" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="@dimen/dp_2"
+            android:layout_height="15dp"
+            android:layout_marginHorizontal="@dimen/dp_5"
+            android:background="@color/color_989898"
+            app:layout_constraintBottom_toBottomOf="@id/tvLevel"
+            app:layout_constraintLeft_toRightOf="@id/tvLevel"
+            app:layout_constraintTop_toTopOf="@id/tvLevel" />
+
+        <TextView
+            android:id="@+id/tvMallName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:text="车翔汽车养护中心"
+            android:textColor="@color/color_282828"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintLeft_toRightOf="@id/view"
+            app:layout_constraintTop_toTopOf="@id/tvLevel" />
+
+        <View
+            android:layout_width="@dimen/dp_2"
+            android:layout_height="34dp"
+            android:layout_marginRight="64dp"
+            android:background="@color/color_ebebeb"
+            app:layout_constraintBottom_toBottomOf="@id/rivHead"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rivHead" />
+
+        <ImageView
+            android:id="@+id/ivPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:src="@mipmap/icon_phone"
+            app:layout_constraintBottom_toBottomOf="@id/rivHead"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rivHead" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/icon_time"
+            android:drawablePadding="@dimen/dp_10"
+            android:text="10:00-22:00"
+            android:textColor="@color/color_989898"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/rivHead"
+            app:layout_constraintLeft_toLeftOf="@id/tvLevel"
+            app:layout_constraintLeft_toRightOf="@id/rivHead"
+            app:layout_constraintTop_toBottomOf="@id/tvLevel" />
+
+        <com.ysxsoft.common_base.view.custom.image.RoundImageView
+            android:id="@+id/rivBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="@dimen/dp_10"
+            android:background="@mipmap/icon_mall_banner"
+            app:layout_constraintTop_toBottomOf="@id/rivHead"
+            app:radius="@dimen/dp_10" />
+
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:src="@mipmap/icon_mall_location"
+            app:layout_constraintLeft_toLeftOf="@id/rivHead"
+            app:layout_constraintTop_toBottomOf="@id/rivBanner" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:text="郑州市中原区电厂路望湖花园南门16号商铺"
+            android:textColor="@color/color_282828"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintLeft_toRightOf="@id/iv1"
+            app:layout_constraintTop_toBottomOf="@id/rivBanner"
+            app:layout_constraintTop_toTopOf="@id/iv1" />
+
+        <TextView
+            android:id="@+id/tvDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="距我7.3km,开车需18分钟"
+            android:textColor="@color/color_989898"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintLeft_toLeftOf="@id/tvLocation"
+            app:layout_constraintLeft_toRightOf="@id/iv1"
+            app:layout_constraintTop_toBottomOf="@id/tvLocation" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/RL"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            app:tabIndicator="@color/theme_color"
+            app:tabIndicatorColor="@color/theme_color"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="scrollable"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabSelectedTextColor="@color/theme_color"
+            app:tabTextColor="@color/theme_color">
+
+        </com.google.android.material.tabs.TabLayout>
+    </RelativeLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f2f2f2" />
+
+</LinearLayout>

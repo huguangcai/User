@@ -9,19 +9,31 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bumptech.glide.Glide;
 import com.ysxsoft.common_base.base.BaseActivity;
+import com.ysxsoft.common_base.net.HttpResponse;
+import com.ysxsoft.common_base.utils.JsonUtils;
+import com.ysxsoft.common_base.utils.SharedPreferencesUtils;
+import com.ysxsoft.common_base.view.custom.image.CircleImageView;
 import com.ysxsoft.user.ARouterPath;
 import com.ysxsoft.user.R;
 import com.ysxsoft.user.base.RBaseAdapter;
 import com.ysxsoft.user.base.RViewHolder;
+import com.ysxsoft.user.config.AppConfig;
+import com.ysxsoft.user.modle.SelectStaffResponse;
+import com.ysxsoft.user.net.Api;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
+import okhttp3.Call;
 
 /**
  * Create By 胡
@@ -52,6 +64,12 @@ public class SelectStaffActivity extends BaseActivity {
     TextView tvOk;
 
     private int click = -1;
+    private List<SelectStaffResponse.ResultBean.ListBean> beans;
+    private String avater;
+    private String id;
+    private String name;
+    private String phone;
+    private String role;
 
     public static void start(Activity activity, int requestCode) {
         ARouter.getInstance().build(ARouterPath.getSelectStaffActivity()).navigation(activity, requestCode);
@@ -61,32 +79,61 @@ public class SelectStaffActivity extends BaseActivity {
     public void doWork() {
         super.doWork();
         initTitle();
+        requestData();
+    }
 
-        initList();
+    private void requestData() {
+        OkHttpUtils.get()
+                .url(Api.GET_SELECT_STAFF)
+                .addParams("id", SharedPreferencesUtils.getUid(mContext))
+                .tag(this)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        SelectStaffResponse resp = JsonUtils.parseByGson(response, SelectStaffResponse.class);
+                        if (resp!=null){
+                            if (HttpResponse.SUCCESS.equals(resp.getCode())){
+                                beans = resp.getResult().getList();
+                                initList();
+                            }
+                        }
+                    }
+                });
+
     }
 
     private void initList() {
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
 
-        ArrayList<String> strings = new ArrayList<>();
-        strings.add("川湘菜");
-        strings.add("豫菜");
-        strings.add("新疆菜");
-        strings.add("江浙菜");
+//        ArrayList<String> strings = new ArrayList<>();
+//        strings.add("川湘菜");
+//        strings.add("豫菜");
+//        strings.add("新疆菜");
+//        strings.add("江浙菜");
 
-        RBaseAdapter<String> adapter = new RBaseAdapter<String>(mContext, R.layout.item_select_staff_layout, strings) {
+        RBaseAdapter<SelectStaffResponse.ResultBean.ListBean> adapter = new RBaseAdapter<SelectStaffResponse.ResultBean.ListBean>(mContext, R.layout.item_select_staff_layout, beans) {
             @Override
-            protected void fillItem(RViewHolder holder, String item, int position) {
+            protected void fillItem(RViewHolder holder, SelectStaffResponse.ResultBean.ListBean item, int position) {
                 ImageView iv = holder.getView(R.id.iv);
                 if (click == position) {
                     iv.setBackgroundResource(R.mipmap.icon_ok);
                 } else {
                     iv.setBackgroundResource(R.mipmap.icon_no);
                 }
+                CircleImageView civHead = holder.getView(R.id.civHead);
+                Glide.with(mContext).load(AppConfig.BASE_URL+item.getAvater()).into(civHead);
+                holder.setText(R.id.tvName,item.getName());
+                holder.setText(R.id.tvPhone,item.getPhone());
             }
 
             @Override
-            protected int getViewType(String item, int position) {
+            protected int getViewType(SelectStaffResponse.ResultBean.ListBean item, int position) {
                 return 0;
             }
         };
@@ -94,6 +141,11 @@ public class SelectStaffActivity extends BaseActivity {
             @Override
             public void onItemClick(RViewHolder holder, View view, int position) {
                 click = position;
+                avater = beans.get(position).getAvater();
+                id = beans.get(position).getId();
+                name = beans.get(position).getName();
+                phone = beans.get(position).getPhone();
+                role = beans.get(position).getType();
                 adapter.notifyDataSetChanged();
             }
         });
@@ -125,10 +177,11 @@ public class SelectStaffActivity extends BaseActivity {
                     return;
                 }
                 Intent intent = new Intent();
-                intent.putExtra("name","");
-                intent.putExtra("phone","");
-                intent.putExtra("avatar","");
-                intent.putExtra("id","");
+                intent.putExtra("name",name);
+                intent.putExtra("phone",phone);
+                intent.putExtra("avatar",avater);
+                intent.putExtra("id",id);
+                intent.putExtra("role",role);
                 setResult(RESULT_OK, intent);
                 finish();
                 break;

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/theme_color"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/topView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/FL1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="待接车"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_15" />
+
+                    <View
+                        android:id="@+id/line1"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:background="@color/colorWhite" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPoint1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/dp_10"
+                    />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/FL2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="接车中"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_15" />
+
+                    <View
+                        android:id="@+id/line2"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:visibility="invisible"
+                        android:background="@color/colorWhite" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPoint2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/dp_10"
+                     />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/FL3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="工作中"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_15" />
+
+                    <View
+                        android:id="@+id/line3"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:visibility="invisible"
+                        android:background="@color/colorWhite" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPoint3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/dp_10"
+                   />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/FL4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="送车中"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_15" />
+
+                    <View
+                        android:id="@+id/line4"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:background="@color/colorWhite"
+                        android:visibility="invisible"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPoint4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/dp_10"
+                     />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

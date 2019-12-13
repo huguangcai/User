@@ -176,7 +176,15 @@ public class CookerDetailActivity extends BaseActivity implements IListAdapter {
             @Override
             protected void fillItem(RViewHolder holder, String item, int position) {
                 holder.setText(R.id.tab, item);
-//                TextView t = holder.getView(R.id.tab);
+                TextView t = holder.getView(R.id.tab);
+                if (click==position){
+                    t.setBackgroundResource(R.drawable.bg_theme_color_r10);
+                    t.setTextColor(getResources().getColor(R.color.colorWhite));
+                }else {
+                    t.setBackgroundResource(R.color.transparent);
+                    t.setTextColor(getResources().getColor(R.color.color_282828));
+                }
+
 //                if (true) {
 //                    t.setSelected(true);
 //                } else {
@@ -194,6 +202,9 @@ public class CookerDetailActivity extends BaseActivity implements IListAdapter {
         adapter.setOnItemClickListener(new RBaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RViewHolder holder, View view, int position) {
+                click=position;
+                adapter.notifyDataSetChanged();
+                request(1);
  //                for (int i = 0; i < data.size(); i++) {
 //                    MainCateGoryResponse.DataBean.TwoBean menu = data.get(position);
 //                    if (i == position) {
@@ -254,6 +265,7 @@ public class CookerDetailActivity extends BaseActivity implements IListAdapter {
                 tv3.setTextColor(getResources().getColor(R.color.color_cccccc));
                 view2.setBackgroundColor(getResources().getColor(R.color.theme_color));
                 view3.setBackgroundColor(getResources().getColor(R.color.transparent));
+                request(1);
                 break;
             case R.id.ll3:
                 iv2.setBackgroundResource(R.mipmap.icon_service_no);
@@ -262,6 +274,7 @@ public class CookerDetailActivity extends BaseActivity implements IListAdapter {
                 tv3.setTextColor(getResources().getColor(R.color.theme_color));
                 view2.setBackgroundColor(getResources().getColor(R.color.transparent));
                 view3.setBackgroundColor(getResources().getColor(R.color.theme_color));
+                request(1);
                 break;
             case R.id.ivEvaluate:
                 EvaluateActivity.start();

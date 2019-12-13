@@ -14,11 +14,13 @@ import com.ysxsoft.common_base.net.HttpResponse;
 import com.ysxsoft.common_base.utils.AndroidUtils;
 import com.ysxsoft.common_base.utils.ApplicationUtils;
 import com.ysxsoft.common_base.utils.JsonUtils;
+import com.ysxsoft.common_base.utils.SharedPreferencesUtils;
 import com.ysxsoft.common_base.view.custom.image.RoundImageView;
 import com.ysxsoft.user.ARouterPath;
 import com.ysxsoft.user.MainActivity;
 import com.ysxsoft.user.R;
 import com.ysxsoft.user.modle.CommonResonse;
+import com.ysxsoft.user.modle.LoginResonse;
 import com.ysxsoft.user.net.Api;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -64,18 +66,15 @@ public class LoginActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.login:
-//                if (TextUtils.isEmpty(et_phone.getText().toString().trim())) {
-//                    showToast("手机号不能为空");
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(et_pwd.getText().toString().trim())) {
-//                    showToast("密码不能为空");
-//                    return;
-//                }
-//                LoginData();
-
-                MainActivity.start();
-                finish();
+                if (TextUtils.isEmpty(et_phone.getText().toString().trim())) {
+                    showToast("手机号不能为空");
+                    return;
+                }
+                if (TextUtils.isEmpty(et_pwd.getText().toString().trim())) {
+                    showToast("密码不能为空");
+                    return;
+                }
+                LoginData();
                 break;
             case R.id.forgetPwd:
                 ForgetPwdActivity.start();
@@ -84,7 +83,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void LoginData() {
-        OkHttpUtils.post()
+        OkHttpUtils.get()
                 .url(Api.GET_LOGIN)
                 .addParams("phone", et_phone.getText().toString().trim())
                 .addParams("password", et_pwd.getText().toString().trim())
@@ -98,10 +97,13 @@ public class LoginActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        CommonResonse res = JsonUtils.parseByGson(response, CommonResonse.class);
+                        LoginResonse res = JsonUtils.parseByGson(response, LoginResonse.class);
                         if (res != null) {
-                            if (HttpResponse.SUCCESS.equals("0")) {
-                                MainActivity.start();
+                            showToast(res.getMessage());
+                            if (HttpResponse.SUCCESS.equals(res.getCode())) {
+                                SharedPreferencesUtils.saveUid(mContext,res.getResult().getId());
+                                SharedPreferencesUtils.saveSp(mContext,"role",res.getResult().getIdentity());
+                                MainActivity.start(res.getResult().getIdentity());
                                 finish();
                             }
                         }

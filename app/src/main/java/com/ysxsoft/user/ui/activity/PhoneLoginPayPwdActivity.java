@@ -16,9 +16,13 @@ import com.ysxsoft.common_base.net.HttpResponse;
 import com.ysxsoft.common_base.utils.CountDownTimeHelper;
 import com.ysxsoft.common_base.utils.JsonUtils;
 import com.ysxsoft.common_base.utils.SharedPreferencesUtils;
+import com.ysxsoft.common_base.zxing.decoding.Intents;
 import com.ysxsoft.user.ARouterPath;
 import com.ysxsoft.user.R;
 import com.ysxsoft.user.modle.CommonResonse;
+import com.ysxsoft.user.modle.ForgetPwdActivityResponse;
+import com.ysxsoft.user.modle.ModifyPhoneResponse;
+import com.ysxsoft.user.modle.SendMsgResonse;
 import com.ysxsoft.user.net.Api;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -64,6 +68,7 @@ public class PhoneLoginPayPwdActivity extends BaseActivity {
     TextView ok;
     @Autowired
     String type;
+    int position=1;
 
     public static void start(String type) {
         ARouter.getInstance().build(ARouterPath.getPhoneLoginPayPwdActivity()).withString("type", type).navigation();
@@ -83,12 +88,15 @@ public class PhoneLoginPayPwdActivity extends BaseActivity {
         title.setTextColor(getResources().getColor(R.color.colorWhite));
         switch (type) {
             case "1":
+                position=0;
                 title.setText("手机号");
                 break;
             case "2":
+                position=1;
                 title.setText("登录密码");
                 break;
             case "3":
+                position=2;
                 title.setText("支付密码");
                 et_pwd.setInputType(InputType.TYPE_CLASS_NUMBER);
                 et_second_pwd.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -144,18 +152,23 @@ public class PhoneLoginPayPwdActivity extends BaseActivity {
                     showToast("再次输入密码不一致");
                     return;
                 }
-                submit();
+                if (position==0){
+                    ModifyPhone();
+                }else {
+                    submit();
+                }
                 break;
         }
     }
 
-    private void submit() {
-        OkHttpUtils.post()
+    private void ModifyPhone() {
+        OkHttpUtils.get()
                 .url(Api.GET_PHONELOGINPAYPWD)
-                .addParams("uid", SharedPreferencesUtils.getUid(mContext))
+                .addParams("id",SharedPreferencesUtils.getUid(mContext))
+                .addParams("identity", SharedPreferencesUtils.getSp(mContext,"role"))
                 .addParams("phone", et_phone.getText().toString().trim())
-                .addParams("code", et_invitation_code.getText().toString().trim())
-                .addParams("pwd", et_pwd.getText().toString().trim())
+                .addParams("verify", et_invitation_code.getText().toString().trim())
+                .addParams("password", et_pwd.getText().toString().trim())
                 .tag(this)
                 .build()
                 .execute(new StringCallback() {
@@ -166,9 +179,41 @@ public class PhoneLoginPayPwdActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        CommonResonse resp = JsonUtils.parseByGson(response, CommonResonse.class);
+                        ModifyPhoneResponse resp = JsonUtils.parseByGson(response, ModifyPhoneResponse.class);
+                        if (resp!=null){
+                            showToast(resp.getMessage());
+                            if (HttpResponse.SUCCESS.equals(resp.getCode())){
+                                finish();
+                            }
+                        }
+                    }
+                });
+
+    }
+
+    private void submit() {
+        OkHttpUtils.get()
+//                .url(Api.GET_PHONELOGINPAYPWD)
+                .url(Api.GET_FORGETPWD)
+                .addParams("type",String.valueOf(position))
+                .addParams("phone", et_phone.getText().toString().trim())
+                .addParams("verify", et_invitation_code.getText().toString().trim())
+                .addParams("password", et_pwd.getText().toString().trim())
+                .addParams("confirm", et_second_pwd.getText().toString().trim())
+                .tag(this)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        ForgetPwdActivityResponse resp = JsonUtils.parseByGson(response, ForgetPwdActivityResponse.class);
                         if (resp != null) {
-                            if (HttpResponse.SUCCESS.equals("0")) {
+                            showToast(resp.getMessage());
+                            if (HttpResponse.SUCCESS.equals(resp.getCode())) {
                                 finish();
                             }
                         }
@@ -192,9 +237,9 @@ public class PhoneLoginPayPwdActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        CommonResonse res = JsonUtils.parseByGson(response, CommonResonse.class);
+                        SendMsgResonse res = JsonUtils.parseByGson(response, SendMsgResonse.class);
                         if (res != null) {
-                            if (HttpResponse.SUCCESS.equals("0")) {
+                            if (HttpResponse.SUCCESS.equals(res.getCode())) {
                                 showToast("发送成功");
                             }
                         }

@@ -6,11 +6,11 @@
     <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
     <string name="money">¥</string>
 
-    <string name="tab1_menu">首页</string>
-    <string name="tab2_menu">找吃</string>
-    <string name="tab3_menu">推吃</string>
-    <string name="tab4_menu">约吃</string>
-    <string name="tab5_menu">我的</string>
+    <string name="tab1_menu">待接单</string>
+    <string name="tab2_menu">工作中</string>
+    <string name="tab3_menu">已完成</string>
+    <string name="tab4_menu">售后</string>
+    <string name="tab5_menu">个人中心</string>
     <string name="service_desc"></string>
     <string name="MainBehavior">com.ysxsoft.home.view.MainBehavior</string>
     <string name="MainTestBehavior">com.ysxsoft.home.view.MainTestBehavior</string>

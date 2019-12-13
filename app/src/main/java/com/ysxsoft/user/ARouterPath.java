@@ -225,5 +225,14 @@ public class ARouterPath {
         return "/main/AllOrderActivity";
     }
 
+    /**
+     * 我的店铺
+     *
+     * @return
+     */
+    public static String getMyMallActivity() {
+        return "/main/MyMallActivity";
+    }
+
 
 }

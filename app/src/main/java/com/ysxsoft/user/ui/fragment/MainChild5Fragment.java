@@ -1,16 +1,20 @@
 package com.ysxsoft.user.ui.fragment;
 
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ysxsoft.common_base.base.BaseFragment;
+import com.ysxsoft.common_base.net.HttpResponse;
 import com.ysxsoft.common_base.utils.DisplayUtils;
 import com.ysxsoft.common_base.utils.JsonUtils;
 import com.ysxsoft.common_base.utils.SharedPreferencesUtils;
 import com.ysxsoft.common_base.view.custom.image.CircleImageView;
 import com.ysxsoft.user.R;
+import com.ysxsoft.user.config.AppConfig;
 import com.ysxsoft.user.modle.MainChild5FragmentResponse;
 import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.activity.AboutPlatformActivity;
@@ -18,11 +22,13 @@ import com.ysxsoft.user.ui.activity.AllOrderActivity;
 import com.ysxsoft.user.ui.activity.CookerDataActivity;
 import com.ysxsoft.user.ui.activity.CookerDetailActivity;
 import com.ysxsoft.user.ui.activity.FeedBackActivity;
+import com.ysxsoft.user.ui.activity.MyMallActivity;
 import com.ysxsoft.user.ui.activity.PersonCenterActivity;
 import com.ysxsoft.user.ui.activity.WalletActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import androidx.cardview.widget.CardView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import okhttp3.Call;
@@ -70,17 +76,40 @@ public class MainChild5Fragment extends BaseFragment {
     @BindView(R.id.tvAllOrder)
     TextView tvAllOrder;
 
+    @BindView(R.id.cv2)
+    CardView cv2;
+
 
     @Override
     protected void doWork(View view) {
         initTitle();
-//        requestData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        requestData();
+        switch (SharedPreferencesUtils.getSp(getActivity(), "role")) {
+            case "staff":
+                cv2.setVisibility(View.GONE);
+                tv1.setVisibility(View.GONE);
+                break;
+            case "shop":
+                cv2.setVisibility(View.VISIBLE);
+                tv1.setVisibility(View.VISIBLE);
+                break;
+            case "chef ":
+                cv2.setVisibility(View.GONE);
+                tv1.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
     private void requestData() {
-        OkHttpUtils.post()
+        OkHttpUtils.get()
                 .url(Api.GET_PERSON_DATA)
-                .addParams("uid", SharedPreferencesUtils.getUid(getActivity()))
+                .addParams("id", SharedPreferencesUtils.getUid(getActivity()))
+                .addParams("identity", SharedPreferencesUtils.getSp(getActivity(), "role"))
                 .tag(this)
                 .build()
                 .execute(new StringCallback() {
@@ -93,7 +122,11 @@ public class MainChild5Fragment extends BaseFragment {
                     public void onResponse(String response, int id) {
                         MainChild5FragmentResponse resp = JsonUtils.parseByGson(response, MainChild5FragmentResponse.class);
                         if (resp != null) {
-
+                            if (HttpResponse.SUCCESS.equals(resp.getCode())) {
+                                Glide.with(getActivity()).load(AppConfig.BASE_URL + resp.getResult().getAvater()).into(civ);
+                                tvName.setText(resp.getResult().getName());
+                                tvPhone.setText(resp.getResult().getPhone());
+                            }
                         }
                     }
                 });
@@ -132,7 +165,7 @@ public class MainChild5Fragment extends BaseFragment {
                 WalletActivity.start();
                 break;
             case R.id.tv2://版本更新
-
+                MyMallActivity.start();
                 break;
             case R.id.tv3://关于平台
                 AboutPlatformActivity.start();

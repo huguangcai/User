@@ -83,8 +83,14 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
                 //未登录 跳转到登录页面  Tips:宿主工程必须依赖 annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-                ARouter.getInstance().build("/main/LoginActivity").navigation();
-                finish();
+                if (!TextUtils.isEmpty(SharedPreferencesUtils.getSp(mContext,"role"))&&!TextUtils.isEmpty(SharedPreferencesUtils.getUid(mContext))){
+                    ARouter.getInstance().build("/main/MainActivity").withString("role",SharedPreferencesUtils.getSp(mContext,"role")).navigation();
+                    finish();
+                }else {
+                    ARouter.getInstance().build("/main/LoginActivity").navigation();
+                    finish();
+                }
+
             }
         }, 500);
 //        }

@@ -17,6 +17,7 @@ import com.ysxsoft.common_base.utils.SharedPreferencesUtils;
 import com.ysxsoft.user.ARouterPath;
 import com.ysxsoft.user.R;
 import com.ysxsoft.user.modle.CommonResonse;
+import com.ysxsoft.user.modle.ModifyNikeNameResonse;
 import com.ysxsoft.user.net.Api;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -93,7 +94,7 @@ public class ModiFyNameActivity extends BaseActivity {
                 etName.setText("");
                 break;
             case R.id.tvOk:
-                if (TextUtils.isEmpty(etName.getText().toString().trim())){
+                if (TextUtils.isEmpty(etName.getText().toString().trim())) {
                     showToast("姓名不能为空");
                     return;
                 }
@@ -103,10 +104,11 @@ public class ModiFyNameActivity extends BaseActivity {
     }
 
     private void submitData() {
-        OkHttpUtils.post()
+        OkHttpUtils.get()
                 .url(Api.GET_EDIT_USER_NIKENAME)
-                .addParams("uid", SharedPreferencesUtils.getUid(mContext))
-                .addParams("nikeName",etName.getText().toString().trim())
+                .addParams("id", SharedPreferencesUtils.getUid(mContext))
+                .addParams("username", etName.getText().toString().trim())
+                .addParams("identity", SharedPreferencesUtils.getSp(mContext, "role"))
                 .tag(this)
                 .build()
                 .execute(new StringCallback() {
@@ -117,10 +119,11 @@ public class ModiFyNameActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        CommonResonse resp = JsonUtils.parseByGson(response, CommonResonse.class);
-                        if (resp!=null){
-                            if (HttpResponse.SUCCESS.equals("0")){
-
+                        ModifyNikeNameResonse resp = JsonUtils.parseByGson(response, ModifyNikeNameResonse.class);
+                        if (resp != null) {
+                            showToast(resp.getMessage());
+                            if (HttpResponse.SUCCESS.equals(resp.getCode())) {
+                                finish();
                             }
                         }
                     }

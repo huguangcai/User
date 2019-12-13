@@ -8,19 +8,19 @@ import com.ysxsoft.user.config.AppConfig;
  */
 public interface Api {
     //图片上传
-    public final String GET_UPDATAIMAGES = AppConfig.BASE_URL + "api/login/upload_image";
+    public final String GET_UPDATAIMAGES = AppConfig.BASE_URL + "/front/common/uploadBatch";
     //发短信
-    public final String GET_SENDMSG = AppConfig.BASE_URL + "ront/userClient/send";
+    public final String GET_SENDMSG = AppConfig.BASE_URL + "/front/userClient/send";
     // 登录注册
-    public final String GET_LOGIN = AppConfig.BASE_URL + "";
-    // 忘记密码
-    public final String GET_FORGETPWD = AppConfig.BASE_URL + "";
+    public final String GET_LOGIN = AppConfig.BASE_URL + "/front/serveClient/login";
+    // 忘记密码  修改登录 / 支付密码
+    public final String GET_FORGETPWD = AppConfig.BASE_URL + "/front/serveClient/updatePassword";
     // 待接单
     public final String GET_WAITING_LIST = AppConfig.BASE_URL + "";
     // 拒绝原因
     public final String GET_REFUSE_CAUSE = AppConfig.BASE_URL + "";
     // 确认接单
-    public final String GET_IDENTIFICATION = AppConfig.BASE_URL + "";
+    public final String GET_IDENTIFICATION = AppConfig.BASE_URL + "/front/serveClient/takeOrder";
     // 准备中
     public final String GET_PREPARING = AppConfig.BASE_URL + "";
     // 服务中
@@ -42,13 +42,13 @@ public interface Api {
     // 厨师详情
     public final String GET_COOKER_DETIAL = AppConfig.BASE_URL + "";
     // 个人中心
-    public final String GET_PERSON_DATA = AppConfig.BASE_URL + "";
+    public final String GET_PERSON_DATA = AppConfig.BASE_URL + "/front/serveClient/serveCenter";
     // 修改头像
-    public final String GET_EDIT_USER_HEAD = AppConfig.BASE_URL + "";
+    public final String GET_EDIT_USER_HEAD = AppConfig.BASE_URL + "/front/serveClient/avater";
     // 修改名称
-    public final String GET_EDIT_USER_NIKENAME = AppConfig.BASE_URL + "";
-    // 修改手机号 登录密码  支付密码
-    public final String GET_PHONELOGINPAYPWD = AppConfig.BASE_URL + "";
+    public final String GET_EDIT_USER_NIKENAME = AppConfig.BASE_URL + "/front/serveClient/updateName";
+    // 修改手机号
+    public final String GET_PHONELOGINPAYPWD = AppConfig.BASE_URL + "/front/serveClient/updatePhone";
     // 关于平台
     public final String GET_ABOUTPLATFORM = AppConfig.BASE_URL + "";
     //反馈意见
@@ -67,6 +67,14 @@ public interface Api {
     public final String GET_EVALUATE_LIST = AppConfig.BASE_URL + "";
     //菜详情
     public final String GET_VEGETABLE_DETAIL = AppConfig.BASE_URL + "";
+    //全部订单
+    public final String GET_ALL_ORDER = AppConfig.BASE_URL + "";
+    //商家服务
+    public final String GET_MALL_SERVICE = AppConfig.BASE_URL + "";
+    //商家资料
+    public final String GET_MALL_DATA = AppConfig.BASE_URL + "";
+    //选择员工
+    public final String GET_SELECT_STAFF = AppConfig.BASE_URL + "/front/serveClient/staffList";
 
 
 }

@@ -24,6 +24,8 @@ import com.ysxsoft.user.ARouterPath;
 import com.ysxsoft.user.R;
 import com.ysxsoft.user.config.AppConfig;
 import com.ysxsoft.user.modle.CommonResonse;
+import com.ysxsoft.user.modle.MainChild5FragmentResponse;
+import com.ysxsoft.user.modle.ModifyAvatarResonse;
 import com.ysxsoft.user.net.Api;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
@@ -105,6 +107,39 @@ public class PersonCenterActivity extends BaseActivity {
         back.setImageResource(R.mipmap.icon_white_back);
         title.setTextColor(getResources().getColor(R.color.colorWhite));
         title.setText("个人资料");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestData();
+    }
+
+    private void requestData() {
+        OkHttpUtils.get()
+                .url(Api.GET_PERSON_DATA)
+                .addParams("id", SharedPreferencesUtils.getUid(mContext))
+                .addParams("identity", SharedPreferencesUtils.getSp(mContext, "role"))
+                .tag(this)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        MainChild5FragmentResponse resp = JsonUtils.parseByGson(response, MainChild5FragmentResponse.class);
+                        if (resp != null) {
+                            if (HttpResponse.SUCCESS.equals(resp.getCode())) {
+                                Glide.with(mContext).load(AppConfig.BASE_URL+resp.getResult().getAvater()).into(civHead);
+                                tvName.setText(resp.getResult().getName());
+                                tvPhone.setText(resp.getResult().getPhone());
+                            }
+                        }
+                    }
+                });
     }
 
     @Override
@@ -220,10 +255,11 @@ public class PersonCenterActivity extends BaseActivity {
         showLoadingDialog("正在修改");
         PostFormBuilder builder = OkHttpUtils.post()
                 .url(Api.GET_EDIT_USER_HEAD)
-                .addParams("uid", SharedPreferencesUtils.getUid(mContext));
+                .addParams("identity",SharedPreferencesUtils.getSp(mContext,"role"))
+                .addParams("id", SharedPreferencesUtils.getUid(mContext));
         if (avatar != null) {
             File file = new File(avatar);
-            builder.addFile("avatar", file.getName(), file);
+            builder.addFile("file", file.getName(), file);
         }
         builder.tag(this)
                 .build()
@@ -236,14 +272,12 @@ public class PersonCenterActivity extends BaseActivity {
                     @Override
                     public void onResponse(String response, int id) {
                         hideLoadingDialog();
-                        CommonResonse resp = JsonUtils.parseByGson(response, CommonResonse.class);
+                        ModifyAvatarResonse resp = JsonUtils.parseByGson(response, ModifyAvatarResonse.class);
                         if (resp != null) {
-//                            if (HttpResponse.SUCCESS.equals(resp.getCode())) {
-//                                showToast("修改成功");
-////                                getUserInfo();
-//                            } else {
-//                                showToast(resp.getMsg());
-//                            }
+                            showToast(resp.getMessage());
+                            if (HttpResponse.SUCCESS.equals(resp.getCode())) {
+//                                Glide.with(mContext).load(AppConfig.BASE_URL+resp.getResult().getAvater()).into(civHead);
+                            }
                         } else {
                             showToast("修改失败");
                         }

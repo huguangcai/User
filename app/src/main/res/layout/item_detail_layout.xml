@@ -30,6 +30,20 @@
         android:textSize="@dimen/sp_13"
         android:text="DIY无麸玉米脆饼早餐 "/>
 
+
+    <TextView
+        android:id="@+id/tvGuiGe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/tvName"
+        app:layout_constraintLeft_toRightOf="@id/riv"
+        android:textColor="@color/color_989898"
+        android:textSize="@dimen/sp_10"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        android:layout_marginTop="@dimen/dp_5"
+        android:text="规格：黑色；带固定架"
+        android:visibility="gone"/>
+
     <TextView
         android:id="@+id/tvMoney"
         android:layout_width="wrap_content"
