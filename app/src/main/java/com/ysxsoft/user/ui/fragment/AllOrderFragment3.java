@@ -21,6 +21,7 @@ import com.ysxsoft.user.modle.WaitingListResponse;
 import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.activity.ServiceListDetialActivity;
 import com.ysxsoft.user.ui.activity.WaitingListDetialActivity;
+import com.ysxsoft.user.ui.activity.WorkingDetailActivity;
 import com.ysxsoft.user.widget.MyRecyclerview;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -62,7 +63,7 @@ public class AllOrderFragment3 extends BaseFragment implements IListAdapter {
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ServiceListDetialActivity.start();
+                WorkingDetailActivity.start();
             }
         });
         request(1);
@@ -155,7 +156,7 @@ public class AllOrderFragment3 extends BaseFragment implements IListAdapter {
         adapter1.setOnItemClickListener(new RBaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RViewHolder holder, View view, int position) {
-                ServiceListDetialActivity.start();
+                WorkingDetailActivity.start();
             }
         });
         recyclerView1.setAdapter(adapter1);

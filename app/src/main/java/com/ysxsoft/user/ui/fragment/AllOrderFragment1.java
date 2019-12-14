@@ -20,6 +20,7 @@ import com.ysxsoft.user.base.RBaseAdapter;
 import com.ysxsoft.user.base.RViewHolder;
 import com.ysxsoft.user.modle.WaitingListResponse;
 import com.ysxsoft.user.net.Api;
+import com.ysxsoft.user.ui.activity.WaitCarDetialActivity;
 import com.ysxsoft.user.ui.activity.WaitingListDetialActivity;
 import com.ysxsoft.user.widget.MyRecyclerview;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -64,7 +65,7 @@ public class AllOrderFragment1 extends BaseFragment implements IListAdapter {
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                WaitingListDetialActivity.start();
+                WaitCarDetialActivity.start();
             }
         });
         request(1);
@@ -157,7 +158,7 @@ public class AllOrderFragment1 extends BaseFragment implements IListAdapter {
         adapter1.setOnItemClickListener(new RBaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RViewHolder holder, View view, int position) {
-                WaitingListDetialActivity.start();
+                WaitCarDetialActivity.start();
             }
         });
         recyclerView1.setAdapter(adapter1);

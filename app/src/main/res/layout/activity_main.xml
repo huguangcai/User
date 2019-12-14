@@ -16,7 +16,8 @@
         app:itemTextColor="@color/bottom_item_text_color"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_bottom" />
+        app:menu="@menu/menu_bottom"
+        android:visibility="gone"/>
 
     <com.ysxsoft.common_base.view.widgets.NoScrollViewPager
         android:id="@+id/viewPager"
@@ -24,4 +25,52 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigationView"
         android:fadingEdge="none" />
+
+
+    <RadioGroup
+        android:id="@+id/rg_home"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_wait"
+            style="@style/rb_selector"
+            android:drawableTop="@drawable/wait_selector"
+            android:gravity="center"
+            android:text="待接单" />
+
+        <RadioButton
+            android:id="@+id/rb_work"
+            style="@style/rb_selector"
+            android:drawableTop="@drawable/work_selector"
+            android:gravity="center"
+            android:text="工作中" />
+
+        <RadioButton
+            android:id="@+id/rb_complete"
+            style="@style/rb_selector"
+            android:drawableTop="@drawable/complete_selector"
+            android:gravity="center"
+            android:text="已完成" />
+
+        <RadioButton
+            android:id="@+id/rb_sale"
+            style="@style/rb_selector"
+            android:drawableTop="@drawable/sale_selector"
+            android:gravity="center"
+            android:text="售后" />
+
+
+
+        <RadioButton
+            android:id="@+id/rb_my"
+            style="@style/rb_selector"
+            android:drawableTop="@drawable/my_selector"
+            android:gravity="center"
+            android:text="个人中心" />
+
+    </RadioGroup>
 </RelativeLayout>

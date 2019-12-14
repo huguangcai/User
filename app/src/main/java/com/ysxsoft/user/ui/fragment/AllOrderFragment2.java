@@ -22,6 +22,8 @@ import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.activity.PrepareListDetialActivity;
 import com.ysxsoft.user.ui.activity.ServiceListDetialActivity;
 import com.ysxsoft.user.ui.activity.WaitingListDetialActivity;
+import com.ysxsoft.user.ui.activity.WaittingCarCheckArriveActivity;
+import com.ysxsoft.user.ui.activity.WaittingCarDetailActivity;
 import com.ysxsoft.user.widget.MyRecyclerview;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -63,7 +65,11 @@ public class AllOrderFragment2 extends BaseFragment implements IListAdapter {
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                PrepareListDetialActivity.start();
+                if (position%2==0){
+                    WaittingCarDetailActivity.start();
+                }else {
+                    WaittingCarCheckArriveActivity.start();
+                }
             }
         });
         request(1);
@@ -157,7 +163,11 @@ public class AllOrderFragment2 extends BaseFragment implements IListAdapter {
         adapter1.setOnItemClickListener(new RBaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RViewHolder holder, View view, int position) {
-                PrepareListDetialActivity.start();
+                if (helper.getAdapterPosition()%2==0){
+                    WaittingCarDetailActivity.start();
+                }else {
+                    WaittingCarCheckArriveActivity.start();
+                }
             }
         });
         recyclerView1.setAdapter(adapter1);

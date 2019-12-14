@@ -88,6 +88,7 @@ public class MainChild2Fragment1 extends BaseFragment {
         line2.setVisibility(View.INVISIBLE);
         line3.setVisibility(View.INVISIBLE);
         line4.setVisibility(View.INVISIBLE);
+        switchFragment(tab1).commit();
         initPoint();
     }
 

@@ -234,5 +234,96 @@ public class ARouterPath {
         return "/main/MyMallActivity";
     }
 
+    /**
+     * 待接车详情
+     *
+     * @return
+     */
+    public static String getWaitCarDetialActivity() {
+        return "/main/WaitCarDetialActivity";
+    }
+
+    /**
+     * 接车中详情
+     *
+     * @return
+     */
+    public static String getWaittingCarDetialActivity() {
+        return "/main/WaittingCarDetailActivity";
+    }
+
+    /**
+     * 工作中详情
+     *
+     * @return
+     */
+    public static String getWorkingDetialActivity() {
+        return "/main/WorkingDetialActivity";
+    }
+
+    /**
+     * 送车中详情
+     *
+     * @return
+     */
+    public static String getSongCarDetialActivity() {
+        return "/main/SongCarDetialActivity";
+    }
+
+    /**
+     * 上传照片
+     *
+     * @return
+     */
+    public static String getTakePhotoActivity() {
+        return "/main/TakePhotoActivity";
+    }
+
+    /**
+     * 确认到达
+     *
+     * @return
+     */
+    public static String getWaittingCarCheckArriveActivity() {
+        return "/main/WaittingCarCheckArriveActivity";
+    }
+
+    /**
+     * 送车待客户确认详情
+     *
+     * @return
+     */
+    public static String getSongCarWaitCheckDetialActivity() {
+        return "/main/SongCarWaitCheckDetialActivity";
+    }
+
+    /**
+     * 员工端 拒绝已完成
+     *
+     * @return
+     */
+    public static String getStaffCompleteRefuseDetailActivity() {
+        return "/main/StaffCompleteRefuseDetailActivity";
+    }
+
+    /**
+     * 员工端 已完成
+     *
+     * @return
+     */
+    public static String getStaffCompleteDetailActivity() {
+        return "/main/StaffCompleteDetailActivity";
+    }
+
+
+    /**
+     * 员工端 已完成 Vip
+     *
+     * @return
+     */
+    public static String getVIPCompleteDetailActivity() {
+        return "/main/VIPCompleteDetailActivity";
+    }
+
 
 }

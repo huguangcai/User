@@ -19,6 +19,8 @@ import com.ysxsoft.user.base.RBaseAdapter;
 import com.ysxsoft.user.base.RViewHolder;
 import com.ysxsoft.user.modle.WaitingListResponse;
 import com.ysxsoft.user.net.Api;
+import com.ysxsoft.user.ui.activity.SongCarDetialActivity;
+import com.ysxsoft.user.ui.activity.SongCarWaitCheckDetialActivity;
 import com.ysxsoft.user.ui.activity.WaitingListDetialActivity;
 import com.ysxsoft.user.widget.MyRecyclerview;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -61,7 +63,11 @@ public class AllOrderFragment4 extends BaseFragment implements IListAdapter {
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                WaitingListDetialActivity.start();
+                if (position % 2 == 0) {
+                    SongCarDetialActivity.start();
+                } else {
+                    SongCarWaitCheckDetialActivity.start();
+                }
             }
         });
         request(1);
@@ -162,7 +168,16 @@ public class AllOrderFragment4 extends BaseFragment implements IListAdapter {
             }
         };
         recyclerView1.setAdapter(adapter1);
-
+        adapter1.setOnItemClickListener(new RBaseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(RViewHolder holder, View view, int position) {
+                if (helper.getAdapterPosition() % 2 == 0) {
+                    SongCarDetialActivity.start();
+                } else {
+                    SongCarWaitCheckDetialActivity.start();
+                }
+            }
+        });
         helper.setText(R.id.tvDistance, "距客户:" + "  " + "km");
         helper.setText(R.id.tvSum, "共" + "   " + "件，合计");
         helper.setText(R.id.tvMoney, "¥" + "");

@@ -76,6 +76,16 @@
         <activity android:name=".ui.activity.SelectStaffActivity" />
         <activity android:name=".ui.activity.AllOrderActivity" />
         <activity android:name=".ui.activity.MyMallActivity" />
+        <activity android:name=".ui.activity.WaitCarDetialActivity" />
+        <activity android:name=".ui.activity.WaittingCarDetailActivity" />
+        <activity android:name=".ui.activity.TakePhotoActivity" />
+        <activity android:name=".ui.activity.WaittingCarCheckArriveActivity" />
+        <activity android:name=".ui.activity.WorkingDetailActivity" />
+        <activity android:name=".ui.activity.SongCarDetialActivity" />
+        <activity android:name=".ui.activity.SongCarWaitCheckDetialActivity" />
+        <activity android:name=".ui.activity.StaffCompleteRefuseDetailActivity" />
+        <activity android:name=".ui.activity.StaffCompleteDetailActivity" />
+        <activity android:name=".ui.activity.VIPCompleteDetailActivity" />
 
 
     </application>
