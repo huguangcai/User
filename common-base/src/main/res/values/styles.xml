@@ -192,4 +192,18 @@
         <!--模糊-->
         <item name="android:textColor">@color/color_282828</item>
     </style>
+
+
+    <style name="rb_selector">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@drawable/text_color_selector</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:drawablePadding">3dp</item>
+    </style>
+
 </resources>

@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ysxsoft.common_base.view.custom.image.RoundImageView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/iv"
-    android:layout_width="60dp"
-    android:layout_height="60dp"
-    android:orientation="vertical"
-    android:layout_marginHorizontal="@dimen/dp_10"
-    app:radius="@dimen/dp_10"
-    tools:src="@mipmap/ic_launcher">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-</com.ysxsoft.common_base.view.custom.image.RoundImageView>
+    <com.ysxsoft.common_base.view.custom.image.RoundImageView
+        android:id="@+id/iv"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="@dimen/dp_10"
+        android:layout_marginVertical="@dimen/dp_10"
+        android:orientation="vertical"
+        app:radius="@dimen/dp_10"
+        tools:src="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginRight="5dp"
+        android:layout_gravity="right"
+        android:src="@mipmap/icon_close" />
+
+
+</FrameLayout>
