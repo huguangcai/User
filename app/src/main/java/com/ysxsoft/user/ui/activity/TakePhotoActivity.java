@@ -12,10 +12,13 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
-import com.tbruyelle.rxpermissions2.Permission;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.tools.PictureFileUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.ysxsoft.common_base.base.BaseActivity;
-import com.ysxsoft.common_base.utils.ImageUtils;
 import com.ysxsoft.common_base.view.custom.image.RoundImageView;
 import com.ysxsoft.user.ARouterPath;
 import com.ysxsoft.user.R;
@@ -33,9 +36,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.bingoogolapple.photopicker.activity.BGAPhotoPickerActivity;
-import cn.bingoogolapple.photopicker.util.BGAPhotoHelper;
-import cn.bingoogolapple.photopicker.util.BGAPhotoPickerUtil;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -65,9 +66,7 @@ public class TakePhotoActivity extends BaseActivity {
     RecyclerView recyclerView;
     @BindView(R.id.tvOk)
     TextView tvOk;
-    private RBaseAdapter<String> adapter;
-    private RxPermissions r;
-    private BGAPhotoHelper mPhotoHelper;
+    private RBaseAdapter<LocalMedia> adapter;
 
     public static void start() {
         ARouter.getInstance().build(ARouterPath.getTakePhotoActivity()).navigation();
@@ -82,110 +81,102 @@ public class TakePhotoActivity extends BaseActivity {
     public void doWork() {
         super.doWork();
         initTitle();
-
-        initPhotoHelper();
+        initList(new ArrayList<LocalMedia>());
     }
 
-    @SuppressLint("CheckResult")
-    private void initPhotoHelper() {
-        r = new RxPermissions(this);
-        if (r.isGranted(Manifest.permission.READ_EXTERNAL_STORAGE) && r.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            File takePhotoDir = new File(AppConfig.PHOTO_CACHE_PATH);
-            mPhotoHelper = new BGAPhotoHelper(takePhotoDir);
-        } else {
-            r.requestEach(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}).subscribe(new Consumer<Permission>() {
-                @Override
-                public void accept(Permission permission) throws Exception {
-                    if (permission.granted) {
-                        File takePhotoDir = new File(AppConfig.PHOTO_CACHE_PATH);
-                        mPhotoHelper = new BGAPhotoHelper(takePhotoDir);
-                    }
-                }
-            });
-        }
-    }
+    private void initList(ArrayList<LocalMedia> list) {
+//        ArrayList<String> list = new ArrayList<>();
+//        for (int i = 0; i < 5; i++) {
+//            list.add(String.valueOf(i));
+//        }
 
-    private void initList(List<String> selectedPhotos) {
-        ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            list.add(String.valueOf(i));
-        }
-        list.add(list.size(), "");
+        list.add(list.size(), new LocalMedia());
 
-        adapter = new RBaseAdapter<String>(mContext, R.layout.item_take_photo_layout, list) {
+        adapter = new RBaseAdapter<LocalMedia>(mContext, R.layout.item_take_photo_layout, list) {
             @Override
-            protected void fillItem(RViewHolder holder, String item, int position) {
+            protected void fillItem(RViewHolder holder, LocalMedia item, int position) {
                 RoundImageView iv = holder.getView(R.id.iv);
                 ImageView ivClose = holder.getView(R.id.ivClose);
-//                if (list.size()-1 <= 0) {
-//                    iv.setBackgroundResource(R.mipmap.icon_upload_img);
-//                    ivClose.setVisibility(View.INVISIBLE);
-//                    iv.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            choicePhotoWrapper();
-//                        }
-//                    });
-//                } else {
-                    if (list.size() - 1 == position) {
+                if (list.size() > 9) {
+                   if (position>8){
+                       iv.setVisibility(View.GONE);
+                       ivClose.setVisibility(View.GONE);
+                   }else {
+                       Glide.with(mContext).load(item.getPath()).into(iv);
+                       ivClose.setVisibility(View.VISIBLE);
+                   }
+                } else {
+                    if (position == list.size() - 1) {
                         iv.setBackgroundResource(R.mipmap.icon_upload_img);
                         ivClose.setVisibility(View.INVISIBLE);
                         iv.setOnClickListener(new View.OnClickListener() {
+                            @SuppressLint("CheckResult")
                             @Override
                             public void onClick(View v) {
-                                choicePhotoWrapper();
+                                new RxPermissions(TakePhotoActivity.this).request(Manifest.permission.READ_EXTERNAL_STORAGE,
+                                        Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(new Consumer<Boolean>() {
+                                    @Override
+                                    public void accept(Boolean aBoolean) throws Exception {
+                                        if (aBoolean) {
+                                            //申请的权限全部允许
+                                            openGallery();
+                                        } else {
+                                            //只要有一个权限被拒绝，就会执行
+                                            showToast("未授权权限，部分功能不能使用");
+                                        }
+                                    }
+                                });
                             }
                         });
                     } else {
-                        iv.setBackgroundResource(R.mipmap.ic_launcher);
+                        Glide.with(mContext).load(item.getPath()).into(iv);
                         ivClose.setVisibility(View.VISIBLE);
                     }
-                    ivClose.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            list.remove(position);
-                            adapter.notifyDataSetChanged();
-                        }
-                    });
-//                }
+                }
+                ivClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        list.remove(position);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
             }
 
             @Override
-            protected int getViewType(String item, int position) {
+            protected int getViewType(LocalMedia item, int position) {
                 return 0;
             }
         };
-
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
         recyclerView.setAdapter(adapter);
     }
 
-    private static final int RC_CHOOSE_PHOTO = 0x01;
-    public static final int REQUEST_CODE_CROP = 0x02;
+    private void openGallery() {
+        PictureSelector.create(this)
+                .openGallery(PictureMimeType.ofAll())
+                .maxSelectNum(9)// 最大图片选择数量
+                .selectionMode(PictureConfig.MULTIPLE)
+                .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
+                .imageFormat(PictureMimeType.PNG)// 拍照保存图片格式后缀,默认jpeg
+                .enableCrop(false)// 是否裁剪
+                .compress(true)// 是否压缩
+//                .compressSavePath(getSDCardPath())//压缩图片保存地址
+                .synOrAsy(true)//同步true或异步false 压缩 默认同步
+                .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+                .withAspectRatio(1, 1)// 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+                .freeStyleCropEnabled(true)// 裁剪框是否可拖拽
+                .minimumCompressSize(100)// 小于100kb的图片不压缩
+                .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
+    }
 
-    @SuppressLint("CheckResult")
-    private void choicePhotoWrapper() {
-        new RxPermissions(this).request(Manifest.permission.CAMERA).subscribe(new Consumer<Boolean>() {
-            @Override
-            public void accept(Boolean aBoolean) throws Exception {
-                if (aBoolean) {
-                    // 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话就没有拍照功能
-                    File takePhotoDir = new File(AppConfig.PHOTO_PATH, "space");
-                    File f = new File(AppConfig.PHOTO_PATH);
-                    if (!f.exists()) {
-                        f.mkdirs();
-                    }
-                    Intent photoPickerIntent = new BGAPhotoPickerActivity.IntentBuilder(mContext)
-                            .cameraFileDir(takePhotoDir) // 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话则不开启图库里的拍照功能
-                            .maxChooseCount(1) // 图片选择张数的最大值
-                            .selectedPhotos(null) // 当前已选中的图片路径集合
-                            .pauseOnScroll(false) // 滚动列表时是否暂停加载图片
-                            .build();
-                    startActivityForResult(photoPickerIntent, RC_CHOOSE_PHOTO);
-                }
-            }
-        });
+    public static String getSDCardPath() {
+        String SDPATH = AppConfig.PHOTO_PATH;
+        File file = new File(SDPATH);
+        if (file.mkdirs()) {
+            return SDPATH;
+        }
+        return SDPATH;
     }
 
     private void initTitle() {
@@ -209,39 +200,48 @@ public class TakePhotoActivity extends BaseActivity {
         }
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case RC_CHOOSE_PHOTO:
-                    if (data != null) {
-                        List<String> selectedPhotos = BGAPhotoPickerActivity.getSelectedPhotos(data);
-                        if (selectedPhotos != null && selectedPhotos.size() > 0) {
-                            //拍照返回
-                            try {
-                                startActivityForResult(mPhotoHelper.getCropIntent(selectedPhotos.get(0), 200, 200), REQUEST_CODE_CROP);
-                            } catch (Exception e) {
-                                mPhotoHelper.deleteCameraFile();
-                                mPhotoHelper.deleteCropFile();
-                                BGAPhotoPickerUtil.show(R.string.bga_pp_not_support_crop);
-                                e.printStackTrace();
-                            }
-                        }
-                        initList(selectedPhotos);
-                    }
-                    break;
-                case REQUEST_CODE_CROP:
-                    String cropPath = mPhotoHelper.getCropFilePath();
-                    String path = ImageUtils.compress(this, System.currentTimeMillis() + "", new File(cropPath), AppConfig.PHOTO_PATH);
-//                    //裁剪后的
-//                    Glide.with(mContext).load(new File(path)).into(civHead);
-//                    editLogo(path);
-                    break;
-                default:
+                case PictureConfig.CHOOSE_REQUEST:
+                    // 图片选择结果回调
+                    final List<LocalMedia> localMedia = PictureSelector.obtainMultipleResult(data);
+                    initList((ArrayList<LocalMedia>) localMedia);
+                    ClearCache();
                     break;
             }
         }
+    }
+
+    private void ClearCache() {
+        // 清空图片缓存，包括裁剪、压缩后的图片 注意:必须要在上传完成后调用 必须要获取权限
+        RxPermissions permissions = new RxPermissions(this);
+        permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(new io.reactivex.Observer<Boolean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        if (aBoolean) {
+                            PictureFileUtils.deleteAllCacheDirFile(mContext);
+                        } else {
+                            showToast(getString(R.string.picture_jurisdiction));
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

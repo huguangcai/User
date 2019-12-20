@@ -1,6 +1,7 @@
 package com.ysxsoft.user.ui.fragment;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.ysxsoft.common_base.base.BaseFragment;
 import com.ysxsoft.common_base.base.frame.list.IListAdapter;
 import com.ysxsoft.common_base.base.frame.list.ListManager;
 import com.ysxsoft.common_base.net.HttpResponse;
+import com.ysxsoft.common_base.utils.DisplayUtils;
 import com.ysxsoft.common_base.utils.JsonUtils;
 import com.ysxsoft.common_base.utils.SharedPreferencesUtils;
 import com.ysxsoft.common_base.view.custom.image.CircleImageView;
@@ -21,12 +23,11 @@ import com.ysxsoft.user.R;
 import com.ysxsoft.user.base.RBaseAdapter;
 import com.ysxsoft.user.base.RViewHolder;
 import com.ysxsoft.user.config.AppConfig;
-import com.ysxsoft.user.modle.MainChild2Tab1FragmentResponse;
 import com.ysxsoft.user.modle.ShopOrderListResponse;
+import com.ysxsoft.user.modle.WaitingListResponse;
 import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.activity.IdentificationActivity;
 import com.ysxsoft.user.ui.activity.RefuseCauseActivity;
-import com.ysxsoft.user.ui.activity.WaitCarDetialActivity;
 import com.ysxsoft.user.ui.activity.WaitingListDetialActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -47,7 +48,23 @@ import static com.ysxsoft.user.config.AppConfig.IS_DEBUG_ENABLED;
  * Create By 胡
  * on 2019/12/7 0007
  */
-public class MainChild2Tab1Fragment extends BaseFragment implements IListAdapter<ShopOrderListResponse.ResultBean.ListBean> {
+public class MainChild1ShopFragment extends BaseFragment implements IListAdapter<ShopOrderListResponse.ResultBean.ListBean> {
+    @BindView(R.id.backWithText)
+    TextView backWithText;
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.backLayout)
+    LinearLayout backLayout;
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.rightWithIcon)
+    TextView rightWithIcon;
+    @BindView(R.id.bg)
+    LinearLayout bg;
+    @BindView(R.id.bottomLineView)
+    View bottomLineView;
+    @BindView(R.id.statusBar)
+    View statusBar;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -59,12 +76,30 @@ public class MainChild2Tab1Fragment extends BaseFragment implements IListAdapter
 
     @Override
     public int getLayoutId() {
-        return R.layout.include_list;
+        return R.layout.fragment_mainchild1;
     }
 
     @Override
     protected void doWork(View view) {
+        initTitle();
         initList(view);
+    }
+
+    private void initTitle() {
+//        ImmersionBar.with(this)
+//                .statusBarColor(R.color.colorPrimary)     //状态栏颜色，不写默认透明色
+//                .reset()  //重置所以沉浸式参数
+//                .init();  //必须调用方可应用以上所配置的参数
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) statusBar.getLayoutParams();
+        params.height = DisplayUtils.getStatusBarHeight(getActivity());
+        statusBar.setLayoutParams(params);
+        statusBar.setBackgroundColor(getResources().getColor(R.color.theme_color));
+        bg.setBackgroundColor(getResources().getColor(R.color.theme_color));
+        backLayout.setVisibility(View.VISIBLE);
+        back.setVisibility(View.GONE);
+//        back.setImageResource(R.mipmap.icon_white_back);
+        title.setTextColor(getResources().getColor(R.color.colorWhite));
+        title.setText("待接单");
     }
 
     private void initList(View view) {
@@ -73,7 +108,7 @@ public class MainChild2Tab1Fragment extends BaseFragment implements IListAdapter
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                WaitCarDetialActivity.start();
+                WaitingListDetialActivity.start();
             }
         });
         request(1);
@@ -81,7 +116,7 @@ public class MainChild2Tab1Fragment extends BaseFragment implements IListAdapter
 
     @Override
     public int getItemLayoutId() {
-        return R.layout.item_all_order_layout;
+        return R.layout.item_shop_fragment_mainchild1;
     }
 
     @Override
@@ -92,7 +127,7 @@ public class MainChild2Tab1Fragment extends BaseFragment implements IListAdapter
             OkHttpUtils.get()
                     .url(Api.GET_SHOP_ORDER_LIST)
                     .addParams("bossId", SharedPreferencesUtils.getUid(getActivity()))
-                    .addParams("type", "3")
+                    .addParams("type", "2")
                     .tag(this)
                     .build()
                     .execute(new StringCallback() {
@@ -104,7 +139,6 @@ public class MainChild2Tab1Fragment extends BaseFragment implements IListAdapter
                         @Override
                         public void onResponse(String response, int id) {
                             manager.releaseRefresh();
-//                            MainChild2Tab1FragmentResponse resp = JsonUtils.parseByGson(response, MainChild2Tab1FragmentResponse.class);
                             ShopOrderListResponse resp = JsonUtils.parseByGson(response, ShopOrderListResponse.class);
                             if (resp != null) {
                                 if (HttpResponse.SUCCESS.equals(resp.getCode())) {
@@ -122,39 +156,48 @@ public class MainChild2Tab1Fragment extends BaseFragment implements IListAdapter
                             }
                         }
                     });
-
         }
     }
+
     @Override
     public void fillView(BaseViewHolder helper, ShopOrderListResponse.ResultBean.ListBean o) {
         LinearLayout LL1 = helper.getView(R.id.LL1);
-        TextView tvWaittingOk = helper.getView(R.id.tvWaittingOk);
-        TextView tvLook = helper.getView(R.id.tvLook);
-        tvWaittingOk.setVisibility(View.GONE);
-        tvLook.setVisibility(View.GONE);
-
-        helper.setText(R.id.nikeName,"订单号:"+o.getOrderId());
-        helper.setText(R.id.tvStatus,"待接车");
-
+        LL1.setVisibility(View.GONE);
         RecyclerView recyclerView1 = helper.getView(R.id.recyclerView1);
+        recyclerView1.setVisibility(View.VISIBLE);
+
+
+        helper.setText(R.id.nikeName, "订单号:"+o.getOrderId());
+//        RecyclerView recyclerView = helper.getView(R.id.recyclerView);
+//        ArrayList<String> strings = new ArrayList<>();
+//        strings.add("川湘菜");
+//        strings.add("豫菜");
+//        strings.add("新疆菜");
+//        strings.add("江浙菜");
+//        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+//        RBaseAdapter<String> adapter = new RBaseAdapter<String>(getActivity(), R.layout.item_item_fragment_mainchild1, strings) {
+//            @Override
+//            protected void fillItem(RViewHolder holder, String item, int position) {
+//                RoundImageView iv = holder.getView(R.id.iv);
+//                iv.setBackgroundResource(R.mipmap.ic_launcher);
+//            }
+//
+//            @Override
+//            protected int getViewType(String item, int position) {
+//                return 0;
+//            }
+//        };
+//        recyclerView.setAdapter(adapter);
+
         recyclerView1.setLayoutManager(new LinearLayoutManager(getActivity()));
         RBaseAdapter<ShopOrderListResponse.ResultBean.ListBean.ProductListBean> adapter1 = new RBaseAdapter<ShopOrderListResponse.ResultBean.ListBean.ProductListBean>(getActivity(), R.layout.item_detail_layout, o.getProductList()) {
             @Override
             protected void fillItem(RViewHolder holder, ShopOrderListResponse.ResultBean.ListBean.ProductListBean item, int position) {
                 RoundImageView iv = holder.getView(R.id.riv);
-//                helper.setText(R.id.tvGuiGe,"");
                 helper.setText(R.id.tvName,item.getName());
                 helper.setText(R.id.tvNum,"x"+item.getNumber());
                 helper.setText(R.id.tvMoney,"¥"+item.getPrice());
                 Glide.with(getActivity()).load(AppConfig.BASE_URL+item.getImg()).into(iv);
-                TextView tvGuiGe = holder.getView(R.id.tvGuiGe);
-                if (position%2==0){
-                    tvGuiGe.setVisibility(View.GONE);
-                }else {
-//                    tvGuiGe.setVisibility(View.VISIBLE);
-                    tvGuiGe.setVisibility(View.GONE);
-                }
-
             }
 
             @Override
@@ -162,18 +205,36 @@ public class MainChild2Tab1Fragment extends BaseFragment implements IListAdapter
                 return 0;
             }
         };
+        recyclerView1.setAdapter(adapter1);
 
-        adapter1.setOnItemClickListener(new RBaseAdapter.OnItemClickListener() {
+
+        TextView tvSumType = helper.getView(R.id.tvSumType);
+        tvSumType.setText("共" + "  " + "菜品");
+        tvSumType.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(RViewHolder holder, View view, int position) {
-                WaitCarDetialActivity.start();
+            public void onClick(View v) {
+                showToast("菜品详情");
             }
         });
-        recyclerView1.setAdapter(adapter1);
         helper.setText(R.id.tvDistance, "距客户:" + o.getDistance() + "km");
         helper.setText(R.id.tvSum, "共" + o.getZnumber() + "件，合计");
         helper.setText(R.id.tvMoney, "¥" +o.getTotal());
-        helper.setText(R.id.tvHave_dinner, "取车时间:" + o.getTakeCarTime());
+        helper.setText(R.id.tvHave_dinner, "用车时间:" + o.getUseTime());
+        TextView tvRefuse = helper.getView(R.id.tvRefuse);
+        tvRefuse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RefuseCauseActivity.start();
+            }
+        });
+        TextView tvAccept = helper.getView(R.id.tvAccept);
+        tvAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IdentificationActivity.start();
+            }
+        });
+
     }
 
     @Override

@@ -75,10 +75,8 @@ public class MainChild5Fragment extends BaseFragment {
     LinearLayout llName;
     @BindView(R.id.tvAllOrder)
     TextView tvAllOrder;
-
     @BindView(R.id.cv2)
     CardView cv2;
-
 
     @Override
     protected void doWork(View view) {
@@ -159,7 +157,16 @@ public class MainChild5Fragment extends BaseFragment {
                 PersonCenterActivity.start();
                 break;
             case R.id.ivMyMall:
-                CookerDetailActivity.start();
+                switch (SharedPreferencesUtils.getSp(getActivity(), "role")) {
+                    case "staff":
+                        break;
+                    case "shop":
+                        MyMallActivity.start();
+                        break;
+                    case "chef":
+                        CookerDetailActivity.start();
+                        break;
+                }
                 break;
             case R.id.tv1://钱包
                 WalletActivity.start();

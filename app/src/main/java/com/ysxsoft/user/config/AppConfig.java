@@ -12,7 +12,7 @@ public class AppConfig {
     public static final String VIDEO_PATH = BASE_PATH + "/video/";
     public static final String MUSIC_PATH = BASE_PATH + "/music/";
     public static final String APK_URL = BASE_PATH + "/apk/";
-    public static final String BASE_URL = "http://192.168.1.112:8080";
+    public static final String BASE_URL = "http://192.168.1.111:8080";
 //    public static final String BASE_H5_URL = "http://192.168.1.236:13140/#/";
     public static final boolean IS_DEBUG_ENABLED = true;
     public static AppConfig INSTANCE;

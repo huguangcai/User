@@ -23,10 +23,12 @@ import com.ysxsoft.common_base.base.ViewPagerFragmentAdapter;
 import com.ysxsoft.common_base.utils.SharedPreferencesUtils;
 import com.ysxsoft.common_base.view.widgets.NoScrollViewPager;
 import com.ysxsoft.user.ui.fragment.MainChild1Fragment;
+import com.ysxsoft.user.ui.fragment.MainChild1ShopFragment;
 import com.ysxsoft.user.ui.fragment.MainChild2Fragment;
 import com.ysxsoft.user.ui.fragment.MainChild2Fragment1;
 import com.ysxsoft.user.ui.fragment.MainChild3Fragment;
 import com.ysxsoft.user.ui.fragment.MainChild3Fragment1;
+import com.ysxsoft.user.ui.fragment.MainChild3ShopFragment;
 import com.ysxsoft.user.ui.fragment.MainChild4Fragment;
 import com.ysxsoft.user.ui.fragment.MainChild5Fragment;
 
@@ -101,69 +103,103 @@ public class MainActivity extends BaseActivity {
 
     private void initViewPager() {
         List<Fragment> fragmentList = new ArrayList<>();
-//        if ("staff".equals(role)) {
-        if ("staff".equals("staff")) {
-            fragmentList.add(new MainChild2Fragment1());//员工 工作中
-            fragmentList.add(new MainChild3Fragment1());//员工 已完成
-            fragmentList.add(new MainChild5Fragment());//员工 个人中心
-            rb_wait.setVisibility(View.GONE);
-            rb_sale.setVisibility(View.GONE);
+        switch (role) {
+            case "staff"://汽车员工端
+                fragmentList.add(new MainChild2Fragment1());//员工 工作中
+                fragmentList.add(new MainChild3Fragment1());//员工 已完成
+                fragmentList.add(new MainChild5Fragment());//员工 个人中心
+                rb_wait.setVisibility(View.GONE);
+                rb_sale.setVisibility(View.GONE);
+                viewPager.setCurrentItem(0);
+                rg_home.check(R.id.rb_work);
+                rg_home.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
-            viewPager.setCurrentItem(0);
-            rg_home.check(R.id.rb_work);
-            rg_home.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
-
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch (checkedId) {
-                        case R.id.rb_work:
-                            viewPager.setCurrentItem(0);
-                            break;
-                        case R.id.rb_complete:
-                            viewPager.setCurrentItem(1);
-                            break;
-                        case R.id.rb_my:
-                            viewPager.setCurrentItem(2);
-                            break;
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        switch (checkedId) {
+                            case R.id.rb_work:
+                                viewPager.setCurrentItem(0);
+                                break;
+                            case R.id.rb_complete:
+                                viewPager.setCurrentItem(1);
+                                break;
+                            case R.id.rb_my:
+                                viewPager.setCurrentItem(2);
+                                break;
+                        }
                     }
-                }
-            });
-            viewPager.setOffscreenPageLimit(3);
-        }else {
-            fragmentList.add(new MainChild1Fragment());
-            fragmentList.add(new MainChild2Fragment());
-            fragmentList.add(new MainChild3Fragment());
-            fragmentList.add(new MainChild4Fragment());
-            fragmentList.add(new MainChild5Fragment());
+                });
+                viewPager.setOffscreenPageLimit(3);
+                break;
+            case "shop"://汽车老板端
+                fragmentList.add(new MainChild1ShopFragment());
+                fragmentList.add(new MainChild2Fragment1());
+                fragmentList.add(new MainChild3ShopFragment());
+                fragmentList.add(new MainChild4Fragment());
+                fragmentList.add(new MainChild5Fragment());
 
-            viewPager.setCurrentItem(0);
-            rg_home.check(R.id.rb_wait);
-            rg_home.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+                viewPager.setCurrentItem(0);
+                rg_home.check(R.id.rb_wait);
+                rg_home.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch (checkedId) {
-                        case R.id.rb_wait:
-                            viewPager.setCurrentItem(0);
-                            break;
-                        case R.id.rb_work:
-                            viewPager.setCurrentItem(1);
-                            break;
-                        case R.id.rb_complete:
-                            viewPager.setCurrentItem(2);
-                            break;
-                        case R.id.rb_sale:
-                            viewPager.setCurrentItem(3);
-                            break;
-                        case R.id.rb_my:
-                            viewPager.setCurrentItem(4);
-                            break;
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        switch (checkedId) {
+                            case R.id.rb_wait:
+                                viewPager.setCurrentItem(0);
+                                break;
+                            case R.id.rb_work:
+                                viewPager.setCurrentItem(1);
+                                break;
+                            case R.id.rb_complete:
+                                viewPager.setCurrentItem(2);
+                                break;
+                            case R.id.rb_sale:
+                                viewPager.setCurrentItem(3);
+                                break;
+                            case R.id.rb_my:
+                                viewPager.setCurrentItem(4);
+                                break;
+                        }
                     }
-                }
-            });
-            viewPager.setOffscreenPageLimit(5);
+                });
+                viewPager.setOffscreenPageLimit(5);
+                break;
+            case "chef"://厨师端
+                fragmentList.add(new MainChild1Fragment());
+                fragmentList.add(new MainChild2Fragment());
+                fragmentList.add(new MainChild3Fragment());
+                fragmentList.add(new MainChild4Fragment());
+                fragmentList.add(new MainChild5Fragment());
+
+                viewPager.setCurrentItem(0);
+                rg_home.check(R.id.rb_wait);
+                rg_home.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        switch (checkedId) {
+                            case R.id.rb_wait:
+                                viewPager.setCurrentItem(0);
+                                break;
+                            case R.id.rb_work:
+                                viewPager.setCurrentItem(1);
+                                break;
+                            case R.id.rb_complete:
+                                viewPager.setCurrentItem(2);
+                                break;
+                            case R.id.rb_sale:
+                                viewPager.setCurrentItem(3);
+                                break;
+                            case R.id.rb_my:
+                                viewPager.setCurrentItem(4);
+                                break;
+                        }
+                    }
+                });
+                viewPager.setOffscreenPageLimit(5);
+                break;
         }
-
 
         viewPager.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), fragmentList, new ArrayList<String>()));
 //        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

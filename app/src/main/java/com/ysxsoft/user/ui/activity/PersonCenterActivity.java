@@ -176,7 +176,7 @@ public class PersonCenterActivity extends BaseActivity {
 
     @SuppressLint("CheckResult")
     private void choicePhotoWrapper() {
-        r.request(Manifest.permission.CAMERA).subscribe(new Consumer<Boolean>() {
+        new RxPermissions(this).request(Manifest.permission.CAMERA).subscribe(new Consumer<Boolean>() {
             @Override
             public void accept(Boolean aBoolean) throws Exception {
                 if (aBoolean) {

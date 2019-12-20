@@ -20,7 +20,7 @@ public interface Api {
     // 拒绝原因
     public final String GET_REFUSE_CAUSE = AppConfig.BASE_URL + "";
     // 确认接单
-    public final String GET_IDENTIFICATION = AppConfig.BASE_URL + "/front/serveClient/takeOrder";
+    public final String GET_SHOP_IDENTIFICATION = AppConfig.BASE_URL + "/front/serveClient/takeOrder";
     // 准备中
     public final String GET_PREPARING = AppConfig.BASE_URL + "";
     // 服务中
@@ -105,6 +105,8 @@ public interface Api {
     public final String GET_STAFF_COMPLETED_REFUSE_DETAIL = AppConfig.BASE_URL + "";
     //员工端已完成VIP 详情
     public final String GET_STAFF_VIP_COMPLETED_DETAIL = AppConfig.BASE_URL + "";
+    //汽车老板端订单列表
+    public final String GET_SHOP_ORDER_LIST = AppConfig.BASE_URL + "/front/serveClient/bossOrder";
 
 
 }

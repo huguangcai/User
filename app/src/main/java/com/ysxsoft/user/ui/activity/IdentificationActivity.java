@@ -145,7 +145,7 @@ public class IdentificationActivity extends BaseActivity {
      */
     private void submitData() {
         OkHttpUtils.get()
-                .url(Api.GET_IDENTIFICATION)
+                .url(Api.GET_SHOP_IDENTIFICATION)
                 .addParams("uid", SharedPreferencesUtils.getUid(mContext))
                 .addParams("time", tvSelect.getText().toString().trim())
                 .tag(this)
