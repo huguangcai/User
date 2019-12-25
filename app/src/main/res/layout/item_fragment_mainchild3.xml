@@ -18,24 +18,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.ysxsoft.common_base.view.custom.image.CircleImageView
-                android:id="@+id/ivHead"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_marginVertical="@dimen/dp_10"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="@dimen/dp_10"
-                tools:src="@mipmap/icon_head" />
-
             <TextView
                 android:id="@+id/nikeName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginVertical="@dimen/dp_10"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="@dimen/dp_10"
                 android:layout_weight="1"
-                android:textColor="@color/color_333333"
+                android:textColor="@color/color_666666"
                 android:textSize="@dimen/sp_13"
-                tools:text="狗子啊你真可爱~" />
+                tools:text="订单号:1264897625123~" />
 
             <TextView
                 android:id="@+id/tvStatus"
@@ -172,5 +166,4 @@
             android:visibility="gone" />
 
     </LinearLayout>
-
 </LinearLayout>

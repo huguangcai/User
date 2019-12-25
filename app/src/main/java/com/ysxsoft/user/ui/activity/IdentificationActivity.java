@@ -2,6 +2,7 @@ package com.ysxsoft.user.ui.activity;
 
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
@@ -28,6 +30,7 @@ import com.ysxsoft.user.modle.CommonResonse;
 import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.dialog.TimeSelectDialog;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.GetBuilder;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
@@ -79,14 +82,18 @@ public class IdentificationActivity extends BaseActivity {
     TextView tvPhone;
     @BindView(R.id.civHead)
     CircleImageView civHead;
+    @Autowired
+    String orderId;
+    private String id;
 
-    public static void start() {
-        ARouter.getInstance().build(ARouterPath.getIdentificationActivity()).navigation();
+    public static void start(String orderId) {
+        ARouter.getInstance().build(ARouterPath.getIdentificationActivity()).withString("orderId", orderId).navigation();
     }
 
     @Override
     public void doWork() {
         super.doWork();
+        ARouter.getInstance().inject(this);
         initTitle();
     }
 
@@ -122,6 +129,9 @@ public class IdentificationActivity extends BaseActivity {
                 a2.add("12:30");
                 a2.add("13:30");
                 a2.add("14:30");
+                a2.add("15:30");
+                a2.add("16:30");
+                a2.add("17:30");
                 TimeSelectDialog selectDialog = new TimeSelectDialog(mContext);
                 selectDialog.setData(sevendate, a2, new TwoPicker.OnDialogSelectListener() {
                     @Override
@@ -144,16 +154,27 @@ public class IdentificationActivity extends BaseActivity {
      * 提交数据
      */
     private void submitData() {
-        OkHttpUtils.get()
-                .url(Api.GET_SHOP_IDENTIFICATION)
-                .addParams("uid", SharedPreferencesUtils.getUid(mContext))
-                .addParams("time", tvSelect.getText().toString().trim())
-                .tag(this)
+        GetBuilder getBuilder = OkHttpUtils.get()
+//                .url(Api.GET_SHOP_IDENTIFICATION)
+                .url(Api.GET_CHECK_TAKE_ORDER)
+                .addParams("takeCarTime", tvSelect.getText().toString().trim())
+                .addParams("orderId", orderId)
+                .addParams("staffId", id);
+
+        switch (SharedPreferencesUtils.getSp(mContext, "role")) {
+            case "staff":
+                getBuilder.addParams("type", "staff");
+                break;
+            case "shop":
+                getBuilder.addParams("type", "shop");
+                break;
+        }
+        getBuilder.tag(this)
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        Log.e("tag",">>>>>e+===="+e.getMessage().toString());
                     }
 
                     @Override
@@ -187,10 +208,10 @@ public class IdentificationActivity extends BaseActivity {
                     String name = data.getStringExtra("name");
                     String avatar = data.getStringExtra("avatar");
                     String phone = data.getStringExtra("phone");
-                    String id = data.getStringExtra("id");
+                    id = data.getStringExtra("id");
                     tvName.setText(name);
                     tvPhone.setText(phone);
-                    Glide.with(mContext).load(AppConfig.BASE_URL+avatar).into(civHead);
+                    Glide.with(mContext).load(AppConfig.BASE_URL + avatar).into(civHead);
                     break;
             }
         }

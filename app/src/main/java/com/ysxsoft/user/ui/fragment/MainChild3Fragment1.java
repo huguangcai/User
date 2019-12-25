@@ -12,6 +12,7 @@ import com.ysxsoft.common_base.adapter.BaseViewHolder;
 import com.ysxsoft.common_base.base.BaseFragment;
 import com.ysxsoft.common_base.base.frame.list.IListAdapter;
 import com.ysxsoft.common_base.base.frame.list.ListManager;
+import com.ysxsoft.common_base.net.HttpResponse;
 import com.ysxsoft.common_base.utils.DisplayUtils;
 import com.ysxsoft.common_base.utils.JsonUtils;
 import com.ysxsoft.common_base.utils.SharedPreferencesUtils;
@@ -22,6 +23,7 @@ import com.ysxsoft.user.R;
 import com.ysxsoft.user.base.RBaseAdapter;
 import com.ysxsoft.user.base.RViewHolder;
 import com.ysxsoft.user.modle.CompletedResponse;
+import com.ysxsoft.user.modle.ShopOrderListResponse;
 import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.activity.CompletedListDetialActivity;
 import com.ysxsoft.user.ui.activity.CompletedRefuseListDetialActivity;
@@ -32,6 +34,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -46,7 +49,7 @@ import static com.ysxsoft.user.config.AppConfig.IS_DEBUG_ENABLED;
  * Create By 胡
  * on 2019/12/14 0014
  */
-public class MainChild3Fragment1 extends BaseFragment implements IListAdapter {
+public class MainChild3Fragment1 extends BaseFragment implements IListAdapter<ShopOrderListResponse.ResultBean.ListBean> {
 
     @BindView(R.id.backWithText)
     TextView backWithText;
@@ -98,23 +101,19 @@ public class MainChild3Fragment1 extends BaseFragment implements IListAdapter {
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                if (position % 2 == 0) {
-                    StaffCompleteRefuseDetailActivity.start();
-                } else {
-                    StaffCompleteDetailActivity.start();
-                }
 
-//                switch (position % 2) {
-//                    case 0:
-//                        StaffCompleteRefuseDetailActivity.start();
-//                        break;
-//                    case 1:
-//                        VIPCompleteDetailActivity.start();
-//                        break;
-//                    default:
-//                        StaffCompleteDetailActivity.start();
-//                        break;
-//                }
+                ShopOrderListResponse.ResultBean.ListBean o = (ShopOrderListResponse.ResultBean.ListBean) adapter.getData().get(position);
+                switch (o.getOrderStatus()) {
+                    case "8"://
+                        VIPCompleteDetailActivity.start();
+                        break;
+                    case "9":// 已完成
+                        StaffCompleteDetailActivity.start();
+                        break;
+                    case "0"://已拒绝
+                        StaffCompleteRefuseDetailActivity.start();
+                        break;
+                }
             }
         });
         request(1);
@@ -132,13 +131,13 @@ public class MainChild3Fragment1 extends BaseFragment implements IListAdapter {
 
     @Override
     public void request(int page) {
-        if (IS_DEBUG_ENABLED) {
+        if (false) {
             debug(manager);
         } else {
             OkHttpUtils.post()
-                    .url(Api.GET_STAFF_COMPLETED_LIST)
-                    .addParams("uid", SharedPreferencesUtils.getUid(getActivity()))
-                    .addParams("type", "")
+                    .url(Api.GET_STAFF_ORDER_LIST)
+                    .addParams("staffId", SharedPreferencesUtils.getUid(getActivity()))
+                    .addParams("type", "7")
                     .tag(this)
                     .build()
                     .execute(new StringCallback() {
@@ -149,28 +148,30 @@ public class MainChild3Fragment1 extends BaseFragment implements IListAdapter {
 
                         @Override
                         public void onResponse(String response, int id) {
-                            CompletedResponse resp = JsonUtils.parseByGson(response, CompletedResponse.class);
+//                            CompletedResponse resp = JsonUtils.parseByGson(response, CompletedResponse.class);
+                            ShopOrderListResponse resp = JsonUtils.parseByGson(response, ShopOrderListResponse.class);
                             if (resp != null) {
-//                                if (HttpResponse.SUCCESS.equals(resp.getCode())) {
-                                //请求成功
-//                                    List<PlaceListResponse.DataBean> data = resp.getData();
-//                                    manager.setData(data);
-//                                }else if (HttpResponse.NONE.equals(resp.getCode())){
-//                                    if (page==1){
-//                                        manager.setData(new ArrayList());
-//                                    }
-//                                } else {
-//                                    //请求失败
-//                                    showToast(resp.getMsg());
-//                                }
+                                if (HttpResponse.SUCCESS.equals(resp.getCode())) {
+//                                请求成功
+                                    List<ShopOrderListResponse.ResultBean.ListBean> data = resp.getResult().getList();
+                                    manager.setData(data);
+                                } else if (HttpResponse.NONE.equals(resp.getCode())) {
+                                    if (page == 1) {
+                                        manager.setData(new ArrayList());
+                                    }
+                                } else {
+                                    //请求失败
+                                    showToast(resp.getMessage());
+                                }
                             }
+
                         }
                     });
         }
     }
 
     @Override
-    public void fillView(BaseViewHolder helper, Object o) {
+    public void fillView(BaseViewHolder helper, ShopOrderListResponse.ResultBean.ListBean o) {
         LinearLayout LL1 = helper.getView(R.id.LL1);
         RecyclerView recyclerView1 = helper.getView(R.id.recyclerView1);
 
@@ -178,92 +179,51 @@ public class MainChild3Fragment1 extends BaseFragment implements IListAdapter {
         LL1.setVisibility(View.GONE);
         recyclerView1.setVisibility(View.VISIBLE);
 
-        CircleImageView ivHead = helper.getView(R.id.ivHead);
-        Glide.with(getActivity()).load("").into(ivHead);
-        helper.setText(R.id.nikeName, "");
-        RecyclerView recyclerView = helper.getView(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
-
-        ArrayList<String> strings = new ArrayList<>();
-        strings.add("川湘菜");
-        strings.add("豫菜");
-        strings.add("新疆菜");
-        strings.add("江浙菜");
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
-        RBaseAdapter<String> adapter = new RBaseAdapter<String>(getActivity(), R.layout.item_item_fragment_mainchild1, strings) {
-            @Override
-            protected void fillItem(RViewHolder holder, String item, int position) {
-                RoundImageView iv = holder.getView(R.id.iv);
-                iv.setBackgroundResource(R.mipmap.ic_launcher);
-            }
-
-            @Override
-            protected int getViewType(String item, int position) {
-                return 0;
-            }
-        };
-        recyclerView.setAdapter(adapter);
-
+        helper.setText(R.id.nikeName, "订单号:" + o.getOrderId());
+        helper.setText(R.id.nikeName, o.getShopName());
         recyclerView1.setLayoutManager(new LinearLayoutManager(getActivity()));
-        RBaseAdapter<String> adapter1 = new RBaseAdapter<String>(getActivity(), R.layout.item_detail_layout, strings) {
+        RBaseAdapter<ShopOrderListResponse.ResultBean.ListBean.ProductListBean> adapter1 = new RBaseAdapter<ShopOrderListResponse.ResultBean.ListBean.ProductListBean>(getActivity(), R.layout.item_detail_layout, o.getProductList()) {
             @Override
-            protected void fillItem(RViewHolder holder, String item, int position) {
+            protected void fillItem(RViewHolder holder, ShopOrderListResponse.ResultBean.ListBean.ProductListBean item, int position) {
                 RoundImageView iv = holder.getView(R.id.riv);
-                iv.setBackgroundResource(R.mipmap.ic_launcher);
-//                helper.setText(R.id.tvName,"");
-//                helper.setText(R.id.tvNum,"");
+                Glide.with(getActivity()).load(item.getImg()).into(iv);
+                holder.setText(R.id.tvName, item.getName());
+                holder.setText(R.id.tvNum, item.getNumber());
+                holder.setText(R.id.tvMoney, item.getPrice());
             }
 
             @Override
-            protected int getViewType(String item, int position) {
+            protected int getViewType(ShopOrderListResponse.ResultBean.ListBean.ProductListBean item, int position) {
                 return 0;
             }
         };
         recyclerView1.setAdapter(adapter1);
 
         TextView tvSumType = helper.getView(R.id.tvSumType);
-        tvSumType.setText("共" + "  " + "菜品");
-        tvSumType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showToast("菜品详情");
-            }
-        });
-        helper.setText(R.id.tvDistance, "距客户:" + "  " + "km");
-        helper.setText(R.id.tvSum, "共" + "   " + "件，合计");
-        helper.setText(R.id.tvMoney, "¥" + "");
-        helper.setText(R.id.tvHave_dinner, "用餐时间:" + " ");
+
+        helper.setText(R.id.tvDistance, "距客户:" + o.getDistance() + "km");
+        helper.setText(R.id.tvSum, "共" + o.getZnumber() + "件，合计");
+        helper.setText(R.id.tvMoney, "¥" + o.getTotal());
+
+        TextView tvHave_dinner = helper.getView(R.id.tvHave_dinner);
+        tvHave_dinner.setVisibility(View.INVISIBLE);
+
         LinearLayout llshow = helper.getView(R.id.llshow);
 
-        if (helper.getAdapterPosition() % 2 == 0) {
-            llshow.setVisibility(View.VISIBLE);
-            helper.setText(R.id.tvStatus, "已拒绝");
-        } else {
-            llshow.setVisibility(View.GONE);
-            helper.setText(R.id.tvStatus, "已完成");
+        switch (o.getOrderStatus()) {
+            case "8"://
+                llshow.setVisibility(View.GONE);
+                break;
+            case "9":// 已完成
+                llshow.setVisibility(View.GONE);
+                helper.setText(R.id.tvStatus, "已完成");
+                break;
+            case "0"://已拒绝
+                llshow.setVisibility(View.VISIBLE);
+                helper.setText(R.id.tvStatus, "已拒绝");
+                break;
         }
-        adapter1.setOnItemClickListener(new RBaseAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(RViewHolder holder, View view, int position) {
-                if (helper.getAdapterPosition() % 2 == 0) {
-                    StaffCompleteRefuseDetailActivity.start();
-                } else {
-                    StaffCompleteDetailActivity.start();
-                }
-//                switch (helper.getAdapterPosition() % 2) {
-//                    case 0:
-//                        StaffCompleteRefuseDetailActivity.start();
-//                        break;
-//                    case 1:
-//                        VIPCompleteDetailActivity.start();
-//                        break;
-//                    default:
-//                        StaffCompleteDetailActivity.start();
-//                        break;
-//                }
 
-            }
-        });
         TextView tvLookCause = helper.getView(R.id.tvRefuse);
         tvLookCause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -274,7 +234,7 @@ public class MainChild3Fragment1 extends BaseFragment implements IListAdapter {
     }
 
     @Override
-    public void fillMuteView(BaseViewHolder helper, Object o) {
+    public void fillMuteView(BaseViewHolder helper, ShopOrderListResponse.ResultBean.ListBean o) {
 
     }
 

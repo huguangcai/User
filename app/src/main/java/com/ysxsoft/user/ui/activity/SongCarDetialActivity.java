@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ysxsoft.common_base.adapter.BaseQuickAdapter;
@@ -120,9 +121,11 @@ public class SongCarDetialActivity extends BaseActivity {
     CardView cvServiceInfo;
     @BindView(R.id.photoRecycleView)
     RecyclerView photoRecycleView;
+    @Autowired
+    String orderId;
 
-    public static void start() {
-        ARouter.getInstance().build(ARouterPath.getSongCarDetialActivity()).navigation();
+    public static void start(String orderId) {
+        ARouter.getInstance().build(ARouterPath.getSongCarDetialActivity()).withString("orderId",orderId).navigation();
     }
 
     @Override
@@ -133,6 +136,7 @@ public class SongCarDetialActivity extends BaseActivity {
     @Override
     public void doWork() {
         super.doWork();
+        ARouter.getInstance().inject(this);
         initTitle();
         initRecyclerView();
         requestData();
@@ -245,7 +249,7 @@ public class SongCarDetialActivity extends BaseActivity {
                 backToActivity();
                 break;
             case R.id.tvAccept:
-                TakePhotoActivity.start();
+                TakePhotoActivity.start("");
                 break;
         }
     }

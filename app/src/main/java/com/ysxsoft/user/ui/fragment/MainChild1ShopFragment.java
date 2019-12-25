@@ -194,9 +194,9 @@ public class MainChild1ShopFragment extends BaseFragment implements IListAdapter
             @Override
             protected void fillItem(RViewHolder holder, ShopOrderListResponse.ResultBean.ListBean.ProductListBean item, int position) {
                 RoundImageView iv = holder.getView(R.id.riv);
-                helper.setText(R.id.tvName,item.getName());
-                helper.setText(R.id.tvNum,"x"+item.getNumber());
-                helper.setText(R.id.tvMoney,"¥"+item.getPrice());
+                holder.setText(R.id.tvName,item.getName());
+                holder.setText(R.id.tvNum,"x"+item.getNumber());
+                holder.setText(R.id.tvMoney,"¥"+item.getPrice());
                 Glide.with(getActivity()).load(AppConfig.BASE_URL+item.getImg()).into(iv);
             }
 
@@ -224,14 +224,14 @@ public class MainChild1ShopFragment extends BaseFragment implements IListAdapter
         tvRefuse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RefuseCauseActivity.start();
+                RefuseCauseActivity.start(o.getOrderId());
             }
         });
         TextView tvAccept = helper.getView(R.id.tvAccept);
         tvAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IdentificationActivity.start();
+                IdentificationActivity.start(o.getOrderId());
             }
         });
 

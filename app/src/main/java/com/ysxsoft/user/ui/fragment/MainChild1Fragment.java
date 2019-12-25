@@ -226,14 +226,14 @@ public class MainChild1Fragment extends BaseFragment implements IListAdapter {
         tvRefuse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RefuseCauseActivity.start();
+                RefuseCauseActivity.start("");
             }
         });
         TextView tvAccept = helper.getView(R.id.tvAccept);
         tvAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IdentificationActivity.start();
+                IdentificationActivity.start("");
             }
         });
 

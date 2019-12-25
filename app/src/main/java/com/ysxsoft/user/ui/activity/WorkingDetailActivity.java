@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ysxsoft.common_base.adapter.BaseQuickAdapter;
@@ -118,9 +119,11 @@ public class WorkingDetailActivity extends BaseActivity {
     CardView cvServiceInfo;
     @BindView(R.id.photoRecycleView)
     RecyclerView photoRecycleView;
+    @Autowired
+    String orderId;
 
-    public static void start(){
-        ARouter.getInstance().build(ARouterPath.getWorkingDetialActivity()).navigation();
+    public static void start(String orderId) {
+        ARouter.getInstance().build(ARouterPath.getWorkingDetialActivity()).withString("orderId", orderId).navigation();
     }
 
     @Override
@@ -131,6 +134,7 @@ public class WorkingDetailActivity extends BaseActivity {
     @Override
     public void doWork() {
         super.doWork();
+        ARouter.getInstance().inject(this);
         initTitle();
         initRecyclerView();
         requestData();
@@ -242,7 +246,7 @@ public class WorkingDetailActivity extends BaseActivity {
                 backToActivity();
                 break;
             case R.id.tvAccept:
-               SongCarData();
+                SongCarData();
                 break;
         }
     }
@@ -250,7 +254,7 @@ public class WorkingDetailActivity extends BaseActivity {
     private void SongCarData() {
         OkHttpUtils.get()
                 .url(Api.GET_DELIVER_CAR)
-                .addParams("orderId","")
+                .addParams("orderId", "")
                 .tag(this)
                 .build()
                 .execute(new StringCallback() {
@@ -262,7 +266,7 @@ public class WorkingDetailActivity extends BaseActivity {
                     @Override
                     public void onResponse(String response, int id) {
                         CommonResonse resp = JsonUtils.parseByGson(response, CommonResonse.class);
-                        if (resp!=null){
+                        if (resp != null) {
 //                            if (HttpResponse.SUCCESS.equals(resp.getCode)){
 //                                finish();
 //                            }

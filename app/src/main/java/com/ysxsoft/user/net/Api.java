@@ -17,8 +17,10 @@ public interface Api {
     public final String GET_FORGETPWD = AppConfig.BASE_URL + "/front/serveClient/updatePassword";
     // 待接单
     public final String GET_WAITING_LIST = AppConfig.BASE_URL + "";
-    // 拒绝原因
-    public final String GET_REFUSE_CAUSE = AppConfig.BASE_URL + "";
+    // 提交拒绝原因数据获取
+    public final String GET_REFUSE_CAUSE_DATA = AppConfig.BASE_URL + "/front/serveClient/toRefundOrder";
+    // 提交拒绝原因
+    public final String GET_REFUSE_CAUSE = AppConfig.BASE_URL + "/front/serveClient/refundOrder";
     // 确认接单
     public final String GET_SHOP_IDENTIFICATION = AppConfig.BASE_URL + "/front/serveClient/takeOrder";
     // 准备中
@@ -107,6 +109,8 @@ public interface Api {
     public final String GET_STAFF_VIP_COMPLETED_DETAIL = AppConfig.BASE_URL + "";
     //汽车老板端订单列表
     public final String GET_SHOP_ORDER_LIST = AppConfig.BASE_URL + "/front/serveClient/bossOrder";
+    //汽车员工端订单列表
+    public final String GET_STAFF_ORDER_LIST = AppConfig.BASE_URL + "/front/serveClient/staffOrder";
 
 
 }

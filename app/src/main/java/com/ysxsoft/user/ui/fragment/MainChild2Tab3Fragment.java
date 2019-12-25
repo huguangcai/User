@@ -27,6 +27,7 @@ import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.activity.PrepareListDetialActivity;
 import com.ysxsoft.user.ui.activity.WorkingDetailActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.GetBuilder;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
@@ -69,7 +70,8 @@ public class MainChild2Tab3Fragment extends BaseFragment implements IListAdapter
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                WorkingDetailActivity.start();
+                ShopOrderListResponse.ResultBean.ListBean o = (ShopOrderListResponse.ResultBean.ListBean) adapter.getData().get(position);
+                WorkingDetailActivity.start(o.getOrderId());
             }
         });
         request(1);
@@ -85,10 +87,18 @@ public class MainChild2Tab3Fragment extends BaseFragment implements IListAdapter
         if (false) {
             debug(manager);
         } else {
-            OkHttpUtils.get()
-                    .url(Api.GET_SHOP_ORDER_LIST)
-                    .addParams("bossId", SharedPreferencesUtils.getUid(getActivity()))
-                    .addParams("type", "5")
+            GetBuilder getBuilder = OkHttpUtils.get();
+            switch (SharedPreferencesUtils.getSp(getActivity(), "role")) {
+                case "staff":
+                    getBuilder.url(Api.GET_STAFF_ORDER_LIST);
+                    getBuilder.addParams("staffId", SharedPreferencesUtils.getUid(getActivity()));
+                    break;
+                case "shop":
+                    getBuilder.url(Api.GET_SHOP_ORDER_LIST);
+                    getBuilder.addParams("bossId", SharedPreferencesUtils.getUid(getActivity()));
+                    break;
+            }
+            getBuilder.addParams("type", "5")
                     .tag(this)
                     .build()
                     .execute(new StringCallback() {
@@ -107,8 +117,8 @@ public class MainChild2Tab3Fragment extends BaseFragment implements IListAdapter
 //                                请求成功
                                     List<ShopOrderListResponse.ResultBean.ListBean> data = resp.getResult().getList();
                                     manager.setData(data);
-                                }else if (HttpResponse.NONE.equals(resp.getCode())){
-                                    if (page==1){
+                                } else if (HttpResponse.NONE.equals(resp.getCode())) {
+                                    if (page == 1) {
                                         manager.setData(new ArrayList());
                                     }
                                 } else {
@@ -135,14 +145,14 @@ public class MainChild2Tab3Fragment extends BaseFragment implements IListAdapter
         tvUpLoad.setVisibility(View.VISIBLE);
         tvHave_CarTime.setVisibility(View.INVISIBLE);
 
-        helper.setText(R.id.nikeName, "订单号:"+o.getOrderId());
+        helper.setText(R.id.nikeName, "订单号:" + o.getOrderId());
         helper.setText(R.id.tvStatus, "工作中");
 
         tvUpLoad.setText("出厂送车");
         tvUpLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SongCarData();
+                SongCarData(o.getOrderId());
             }
         });
 
@@ -153,10 +163,10 @@ public class MainChild2Tab3Fragment extends BaseFragment implements IListAdapter
             @Override
             protected void fillItem(RViewHolder holder, ShopOrderListResponse.ResultBean.ListBean.ProductListBean item, int position) {
                 RoundImageView iv = holder.getView(R.id.riv);
-                helper.setText(R.id.tvName,item.getName());
-                helper.setText(R.id.tvNum,"x"+item.getNumber());
-                helper.setText(R.id.tvMoney,"¥"+item.getPrice());
-                Glide.with(getActivity()).load(AppConfig.BASE_URL+item.getImg()).into(iv);
+                holder.setText(R.id.tvName, item.getName());
+                holder.setText(R.id.tvNum, "x" + item.getNumber());
+                holder.setText(R.id.tvMoney, "¥" + item.getPrice());
+                Glide.with(getActivity()).load(AppConfig.BASE_URL + item.getImg()).into(iv);
                 TextView tvGuiGe = holder.getView(R.id.tvGuiGe);
                 if (position % 2 == 0) {
                     tvGuiGe.setVisibility(View.GONE);
@@ -176,22 +186,22 @@ public class MainChild2Tab3Fragment extends BaseFragment implements IListAdapter
         adapter1.setOnItemClickListener(new RBaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RViewHolder holder, View view, int position) {
-                WorkingDetailActivity.start();
+                WorkingDetailActivity.start(o.getOrderId());
             }
         });
         recyclerView1.setAdapter(adapter1);
 
         helper.setText(R.id.tvDistance, "距客户:" + o.getDistance() + "km");
         helper.setText(R.id.tvSum, "共" + o.getZnumber() + "件，合计");
-        helper.setText(R.id.tvMoney, "¥" +o.getTotal());
+        helper.setText(R.id.tvMoney, "¥" + o.getTotal());
 
         helper.getView(R.id.tvHave_CarTime).setVisibility(View.INVISIBLE);
     }
 
-    private void SongCarData() {
+    private void SongCarData(String orderId) {
         OkHttpUtils.get()
                 .url(Api.GET_DELIVER_CAR)
-                .addParams("orderId","")
+                .addParams("orderId", orderId)
                 .tag(this)
                 .build()
                 .execute(new StringCallback() {
@@ -203,10 +213,10 @@ public class MainChild2Tab3Fragment extends BaseFragment implements IListAdapter
                     @Override
                     public void onResponse(String response, int id) {
                         CommonResonse resp = JsonUtils.parseByGson(response, CommonResonse.class);
-                        if (resp!=null){
-//                            if (HttpResponse.SUCCESS.equals(resp.getCode)){
-//                                doWork();
-//                            }
+                        if (resp != null) {
+                            if (HttpResponse.SUCCESS.equals(resp.getCode())){
+                              request(1);
+                            }
                         }
                     }
                 });

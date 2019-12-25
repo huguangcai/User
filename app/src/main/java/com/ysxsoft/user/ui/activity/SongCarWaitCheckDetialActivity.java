@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ysxsoft.common_base.adapter.BaseQuickAdapter;
@@ -124,9 +125,11 @@ public class SongCarWaitCheckDetialActivity extends BaseActivity {
     TextView tvUpLoad;
       @BindView(R.id.tvUpLoad1)
     TextView tvUpLoad1;
+      @Autowired
+      String  orderId;
 
-    public static void start(){
-        ARouter.getInstance().build(ARouterPath.getSongCarWaitCheckDetialActivity()).navigation();
+    public static void start(String  orderId){
+        ARouter.getInstance().build(ARouterPath.getSongCarWaitCheckDetialActivity()).withString("orderId",orderId).navigation();
     }
 
     @Override
@@ -137,6 +140,7 @@ public class SongCarWaitCheckDetialActivity extends BaseActivity {
     @Override
     public void doWork() {
         super.doWork();
+        ARouter.getInstance().inject(this);
         initTitle();
         initRecyclerView();
         requestData();

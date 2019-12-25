@@ -174,10 +174,10 @@ public class WaitingListDetialActivity extends BaseActivity {
                 backToActivity();
                 break;
             case R.id.tvRefuse:
-                RefuseCauseActivity.start();
+                RefuseCauseActivity.start("");
                 break;
             case R.id.tvAccept:
-                IdentificationActivity.start();
+                IdentificationActivity.start("");
                 break;
         }
     }

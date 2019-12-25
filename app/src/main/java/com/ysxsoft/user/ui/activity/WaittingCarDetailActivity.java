@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ysxsoft.common_base.base.BaseActivity;
@@ -105,9 +106,11 @@ public class WaittingCarDetailActivity extends BaseActivity {
     TextView tvName2;
     @BindView(R.id.tvPhone2)
     TextView tvPhone2;
+    @Autowired
+    String orderId;
 
-    public static void start() {
-        ARouter.getInstance().build(ARouterPath.getWaittingCarDetialActivity()).navigation();
+    public static void start(String orderId) {
+        ARouter.getInstance().build(ARouterPath.getWaittingCarDetialActivity()).withString("orderId",orderId).navigation();
     }
 
     @Override
@@ -118,6 +121,7 @@ public class WaittingCarDetailActivity extends BaseActivity {
     @Override
     public void doWork() {
         super.doWork();
+        ARouter.getInstance().inject(this);
         initTitle();
         initRecyclerView();
         requestData();
@@ -213,7 +217,7 @@ public class WaittingCarDetailActivity extends BaseActivity {
                 backToActivity();
                 break;
             case R.id.tvAccept:
-                TakePhotoActivity.start();
+                TakePhotoActivity.start("");
                 break;
         }
     }
