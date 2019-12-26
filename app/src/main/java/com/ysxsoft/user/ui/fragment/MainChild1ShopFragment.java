@@ -28,6 +28,8 @@ import com.ysxsoft.user.modle.WaitingListResponse;
 import com.ysxsoft.user.net.Api;
 import com.ysxsoft.user.ui.activity.IdentificationActivity;
 import com.ysxsoft.user.ui.activity.RefuseCauseActivity;
+import com.ysxsoft.user.ui.activity.WaitCarDetialActivity;
+import com.ysxsoft.user.ui.activity.WaitCarListDetialActivity;
 import com.ysxsoft.user.ui.activity.WaitingListDetialActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -108,7 +110,9 @@ public class MainChild1ShopFragment extends BaseFragment implements IListAdapter
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                WaitingListDetialActivity.start();
+                ShopOrderListResponse.ResultBean.ListBean o = (ShopOrderListResponse.ResultBean.ListBean) adapter.getData().get(position);
+                WaitCarListDetialActivity.start(o.getOrderId());
+//                WaitingListDetialActivity.start(o.getOrderId());
             }
         });
         request(1);
@@ -205,6 +209,13 @@ public class MainChild1ShopFragment extends BaseFragment implements IListAdapter
                 return 0;
             }
         };
+        adapter1.setOnItemClickListener(new RBaseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(RViewHolder holder, View view, int position) {
+//                WaitingListDetialActivity.start(o.getOrderId());
+                WaitCarListDetialActivity.start(o.getOrderId());
+            }
+        });
         recyclerView1.setAdapter(adapter1);
 
 

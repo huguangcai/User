@@ -113,7 +113,7 @@ public class MainChild1Fragment extends BaseFragment implements IListAdapter {
         manager.getAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                WaitingListDetialActivity.start();
+                WaitingListDetialActivity.start("");
             }
         });
         request(1);

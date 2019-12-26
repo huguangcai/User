@@ -120,6 +120,7 @@
         <activity android:name=".ui.activity.StaffCompleteRefuseDetailActivity" />
         <activity android:name=".ui.activity.StaffCompleteDetailActivity" />
         <activity android:name=".ui.activity.VIPCompleteDetailActivity" />
+        <activity android:name=".ui.activity.WaitCarListDetialActivity" />
 
 
     </application>

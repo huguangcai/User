@@ -40,8 +40,8 @@ import okhttp3.Call;
  * Create By 胡
  * on 2019/12/14 0014
  */
-@Route(path = "/main/WaitCarDetialActivity")
-public class WaitCarDetialActivity extends BaseActivity {
+@Route(path = "/main/WaitCarListDetialActivity")
+public class WaitCarListDetialActivity extends BaseActivity {
     @BindView(R.id.backWithText)
     TextView backWithText;
     @BindView(R.id.back)
@@ -110,20 +110,20 @@ public class WaitCarDetialActivity extends BaseActivity {
     TextView tvName2;
     @BindView(R.id.tvPhone2)
     TextView tvPhone2;
-
     @BindView(R.id.vipRecyclerView)
     RecyclerView vipRecyclerView;
 
     @Autowired
     String orderId;
+    private WaitCarListDetialResponse.ResultBean result;
 
     public static void start(String orderId) {
-        ARouter.getInstance().build(ARouterPath.getWaitCarDetialActivity()).withString("orderId", orderId).navigation();
+        ARouter.getInstance().build(ARouterPath.getWaitCarListDetialActivity()).withString("orderId", orderId).navigation();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_wait_car_detail_layout;
+        return R.layout.activity_wait_car_list_detail_layout;
     }
 
     @Override
@@ -136,7 +136,7 @@ public class WaitCarDetialActivity extends BaseActivity {
 
     private void requestData() {
         OkHttpUtils.get()
-                .url(Api.GET_WAIT_CAR_DETAIL)
+                .url(Api.GET_WAIT_CAR_LIST_DETAIL)
                 .addParams("orderId", orderId)
                 .tag(this)
                 .build()
@@ -148,26 +148,25 @@ public class WaitCarDetialActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        WaitCarDetialResponse resp = JsonUtils.parseByGson(response, WaitCarDetialResponse.class);
-//                        WaitCarListDetialResponse resp = JsonUtils.parseByGson(response, WaitCarListDetialResponse.class);
+                        WaitCarListDetialResponse resp = JsonUtils.parseByGson(response, WaitCarListDetialResponse.class);
                         if (resp != null) {
                             if (HttpResponse.SUCCESS.equals(resp.getCode())) {
+                                result = resp.getResult();
                                 tvServiceMoney.setText(resp.getResult().getFee());
-//                                tvNum.setText("");
+//                                tvNum.setText(resp.getResult().getCardList().size() + "次");
                                 tvSumMoney.setText(resp.getResult().getTotal() + "元");
                                 tvCarNum.setText(resp.getResult().getCarNumber());
                                 tvHave_dinner.setText(resp.getResult().getUseTime());
-                                tvQuCar.setText(resp.getResult().getTakeCarTime());
                                 tvMark.setText(resp.getResult().getRemark());
                                 tvLocation.setText("距客户:" + resp.getResult().getDistance() + "km");
                                 tvEndAdddress.setText(resp.getResult().getEndAddress());
                                 tvStartAdddress.setText(resp.getResult().getBeginAddress());
-                                Glide.with(mContext).load(AppConfig.BASE_URL+resp.getResult().getAvater()).into(ivHead);
+                                Glide.with(mContext).load(AppConfig.BASE_URL + resp.getResult().getAvater()).into(ivHead);
                                 tvName.setText(resp.getResult().getUsername());
                                 tvPhone.setText(resp.getResult().getPhone());
-                                Glide.with(mContext).load(AppConfig.BASE_URL+resp.getResult().getShopAvater()).into(ivHead2);
-                                tvName2.setText(resp.getResult().getShopname());
-                                tvPhone2.setText(resp.getResult().getMobile());
+//                                Glide.with(mContext).load("").into(ivHead2);
+//                                tvName2.setText("");
+//                                tvPhone2.setText("");
                                 tvOrderNum.setText("订单编号：" + resp.getResult().getOrderId());
                                 tvPayTime.setText("下单时间：" + resp.getResult().getCreateTime());
                                 switch (resp.getResult().getPayType()) {
@@ -185,7 +184,7 @@ public class WaitCarDetialActivity extends BaseActivity {
                 });
     }
 
-    private void initRecyclerView(List<String> cardList, List<WaitCarDetialResponse.ResultBean.OrderListBean> orderList) {
+    private void initRecyclerView(List<String> cardList, List<WaitCarListDetialResponse.ResultBean.OrderListBean> orderList) {
         vipRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         RBaseAdapter<String> rBaseAdapter = new RBaseAdapter<String>(mContext, R.layout.item_vip_layout, cardList) {
             @Override
@@ -200,9 +199,9 @@ public class WaitCarDetialActivity extends BaseActivity {
         };
         vipRecyclerView.setAdapter(rBaseAdapter);
 
-        RBaseAdapter<WaitCarDetialResponse.ResultBean.OrderListBean> adapter = new RBaseAdapter<WaitCarDetialResponse.ResultBean.OrderListBean>(mContext, R.layout.item_staff_detail_layout, orderList) {
+        RBaseAdapter<WaitCarListDetialResponse.ResultBean.OrderListBean> adapter = new RBaseAdapter<WaitCarListDetialResponse.ResultBean.OrderListBean>(mContext, R.layout.item_staff_detail_layout, orderList) {
             @Override
-            protected void fillItem(RViewHolder holder, WaitCarDetialResponse.ResultBean.OrderListBean item, int position) {
+            protected void fillItem(RViewHolder holder, WaitCarListDetialResponse.ResultBean.OrderListBean item, int position) {
                 RoundImageView riv = holder.getView(R.id.riv);
                 Glide.with(mContext).load(AppConfig.BASE_URL + item.getImg()).into(riv);
                 holder.setText(R.id.tvName, item.getName());
@@ -216,7 +215,7 @@ public class WaitCarDetialActivity extends BaseActivity {
             }
 
             @Override
-            protected int getViewType(WaitCarDetialResponse.ResultBean.OrderListBean item, int position) {
+            protected int getViewType(WaitCarListDetialResponse.ResultBean.OrderListBean item, int position) {
                 return 0;
             }
         };
@@ -234,41 +233,19 @@ public class WaitCarDetialActivity extends BaseActivity {
         title.setText("订单详情");
     }
 
-    @OnClick({R.id.backLayout, R.id.tvAccept})
+    @OnClick({R.id.backLayout, R.id.tvAccept, R.id.tvRefuse})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.backLayout:
                 backToActivity();
                 break;
+            case R.id.tvRefuse:
+                RefuseCauseActivity.start(result.getOrderId());
+                break;
             case R.id.tvAccept:
-//                IdentificationActivity.start();
-                checkTakeCar();
+                IdentificationActivity.start(result.getOrderId());
                 break;
         }
     }
 
-    private void checkTakeCar() {
-        OkHttpUtils.get()
-                .url(Api.GET_CHECK_TAKE_CAR)
-                .addParams("orderId", orderId)
-                .tag(this)
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-
-                    }
-
-                    @Override
-                    public void onResponse(String response, int id) {
-                        CommonResonse resp = JsonUtils.parseByGson(response, CommonResonse.class);
-                        if (resp != null) {
-                            showToast(resp.getMessage());
-                            if (HttpResponse.SUCCESS.equals(resp.getCode())) {
-                                finish();
-                            }
-                        }
-                    }
-                });
-    }
 }

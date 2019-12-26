@@ -138,6 +138,7 @@
                                 android:layout_marginHorizontal="15dp"
                                 android:layout_marginTop="18dp"
                                 android:layout_marginBottom="14.5dp"
+                                android:visibility="gone"
                                 android:orientation="horizontal">
 
                                 <TextView
@@ -162,8 +163,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp_1"
                                 android:layout_marginHorizontal="@dimen/dp_16"
+                                android:visibility="gone"
                                 android:background="@color/color_ebebeb" />
 
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/vipRecyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -459,6 +466,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_10"
+                            android:paddingLeft="15dp"
                             android:layout_marginBottom="@dimen/dp_10">
 
                             <com.ysxsoft.common_base.view.custom.image.CircleImageView
@@ -467,7 +475,6 @@
                                 android:layout_height="@dimen/dp_45"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_editor_absoluteX="@dimen/dp_20"
                                 tools:ignore="MissingConstraints"
                                 tools:src="@mipmap/ic_launcher" />
 
@@ -537,6 +544,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_10"
+                            android:paddingLeft="15dp"
                             android:layout_marginBottom="@dimen/dp_10">
 
                             <com.ysxsoft.common_base.view.custom.image.CircleImageView
@@ -545,7 +553,6 @@
                                 android:layout_height="@dimen/dp_45"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_editor_absoluteX="@dimen/dp_20"
                                 tools:ignore="MissingConstraints"
                                 tools:src="@mipmap/ic_launcher" />
 

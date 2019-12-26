@@ -8,7 +8,9 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bumptech.glide.Glide;
 import com.ysxsoft.common_base.base.BaseActivity;
+import com.ysxsoft.common_base.net.HttpResponse;
 import com.ysxsoft.common_base.utils.JsonUtils;
 import com.ysxsoft.common_base.utils.SharedPreferencesUtils;
 import com.ysxsoft.common_base.view.custom.image.CircleImageView;
@@ -17,6 +19,7 @@ import com.ysxsoft.user.ARouterPath;
 import com.ysxsoft.user.R;
 import com.ysxsoft.user.base.RBaseAdapter;
 import com.ysxsoft.user.base.RViewHolder;
+import com.ysxsoft.user.config.AppConfig;
 import com.ysxsoft.user.modle.WaitCarDetialResponse;
 import com.ysxsoft.user.modle.WaittingCarDetialResponse;
 import com.ysxsoft.user.net.Api;
@@ -24,6 +27,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -106,6 +110,10 @@ public class WaittingCarDetailActivity extends BaseActivity {
     TextView tvName2;
     @BindView(R.id.tvPhone2)
     TextView tvPhone2;
+
+    @BindView(R.id.vipRecyclerView)
+    RecyclerView vipRecyclerView;
+
     @Autowired
     String orderId;
 
@@ -123,14 +131,13 @@ public class WaittingCarDetailActivity extends BaseActivity {
         super.doWork();
         ARouter.getInstance().inject(this);
         initTitle();
-        initRecyclerView();
         requestData();
     }
 
     private void requestData() {
         OkHttpUtils.get()
-                .url(Api.GET_WAITTING_CAR)
-                .addParams("id", SharedPreferencesUtils.getUid(mContext))
+                .url(Api.GET_WAITTING_CAR_DETAIL)
+                .addParams("orderId", orderId)
                 .tag(this)
                 .build()
                 .execute(new StringCallback() {
@@ -143,48 +150,66 @@ public class WaittingCarDetailActivity extends BaseActivity {
                     public void onResponse(String response, int id) {
                         WaittingCarDetialResponse resp = JsonUtils.parseByGson(response, WaittingCarDetialResponse.class);
                         if (resp != null) {
-//                            if (HttpResponse.SUCCESS.equals(resp.getCode)){
-//                                tvServiceMoney.setText("");
+                            if (HttpResponse.SUCCESS.equals(resp.getCode())){
+                                tvServiceMoney.setText(resp.getResult().getFee());
 //                                tvNum.setText("");
-//                                tvSumMoney.setText(""+"元");
-//                                tvCarNum.setText("");
-//                                tvHave_dinner.setText("");
-//                                tvQuCar.setText("");
-//                                tvMark.setText("");
-//                                tvLocation.setText("距客户:"+"");
-//                                tvEndAdddress.setText("");
-//                                tvStartAdddress.setText("");
-//                                Glide.with(mContext).load("").into(ivHead);
-//                                tvName.setText("");
-//                                tvPhone.setText("");
-//                                Glide.with(mContext).load("").into(ivHead2);
-//                                tvName2.setText("");
-//                                tvPhone2.setText("");
-//                                tvOrderNum.setText("订单编号："+"");
-//                                tvPayTime.setText("下单时间："+"");
-//                                tvPayType.setText("支付方式："+"");
-//                                tvOrder_Taking_time.setText("接单时间："+"");
-//                            }
+                                tvSumMoney.setText(resp.getResult().getTotal()+"元");
+                                tvCarNum.setText(resp.getResult().getCarNumber());
+                                tvHave_dinner.setText(resp.getResult().getUseTime());
+                                tvQuCar.setText(resp.getResult().getTakeCarTime());
+                                tvMark.setText(resp.getResult().getRemark());
+                                tvLocation.setText("距客户:"+resp.getResult().getDistance());
+                                tvEndAdddress.setText(resp.getResult().getEndAddress());
+                                tvStartAdddress.setText(resp.getResult().getBeginAddress());
+                                Glide.with(mContext).load(AppConfig.BASE_URL+resp.getResult().getAvater()).into(ivHead);
+                                tvName.setText(resp.getResult().getUsername());
+                                tvPhone.setText(resp.getResult().getPhone());
+                                Glide.with(mContext).load(AppConfig.BASE_URL+resp.getResult().getShopAvater()).into(ivHead2);
+                                tvName2.setText(resp.getResult().getShopname());
+                                tvPhone2.setText(resp.getResult().getMobile());
+                                tvOrderNum.setText("订单编号："+resp.getResult().getOrderId());
+                                tvPayTime.setText("下单时间："+resp.getResult().getCreateTime());
+                                switch (resp.getResult().getPayType()) {
+                                    case 1:
+                                        tvPayType.setText("支付方式：" + "支付宝");
+                                        break;
+                                    case 2:
+                                        tvPayType.setText("支付方式：" + "微信");
+                                        break;
+                                }
+                                tvOrder_Taking_time.setText("接单时间："+resp.getResult().getTakeOrderTime());
+                                initRecyclerView(resp.getResult().getCardList(),resp.getResult().getOrderList());
+                            }
                         }
                     }
                 });
 
     }
 
-    private void initRecyclerView() {
-        ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(String.valueOf(i));
-        }
-        RBaseAdapter<String> adapter = new RBaseAdapter<String>(mContext, R.layout.item_staff_detail_layout, list) {
+    private void initRecyclerView(List<String> cardList, List<WaittingCarDetialResponse.ResultBean.OrderListBean> orderList) {
+        vipRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        RBaseAdapter<String> rBaseAdapter = new RBaseAdapter<String>(mContext, R.layout.item_vip_layout, cardList) {
             @Override
             protected void fillItem(RViewHolder holder, String item, int position) {
+                holder.setText(R.id.tv1,item);
+            }
+
+            @Override
+            protected int getViewType(String item, int position) {
+                return 0;
+            }
+        };
+        vipRecyclerView.setAdapter(rBaseAdapter);
+
+        RBaseAdapter<WaittingCarDetialResponse.ResultBean.OrderListBean> adapter = new RBaseAdapter<WaittingCarDetialResponse.ResultBean.OrderListBean>(mContext, R.layout.item_staff_detail_layout, orderList) {
+            @Override
+            protected void fillItem(RViewHolder holder, WaittingCarDetialResponse.ResultBean.OrderListBean item, int position) {
                 RoundImageView riv = holder.getView(R.id.riv);
-//                Glide.with(mContext).load("").into(riv);
-//                helper.setText(R.id.tvName,"");
-//                helper.setText(R.id.tvNum,"");
+                Glide.with(mContext).load(AppConfig.BASE_URL + item.getImg()).into(riv);
+                holder.setText(R.id.tvName, item.getName());
+                holder.setText(R.id.tvNum, "x " + item.getNumber());
                 TextView tv1 = holder.getView(R.id.tv1);
-                if (holder.getAdapterPosition() % 2 == 0) {
+                if (item.getType().equals("2")) {
                     tv1.setText("服务项目");
                 } else {
                     tv1.setText("汽车周边");
@@ -192,7 +217,7 @@ public class WaittingCarDetailActivity extends BaseActivity {
             }
 
             @Override
-            protected int getViewType(String item, int position) {
+            protected int getViewType(WaittingCarDetialResponse.ResultBean.OrderListBean item, int position) {
                 return 0;
             }
         };

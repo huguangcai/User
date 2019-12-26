@@ -243,6 +243,10 @@ public class ARouterPath {
         return "/main/WaitCarDetialActivity";
     }
 
+ public static String getWaitCarListDetialActivity() {
+        return "/main/WaitCarListDetialActivity";
+    }
+
     /**
      * 接车中详情
      *

@@ -79,10 +79,12 @@ public interface Api {
     public final String GET_SELECT_STAFF = AppConfig.BASE_URL + "/front/serveClient/staffList";
     //员工待接车
     public final String GET_WAIT_CAR = AppConfig.BASE_URL + "";
-    //员工待接车详情
-    public final String GET_WAIT_CAR_DETAIL = AppConfig.BASE_URL + "";
+    //汽车待接单详情
+    public final String GET_WAIT_CAR_LIST_DETAIL = AppConfig.BASE_URL + "/front/carOrder/waitOrder";
+     //员工待接车详情
+    public final String GET_WAIT_CAR_DETAIL = AppConfig.BASE_URL + "/front/carOrder/takingCar";
     //员工接车中
-    public final String GET_WAITTING_CAR = AppConfig.BASE_URL + "";
+    public final String GET_WAITTING_CAR_DETAIL = AppConfig.BASE_URL + "/front/carOrder/takingCar";
     //员工工作中
     public final String GET_WORKING = AppConfig.BASE_URL + "";
     //员工送车中

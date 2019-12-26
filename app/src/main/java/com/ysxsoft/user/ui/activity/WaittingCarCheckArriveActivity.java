@@ -139,8 +139,8 @@ public class WaittingCarCheckArriveActivity extends BaseActivity {
 
     private void requestData() {
         OkHttpUtils.get()
-                .url(Api.GET_WAITTING_CAR)
-                .addParams("id", SharedPreferencesUtils.getUid(mContext))
+                .url(Api.GET_WAITTING_CAR_DETAIL)
+                .addParams("orderId", orderId)
                 .tag(this)
                 .build()
                 .execute(new StringCallback() {
